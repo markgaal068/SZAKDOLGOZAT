@@ -27,6 +27,8 @@ export default function Popup({ news, closePopup }) {
                                 key={index}
                                 src={typeof image === 'object' ? URL.createObjectURL(image) : image} // Check if image is a file or a URL
                                 alt={`Hír kép ${index}`}
+                                width={300}
+                                height={300}
                                 className="w-32 h-auto snap-center flex-shrink-0"
                                 style={{ cursor: 'pointer' }}
                             />

@@ -10,7 +10,7 @@ export default function Teams() {
     <section>
       <div className="mx-4 xl:mx-16">
         <h2 className="heading text-center text-3xl xl:text-6xl font-bold mb-12 mt-12">
-          Ácsi <span className="text-accent">Kinizsi</span> SC<span>. Szakosztályok</span>
+          Ácsi <span className="text-accent">Kinizsi</span> SC<span> Szakosztályok</span>
         </h2>
 
         <div className="teams-container grid grid-cols-1 xl:grid-cols-2">
@@ -60,5 +60,13 @@ const departmentData = [
     title: "Lovas",
     description: "Lorem lorem lorem lorem",
     tableLink: "./szakosztalyok/lovas",
+  },  {
+    title: "Lövészet",
+    description: "Lorem lorem lorem lorem",
+    tableLink: "./szakosztalyok/loveszet",
+  },  {
+    title: "Ritmikus Gimnasztika",
+    description: "Lorem lorem lorem lorem",
+    tableLink: "./szakosztalyok/rg",
   },
 ];

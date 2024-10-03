@@ -12,7 +12,7 @@ return(
         <div className="container mx-auto flex justify-between items-center">
             {/* BADGE */}
             <Link href="/">
-                <h1 className="text-3xl font-bold">Ácsi <span className="text-accent">Kinizsi</span> SC.</h1>
+                <h1 className="text-3xl font-bold">Ácsi <span className="text-accent">Kinizsi</span> SC</h1>
             </Link>
 
             {/* PC NAV && CONTACT BUTTON*/}

@@ -27,7 +27,7 @@ export default function Home() {
         {/* LEFT SIDE */}
         <div className="flex flex-col items-center justify-center h-full order-1 xl:order-1"> {/* Full height for the left side */}
           <h1 className="text-2xl xl:text-6xl font-bold mb-4 text-center">
-            Üdvözlünk az <span className="text-accent">Ácsi Kinizsi SC.</span> weboldalán!
+            Üdvözlünk az <span className="text-accent">Ácsi Kinizsi SC</span> weboldalán!
           </h1>
           <div className="flex space-x-4">
             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" 

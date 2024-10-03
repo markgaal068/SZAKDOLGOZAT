@@ -79,7 +79,7 @@ const Contact = () => {
                                 Lépjen velünk kapcsolatba!
                             </h3>
                             <p className="text-gray-300">
-                                Ácsi Kinizsi SC. sportegyesület
+                                Ácsi Kinizsi SC sportegyesület
                             </p>
                             {/* Input Fields */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-accent">
@@ -123,7 +123,7 @@ const Contact = () => {
                             <Button
                                 type="submit"
                                 size="md"
-                                className="max-w-xs"
+                                className="h-[40px]"
                             >
                                 Küldés!
                             </Button>

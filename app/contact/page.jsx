@@ -3,15 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 import axios from "axios";
@@ -74,14 +65,14 @@ const Contact = () => {
                 opacity: 1,
                 transition: { delay: 0.2, duration: 0.4, ease: "easeIn" },
             }}
-            className="py-6"
+            className="flex items-center justify-center min-h-screen py-6 overflow-hidden" // Add overflow-hidden here
         >
             <div className="container mx-auto">
                 <div className="flex flex-col xl:flex-row gap-10">
                     {/* Form Section */}
-                    <div className="xl:w-1/2">
+                    <div className="xl:w-1/2 items-center">
                         <form
-                            className="flex flex-col gap-6 p-10 bg-gray-800 rounded-xl shadow-md"
+                            className="flex flex-col gap-6 p-10 rounded-xl shadow-md border border-accent bg-sndbg/10"
                             onSubmit={handleSubmit}
                         >
                             <h3 className="text-3xl font-semibold text-accent">
@@ -120,7 +111,7 @@ const Contact = () => {
                                     className="bg-sndbg border-none"
                                     required
                                 />
-                            </div>                           
+                            </div>
                             {/* Message Textarea */}
                             <Textarea
                                 className="h-40 bg-sndbg text-accent border-none"
@@ -146,7 +137,7 @@ const Contact = () => {
                                     key={index}
                                     className="flex items-center gap-4"
                                 >
-                                    <div className="flex items-center justify-center w-16 h-16 bg-gray-800 text-accent rounded-md">
+                                    <div className="flex items-center justify-center w-16 h-16 bg-sndbg/10 border border-accent text-accent rounded-md">
                                         <div className="text-3xl">{item.icon}</div>
                                     </div>
                                     <div>

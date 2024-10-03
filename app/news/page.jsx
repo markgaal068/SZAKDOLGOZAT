@@ -59,7 +59,7 @@ export default function News() {
             },
             body: JSON.stringify(newNewsItem),
         });
-    
+
         if (response.ok) {
             const addedNews = await response.json();
             setNewsData((prevData) => [newNewsItem, ...prevData]);
@@ -78,7 +78,7 @@ export default function News() {
             },
             body: JSON.stringify({ idsToDelete: selectedIds }),
         });
-    
+
         if (response.ok) {
             const remainingNews = newsData.filter((_, index) => !selectedToDelete.has(index));
             setNewsData(remainingNews);
@@ -97,53 +97,58 @@ export default function News() {
     };
 
     const handleCancelAddNews = () => {
-      
-        setIsCodeCorrect(false); 
-        setEnteredCode(""); 
+
+        setIsCodeCorrect(false);
+        setEnteredCode("");
     };
 
-    return (
-        <section>
-            <div className="mx-4 xl:mx-16">
-                <h2 className="heading text-center text-3xl xl:text-6xl font-bold mb-12 mt-12">Hírek</h2>
-                <div className="news-container grid grid-cols-1 xl:grid-cols-2 gap-6">
-                    {currentPage === 1 && (
-                        <AddNewsForm
-                            isCodeCorrect={isCodeCorrect}
-                            enteredCode={enteredCode}
-                            setEnteredCode={setEnteredCode}
-                            handleCodeSubmit={handleCodeSubmit}
-                            handleAddNews={handleAddNews}
-                            handleDeleteSelectedNews={handleDeleteSelectedNews}
-                            handleCancelAddNews={handleCancelAddNews}
-                        />
-                    )}
-
-                    {currentNews.map((news, index) => (
-                        <NewsItem
-                            key={index}
-                            news={news}
-                            index={index}
-                            isCodeCorrect={isCodeCorrect}
-                            toggleSelectNews={toggleSelectNews}
-                            openPopup={openPopup}
-                            selectedToDelete={selectedToDelete}
-                        />
-                    ))}
-                </div>
-
-                <div className="pagination flex justify-center mt-8">
-                    {Array.from({ length: totalPages }, (_, index) => (
-                        <Button key={index} onClick={() => paginate(index + 1)}>
-                            {index + 1}
-                        </Button>
-                    ))}
-                </div>
-
-                {selectedNews && (
-                    <Popup news={selectedNews} closePopup={closePopup} />
+// News.jsx
+return (
+    <section>
+        <div className="mx-4 xl:mx-16">
+            <h2 className="heading text-center text-3xl xl:text-6xl font-bold mb-12 mt-12">Hírek</h2>
+            <div className="news-container grid grid-cols-1 xl:grid-cols-2 gap-6">
+                {currentPage === 1 && (
+                    <AddNewsForm
+                        isCodeCorrect={isCodeCorrect}
+                        enteredCode={enteredCode}
+                        setEnteredCode={setEnteredCode}
+                        handleCodeSubmit={handleCodeSubmit}
+                        handleAddNews={handleAddNews}
+                        handleDeleteSelectedNews={handleDeleteSelectedNews}
+                        handleCancelAddNews={handleCancelAddNews}
+                    />
                 )}
+
+                {currentNews.map((news, index) => (
+                    <NewsItem
+                        key={index}
+                        news={news}
+                        index={index}
+                        isCodeCorrect={isCodeCorrect}
+                        toggleSelectNews={toggleSelectNews}
+                        openPopup={openPopup}
+                        selectedToDelete={selectedToDelete}
+                    />
+                ))}
             </div>
-        </section>
-    );
+
+            <button onClick={handleDeleteSelectedNews} className="delete-button">
+                Kiválasztott hírek törlése
+            </button>
+
+            <div className="pagination flex justify-center mt-8">
+                {Array.from({ length: totalPages }, (_, index) => (
+                    <Button key={index} onClick={() => paginate(index + 1)}>
+                        {index + 1}
+                    </Button>
+                ))}
+            </div>
+
+            {selectedNews && (
+                <Popup news={selectedNews} closePopup={closePopup} />
+            )}
+        </div>
+    </section>
+);
 }

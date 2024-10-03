@@ -1,8 +1,8 @@
-import clientPromise from '@/lib/mongodb';
+import clientPromise from '@/lib/mongodb'; // A lib mappa elérési útja
 
 export default async function handler(req, res) {
     const client = await clientPromise;
-    const db = client.db("kinizsi");
+    const db = client.db("kinizsi"); // Cseréld ki a saját adatbázis nevedre
 
     switch (req.method) {
         case 'GET':

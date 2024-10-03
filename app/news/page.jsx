@@ -19,15 +19,13 @@ export default function News() {
     const correctCode = "123456789Ab";
 
     useEffect(() => {
-        const storedData = localStorage.getItem("newsData");
-        if (storedData) {
-            setNewsData(JSON.parse(storedData));
-        }
+        const fetchNews = async () => {
+            const response = await fetch('/api/news');
+            const data = await response.json();
+            setNewsData(data);
+        };
+        fetchNews();
     }, []);
-
-    useEffect(() => {
-        localStorage.setItem("newsData", JSON.stringify(newsData));
-    }, [newsData]);
 
     const indexOfLastNews = currentPage * newsPerPage;
     const indexOfFirstNews = indexOfLastNews - newsPerPage;
@@ -47,23 +45,45 @@ export default function News() {
         }
     };
 
-    const handleAddNews = (newTitle, newDescription, newContent, newImages) => {
+    const handleAddNews = async (newTitle, newDescription, newContent, newImages) => {
         const newNewsItem = {
             title: newTitle,
             description: newDescription,
             content: newContent,
             images: newImages,
         };
-        setNewsData((prevData) => [newNewsItem, ...prevData]);
-        setIsAddingNews(false);
-        setIsCodeCorrect(false);
-        setEnteredCode("");
+        const response = await fetch('/api/news', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newNewsItem),
+        });
+    
+        if (response.ok) {
+            const addedNews = await response.json();
+            setNewsData((prevData) => [newNewsItem, ...prevData]);
+            setIsAddingNews(false);
+            setIsCodeCorrect(false);
+            setEnteredCode("");
+        }
     };
 
-    const handleDeleteSelectedNews = () => {
-        const updatedNewsData = newsData.filter((_, index) => !selectedToDelete.has(index));
-        setNewsData(updatedNewsData);
-        setSelectedToDelete(new Set());
+    const handleDeleteSelectedNews = async () => {
+        const selectedIds = Array.from(selectedToDelete);
+        const response = await fetch('/api/news', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ idsToDelete: selectedIds }),
+        });
+    
+        if (response.ok) {
+            const remainingNews = newsData.filter((_, index) => !selectedToDelete.has(index));
+            setNewsData(remainingNews);
+            setSelectedToDelete(new Set());
+        }
     };
 
     const toggleSelectNews = (index) => {

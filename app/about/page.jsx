@@ -21,18 +21,17 @@ export default function About() {
         </p>
 
         <div className="bg-sndbg p-6 rounded-lg shadow-lg my-8">
-        <p className="mb-6 ml-10  mr-10 text-gray-300">
-          Az újonnan alakult club öt szakosztállyal kezdte meg működését:
-        </p>
+          <p className="mb-6 ml-10 mr-10 text-gray-300">
+            Az újonnan alakult club öt szakosztállyal kezdte meg működését:
+          </p>
 
-
-        <ul className="list-decimal list-inside pl-6 mb-6 ml-10 space-y-2">
-          <li className="text-accent font-semibold">Football</li>
-          <li className="text-accent font-semibold">Kerékpár</li>
-          <li className="text-accent font-semibold">Atlétika</li>
-          <li className="text-accent font-semibold">Közművelődési alosztály</li>
-          <li className="text-accent font-semibold">Turisztikai alosztály</li>
-        </ul>
+          <ul className="list-decimal list-inside pl-6 mb-6 ml-10 space-y-2">
+            <li className="text-accent font-semibold">Football</li>
+            <li className="text-accent font-semibold">Kerékpár</li>
+            <li className="text-accent font-semibold">Atlétika</li>
+            <li className="text-accent font-semibold">Közművelődési alosztály</li>
+            <li className="text-accent font-semibold">Turisztikai alosztály</li>
+          </ul>
         </div>
 
         <p className="mb-6 ml-10 mr-10 text-gray-300">
@@ -45,6 +44,14 @@ export default function About() {
 
         <p className="mb-6 ml-10 mr-10 text-gray-300">
           Az Ácsi Kinizsi SC szakosztályai mindig fontos és meghatározó szerepet töltöttek be a megye és helyenként az ország sportéletében. Szakosztályaink és sportolóink a Megyei III-tól az NBII-es bajnokságig mérethették meg magukat.
+        </p>
+
+        <p className="mb-6 ml-10 mr-10 text-gray-300">
+          A közelmúlt és a jelen egy megváltozott képet mutat, az Ácsi Cukorgyár megszűnése komoly űrt hagyott az egyesület támogatottságát illetően. Ezt a hiányt betölteni a Hartmann Hungary Kft. tudta, amely Ács legnagyobb vállalata, és részt vállal a sport club támogatásából.
+        </p>
+
+        <p className="mb-6 ml-10 mr-10 text-gray-300">
+          A Kinizsi SC szakosztályai, sportolói a Megyei III-tól az NBII-ig mérethették meg magukat, de mindig fontos szereplők voltak a sportéletben. A jelenlegi helyzetben az utánpótlás-nevelés kiemelt szerepet kap, különösen a sakk, asztalitenisz, kézilabda és labdarúgás területén.
         </p>
 
         <div className="bg-sndbg p-6 rounded-lg shadow-lg my-8">
@@ -62,7 +69,7 @@ export default function About() {
         </div>
 
         <p className="mb-6 ml-10 mr-10 text-gray-300">
-          A sport club vezetői, a szakosztályok vezetői, sportolói azon munkálkodnak, hogy az esetlegesen gyengébb szerepléseket feledtessék! Az Ácsi Kinizsi SC szurkolóinak maradandó élményeket nyújtsanak!
+          A sport club vezetői, sportolói azon munkálkodnak, hogy a gyengébb szerepléseket feledtessék, és maradandó élményeket nyújtsanak a szurkolóknak!
         </p>
 
         <p className="text-center font-bold text-xl text-accent mt-12">

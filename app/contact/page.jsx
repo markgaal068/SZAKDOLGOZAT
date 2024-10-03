@@ -20,17 +20,17 @@ const info = [
     {
         icon: <FaPhoneAlt />,
         title: "Telefon",
-        description: "(+36) 30 419 9942",
+        description: "egyesület telefonszáma",
     },
     {
         icon: <FaEnvelope />,
         title: "Email",
-        description: "gaalmark.markit@gmail.com",
+        description: "acs.sportcsarnok@gmail.com",
     },
     {
         icon: <FaMapMarkerAlt />,
         title: "Cím",
-        description: "Arany J. u. 5. Töltéstava, 9086",
+        description: "cím",
     },
 ];
 
@@ -85,7 +85,7 @@ const Contact = () => {
                             onSubmit={handleSubmit}
                         >
                             <h3 className="text-3xl font-semibold text-accent">
-                                Lépjen velünk kapcsoaltba!
+                                Lépjen velünk kapcsolatba!
                             </h3>
                             <p className="text-gray-300">
                                 Ácsi Kinizsi SC. sportegyesület

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function Popup({ news, closePopup }) {
     return (
@@ -22,7 +23,7 @@ export default function Popup({ news, closePopup }) {
                 <div className="images flex overflow-x-auto mt-4 space-x-4 snap-x justify-start"> 
                     {news.images && news.images.length > 0 ? (
                         news.images.map((image, index) => (
-                            <img
+                            <Image
                                 key={index}
                                 src={typeof image === 'object' ? URL.createObjectURL(image) : image} // Check if image is a file or a URL
                                 alt={`Hír kép ${index}`}

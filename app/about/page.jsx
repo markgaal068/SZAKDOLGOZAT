@@ -12,7 +12,7 @@ export default function About() {
           </h2>
           <div className="mx-auto w-1/4 h-1 bg-accent mb-2"></div>
           <p className="italic text-gray-400">
-            "A múlt tisztelete, a jövő építése."
+            &quot;A múlt tisztelete, a jövő építése. &quot;
           </p>
         </div>
 

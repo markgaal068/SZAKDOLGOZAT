@@ -8,7 +8,7 @@ export default function AddNewsForm({
     handleCodeSubmit,
     handleAddNews,
     handleDeleteSelectedNews,
-    handleCancelAddNews // Új funkció a "Mégse" gombhoz
+    handleCancelAddNews 
 }) {
     const [newImages, setNewImages] = useState([]);
 
@@ -42,7 +42,7 @@ export default function AddNewsForm({
                     <textarea className="border border-accent bg-bg rounded p-2 mt-4 text-accent h-32" placeholder="Hír tartalma" id="newContent" />
                     <input type="file" className="border border-accent bg-bg rounded p-2 mt-4 text-accent" multiple accept="image/*" onChange={handleImageUpload} />
                     
-                    {/* Hír hozzáadása gomb */}
+                    
                     <Button
                         className="mt-4"
                         onClick={() => handleAddNews(
@@ -55,12 +55,12 @@ export default function AddNewsForm({
                         Hír hozzáadása
                     </Button>
 
-                    {/* Kiválasztott hírek törlése gomb */}
+                    
                     <Button className="mt-4 bg-red-500 text-white" onClick={handleDeleteSelectedNews}>
                         Kiválasztott hírek törlése
                     </Button>
 
-                    {/* Mégse gomb hozzáadása */}
+                    
                     <Button className="mt-4 bg-gray-500 text-white" onClick={handleCancelAddNews}>
                         Mégse
                     </Button>

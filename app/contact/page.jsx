@@ -48,10 +48,10 @@ const Contact = () => {
                 "",
                 data
             );
-            alert(response.data); //success
+            alert(response.data); 
         } catch (error) {
             console.error("Error details:", error);
-            alert("Error sending email: " + error.message); // Show error message
+            alert("Error sending email: " + error.message); 
         } finally {
             sendButton.disabled = false;
             sendButton.textContent = "Küldés!";
@@ -65,7 +65,7 @@ const Contact = () => {
                 opacity: 1,
                 transition: { delay: 0.2, duration: 0.4, ease: "easeIn" },
             }}
-            className="flex items-center justify-center min-h-screen py-6 overflow-hidden" // Add overflow-hidden here
+            className="flex items-center justify-center min-h-screen py-6 overflow-hidden" 
         >
             <div className="container mx-auto">
                 <div className="flex flex-col xl:flex-row gap-10">

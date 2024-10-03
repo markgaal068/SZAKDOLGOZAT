@@ -77,9 +77,9 @@ export default function News() {
     };
 
     const handleCancelAddNews = () => {
-        // Reseteljük a kódot és az állapotokat
-        setIsCodeCorrect(false); // Visszaállítjuk az alapértelmezett állapotot
-        setEnteredCode(""); // Töröljük a beírt kódot
+      
+        setIsCodeCorrect(false); 
+        setEnteredCode(""); 
     };
 
     return (

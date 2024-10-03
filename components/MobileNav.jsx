@@ -31,21 +31,21 @@ const links = [
 
 const MobileNav = () => {
     const pathname = usePathname();
-    const [isOpen, setIsOpen] = useState(false); // State to manage the sheet
+    const [isOpen, setIsOpen] = useState(false); 
 
     const closeSheet = () => {
-        setIsOpen(false); // Close the sheet
+        setIsOpen(false); 
     }
 
     return (
-        <Sheet open={isOpen} onOpenChange={setIsOpen}> {/* Control the Sheet with state */}
+        <Sheet open={isOpen} onOpenChange={setIsOpen}> 
             <SheetTrigger className='flex justify-center items-center' onClick={() => setIsOpen(true)}>
                 <CiMenuFries className='text-[32px] text-accent' />
             </SheetTrigger>
             <SheetContent className="flex flex-col">
                 {/* logo */}
                 <div className='mt-32 mb-40 text-center text-2xl'>
-                    <Link href="/" onClick={closeSheet}> {/* Close sheet on click */}
+                    <Link href="/" onClick={closeSheet}>
                         <h1 className='text-4xl font-bold'>Ácsi <span className='text-accent'>Kinizsi</span> SC</h1>
                     </Link>
                 </div>
@@ -56,7 +56,7 @@ const MobileNav = () => {
                         <Link
                             href={link.path}
                             key={index}
-                            onClick={closeSheet} // Close sheet on link click
+                            onClick={closeSheet} 
                             className={`${link.path === pathname ? "text-accent border-b-2 border-accent" : ""} text-xl capitalize hover:text-accent transition-all`}
                         >
                             {link.name}

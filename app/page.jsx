@@ -6,26 +6,25 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <main className="h-screen fixed flex items-center justify-center"> {/* Center content */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 h-full gap-0 overflow-hidden"> {/* Adjust gap here */}
-        {/* RIGHT SIDE with Floating Animation - Set to appear first on mobile */}
+    <main className="h-screen fixed flex items-center justify-center"> 
+      <div className="grid grid-cols-1 xl:grid-cols-2 h-full gap-0 overflow-hidden"> 
+
         <motion.div 
-          className="flex items-center justify-center p-4 order-2 xl:order-2" // Order changes based on screen size
+          className="flex items-center justify-center p-4 order-2 xl:order-2" 
           initial={{ y: 0 }} 
           animate={{ y: [0, -50, 0] }} 
-          transition={{ duration: 5, ease: "easeInOut", repeat: Infinity }} // Adjust duration and easing
+          transition={{ duration: 5, ease: "easeInOut", repeat: Infinity }}
         >
           <Image
-            src="/kinizsicimer.png" // Automatically searches in the public folder
+            src="/kinizsicimer.png" 
             alt="Címer"
-            width={600} // Adjust to desired size
-            height={600} // Adjust to desired size
+            width={600} 
+            height={600} 
             className="items-center justify-center"
           />
         </motion.div>
 
-        {/* LEFT SIDE */}
-        <div className="flex flex-col items-center justify-center h-full order-1 xl:order-1"> {/* Full height for the left side */}
+        <div className="flex flex-col items-center justify-center h-full order-1 xl:order-1"> 
           <h1 className="text-2xl xl:text-6xl font-bold mb-4 text-center">
             Üdvözlünk az <span className="text-accent">Ácsi Kinizsi SC</span> weboldalán!
           </h1>

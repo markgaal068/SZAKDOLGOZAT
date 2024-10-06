@@ -15,8 +15,10 @@ export default function AddNewsForm({
     const handleImageUpload = (e) => {
         const files = Array.from(e.target.files);
         const validFiles = files.filter(file => file instanceof File);
+        console.log('Uploaded Files:', validFiles); // Debugging line
         setNewImages((prevImages) => [...prevImages, ...validFiles]);
     };
+   
 
     return (
         <div className="rounded-[40px] bg-sndbg border border-bg p-6 flex flex-col items-center hover:border-accent border-2 xl:gap-10 m-5">

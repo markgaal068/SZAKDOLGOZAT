@@ -18,19 +18,21 @@ export default function News() {
     const newsPerPage = 8;
     const correctCode = "123456789Ab";
 
-    // Load news from local storage on component mount
     useEffect(() => {
-        const storedNews = localStorage.getItem('newsData');
-        if (storedNews) {
-            setNewsData(JSON.parse(storedNews));
-        }
+        const fetchNews = async () => {
+            try {
+                const response = await fetch('/api/news');
+                const data = await response.json();
+                // A legújabb hírek kerüljenek az elejére
+                setNewsData(data.reverse());
+            } catch (error) {
+                console.error('Hiba történt a hírek betöltésekor:', error);
+            }
+        };
+
+        fetchNews();
     }, []);
-
-    // Update local storage whenever newsData changes
-    useEffect(() => {
-        localStorage.setItem('newsData', JSON.stringify(newsData));
-    }, [newsData]);
-
+    
     const indexOfLastNews = currentPage * newsPerPage;
     const indexOfFirstNews = indexOfLastNews - newsPerPage;
     const currentNews = newsData.slice(indexOfFirstNews, indexOfLastNews);
@@ -49,25 +51,71 @@ export default function News() {
         }
     };
 
-    const handleAddNews = (newTitle, newDescription, newContent, newImages) => {
+    const handleAddNews = async (newTitle, newDescription, newContent, newImages) => {
         const newNewsItem = {
             title: newTitle,
             description: newDescription,
             content: newContent,
-            images: newImages,
+            images: await Promise.all(newImages.map(convertToBase64)), // Convert images to base64
         };
 
-        // Update state and local storage
-        setNewsData((prevData) => [newNewsItem, ...prevData]);
-        setIsAddingNews(false);
-        setIsCodeCorrect(false);
-        setEnteredCode("");
+        try {
+            const response = await fetch('/api/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newNewsItem),
+            });
+
+            if (response.ok) {
+                const addedNews = await response.json();
+                // Az új hír az első helyre kerül a listában
+                setNewsData((prevData) => [addedNews, ...prevData]);
+                setIsAddingNews(false);
+                setIsCodeCorrect(false);
+                setEnteredCode("");
+            } else {
+                console.error('Hiba történt a hír hozzáadása közben:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Hiba történt a hír hozzáadása közben:', error);
+        }
+    };
+    
+    // Function to convert a file to base64
+    const convertToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
     };
 
-    const handleDeleteSelectedNews = () => {
-        const remainingNews = newsData.filter((_, index) => !selectedToDelete.has(index));
-        setNewsData(remainingNews);
-        setSelectedToDelete(new Set());
+    const handleDeleteSelectedNews = async () => {
+        try {
+            await Promise.all([...selectedToDelete].map(async (index) => {
+                const newsItem = newsData[index];
+                const response = await fetch('/api/delete', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id: newsItem._id }), // assumed your news item has an _id
+                });
+
+                if (!response.ok) {
+                    throw new Error('Hiba történt a hír törlésekor');
+                }
+            }));
+
+            const remainingNews = newsData.filter((_, index) => !selectedToDelete.has(index));
+            setNewsData(remainingNews);
+            setSelectedToDelete(new Set());
+        } catch (error) {
+            console.error('Hiba történt a törlés során:', error);
+        }
     };
 
     const toggleSelectNews = (index) => {

@@ -5,6 +5,7 @@ import AddNewsForm from "@/components/AddNewsForm";
 import NewsItem from "@/components/NewsItem";
 import Popup from "@/components/Popup";
 import { Button } from "@/components/ui/button";
+import imageCompression from 'browser-image-compression';
 
 export default function News() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -23,16 +24,15 @@ export default function News() {
             try {
                 const response = await fetch('/api/news');
                 const data = await response.json();
-                // A legújabb hírek kerüljenek az elejére
-                setNewsData(data.reverse());
+                setNewsData(data);
             } catch (error) {
-                console.error('Hiba történt a hírek betöltésekor:', error);
+                console.error('Error loading news:', error);
             }
         };
 
         fetchNews();
     }, []);
-    
+
     const indexOfLastNews = currentPage * newsPerPage;
     const indexOfFirstNews = indexOfLastNews - newsPerPage;
     const currentNews = newsData.slice(indexOfFirstNews, indexOfLastNews);
@@ -52,11 +52,20 @@ export default function News() {
     };
 
     const handleAddNews = async (newTitle, newDescription, newContent, newImages) => {
+        // Compress images before uploading
+        const compressedImages = await Promise.all(newImages.map(async (file) => {
+            const options = {
+                maxSizeMB: 1, // maximum size in MB
+                maxWidthOrHeight: 1920, // max width or height
+            };
+            return await imageCompression(file, options);
+        }));
+
         const newNewsItem = {
             title: newTitle,
             description: newDescription,
             content: newContent,
-            images: await Promise.all(newImages.map(convertToBase64)), // Convert images to base64
+            images: await Promise.all(compressedImages.map(convertToBase64)),
         };
 
         try {
@@ -70,19 +79,18 @@ export default function News() {
 
             if (response.ok) {
                 const addedNews = await response.json();
-                // Az új hír az első helyre kerül a listában
-                setNewsData((prevData) => [addedNews, ...prevData]);
+                setNewsData((prevData) => [addedNews, ...prevData]); // Add the new news item at the top
                 setIsAddingNews(false);
                 setIsCodeCorrect(false);
                 setEnteredCode("");
             } else {
-                console.error('Hiba történt a hír hozzáadása közben:', response.statusText);
+                console.error('Error adding news:', response.statusText);
             }
         } catch (error) {
-            console.error('Hiba történt a hír hozzáadása közben:', error);
+            console.error('Error adding news:', error);
         }
     };
-    
+
     // Function to convert a file to base64
     const convertToBase64 = (file) => {
         return new Promise((resolve, reject) => {
@@ -106,7 +114,7 @@ export default function News() {
                 });
 
                 if (!response.ok) {
-                    throw new Error('Hiba történt a hír törlésekor');
+                    throw new Error('Error deleting news');
                 }
             }));
 
@@ -114,7 +122,7 @@ export default function News() {
             setNewsData(remainingNews);
             setSelectedToDelete(new Set());
         } catch (error) {
-            console.error('Hiba történt a törlés során:', error);
+            console.error('Error during deletion:', error);
         }
     };
 

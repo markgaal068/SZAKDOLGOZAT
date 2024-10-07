@@ -31,7 +31,7 @@ export default function News() {
 
         fetchNews();
     }, []);
-    
+
     const indexOfLastNews = currentPage * newsPerPage;
     const indexOfFirstNews = indexOfLastNews - newsPerPage;
     const currentNews = newsData.slice(indexOfFirstNews, indexOfLastNews);
@@ -55,7 +55,7 @@ export default function News() {
             title: newTitle,
             description: newDescription,
             content: newContent,
-            images: await Promise.all(newImages.map(convertToBase64)), 
+            images: await Promise.all(newImages.map(convertToBase64)),
         };
 
         try {
@@ -99,7 +99,7 @@ export default function News() {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ id: newsItem._id }), 
+                    body: JSON.stringify({ id: newsItem._id }),
                 });
 
                 if (!response.ok) {
@@ -156,18 +156,25 @@ export default function News() {
                             toggleSelectNews={toggleSelectNews}
                             openPopup={openPopup}
                             selectedToDelete={selectedToDelete}
-                            
+
                         />
                     ))}
                 </div>
 
                 <div className="pagination flex justify-center mb-2 gap-1">
                     {Array.from({ length: totalPages }, (_, index) => (
-                        <Button key={index} onClick={() => paginate(index + 1)}>
-                            {index + 1}
-                        </Button>
+                        index + 1 === currentPage ? ( // Check if the index matches the active page
+                            <Button key={index} className="bg-accent text-white" disabled>
+                                {index + 1}
+                            </Button>
+                        ) : (
+                            <button key={index} onClick={() => paginate(index + 1)}>
+                                {index + 1}
+                            </button>
+                        )
                     ))}
                 </div>
+
 
                 {selectedNews && (
                     <Popup news={selectedNews} closePopup={closePopup} />

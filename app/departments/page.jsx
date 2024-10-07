@@ -15,12 +15,25 @@ export default function Teams() {
 
         <div className="teams-container grid grid-cols-1 xl:grid-cols-2">
           {departmentData.map((department, index) => (
-            <div className="rounded-[40px] bg-sndbg border border-bg p-6 flex flex-col items-center hover:border-accent border-2 xl:gap-10 m-5" key={index}>
-              <h3 className="text-xl font-semibold text-center">{department.title}</h3>
-              <p className="text-center mb-4">{department.description}</p>
-              <Link href={department.tableLink}>
-              <Button>Továbbiak</Button>
-              </Link>
+            <div
+              className="rounded-[40px] bg-sndbg border border-bg p-6 flex flex-col hover:border-accent border-2 xl:gap-10 m-5 h-[350px]" // Set a fixed height
+              key={index}
+              style={{
+                backgroundImage: department.background ? `url(${department.background})` : 'none',
+                backgroundSize: 'cover', // Default background size
+                backgroundPosition: 'center',
+              }}
+            >
+              <div className="bg-sndbg rounded-[20px] w-full p-4 h-32 flex flex-col justify-center items-center mb-4"> {/* Adjusted height */}
+                <h3 className="text-xl font-semibold text-center">{department.title}</h3>
+                <p className="text-center mb-2">{department.description}</p>
+              </div>
+              <div className="flex-grow" /> {/* This allows the space to grow and push the button down */}
+              <div className="flex justify-center"> {/* Center the button horizontally */}
+                <Link href={department.tableLink}>
+                  <Button className="mt-4">Továbbiak</Button> {/* Margin on the button for spacing */}
+                </Link>
+              </div>
             </div>
           ))}
         </div>
@@ -35,11 +48,13 @@ const departmentData = [
     title: "Labdarúgás",
     description: "Lorem lorem lorem lorem",
     tableLink: "./szakosztalyok/labdarugas",
+    background: "./foca.webp",
   },
   {
     title: "Kézilabda",
     description: "Lorem lorem lorem lorem",
     tableLink: "./szakosztalyok/kezilabda",
+    background: "./kezi.webp",
   },
   {
     title: "Asztalitenisz",
@@ -60,11 +75,13 @@ const departmentData = [
     title: "Lovas",
     description: "Lorem lorem lorem lorem",
     tableLink: "./szakosztalyok/lovas",
-  },  {
+  },
+  {
     title: "Lövészet",
     description: "Lorem lorem lorem lorem",
     tableLink: "./szakosztalyok/loveszet",
-  },  {
+  },
+  {
     title: "Ritmikus Gimnasztika",
     description: "Lorem lorem lorem lorem",
     tableLink: "./szakosztalyok/rg",

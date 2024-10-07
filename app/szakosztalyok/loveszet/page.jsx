@@ -8,7 +8,7 @@ export default function Loveszet() {
     <section>
       <div className="mx-4 xl:mx-16">
         <h2 className="heading text-center text-3xl xl:text-6xl font-bold mb-12 mt-12"> 
-            <span className="text-accent">Lovas</span> Szakosztály
+            <span className="text-accent">Lövész</span> Szakosztály
         </h2>
 
         <div className="teams-container grid grid-cols-1 xl:grid-cols-2">

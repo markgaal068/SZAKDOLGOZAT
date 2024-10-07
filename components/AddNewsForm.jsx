@@ -10,16 +10,16 @@ export default function AddNewsForm({
     handleDeleteSelectedNews,
     handleCancelAddNews 
 }) {
-    const [newImage, setNewImage] = useState(null); // State for a single image
-    const [newTitle, setNewTitle] = useState(""); // State for title
-    const [newDescription, setNewDescription] = useState(""); // State for description
-    const [newContent, setNewContent] = useState(""); // State for content
+    const [newImage, setNewImage] = useState(null);
+    const [newTitle, setNewTitle] = useState(""); 
+    const [newDescription, setNewDescription] = useState(""); 
+    const [newContent, setNewContent] = useState(""); 
 
     const handleImageUpload = (e) => {
-        const file = e.target.files[0]; // Get the first file only
+        const file = e.target.files[0]; 
         if (file && file instanceof File) {
-            console.log('Uploaded File:', file); // Debugging line
-            setNewImage(file); // Set the single image
+            console.log('Uploaded File:', file);
+            setNewImage(file); 
         }
     };
 
@@ -46,21 +46,21 @@ export default function AddNewsForm({
                         type="text"
                         className="border border-accent rounded p-2 mt-4 bg-bg text-accent"
                         placeholder="Hír címe"
-                        value={newTitle} // Bind to state
-                        onChange={(e) => setNewTitle(e.target.value)} // Update state
+                        value={newTitle} 
+                        onChange={(e) => setNewTitle(e.target.value)} 
                     />
                     <input
                         type="text"
                         className="border border-accent bg-bg rounded p-2 mt-4 text-accent"
                         placeholder="Hír leírása"
-                        value={newDescription} // Bind to state
-                        onChange={(e) => setNewDescription(e.target.value)} // Update state
+                        value={newDescription} 
+                        onChange={(e) => setNewDescription(e.target.value)}
                     />
                     <textarea
                         className="border border-accent bg-bg rounded p-2 mt-4 text-accent h-32"
                         placeholder="Hír tartalma"
-                        value={newContent} // Bind to state
-                        onChange={(e) => setNewContent(e.target.value)} // Update state
+                        value={newContent} 
+                        onChange={(e) => setNewContent(e.target.value)}
                     />
                     <input
                         type="file"
@@ -70,7 +70,7 @@ export default function AddNewsForm({
                     />
                     <Button
                         className="mt-4"
-                        onClick={() => handleAddNews(newTitle, newDescription, newContent, newImage ? [newImage] : [])} // Pass image as an array
+                        onClick={() => handleAddNews(newTitle, newDescription, newContent, newImage ? [newImage] : [])}
                     >
                         Hír hozzáadása
                     </Button>

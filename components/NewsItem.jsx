@@ -15,14 +15,14 @@ export default function NewsItem({
                 backgroundImage: news.images && news.images.length > 0 ? `url(${news.images[0]})` : 'none',
                 backgroundSize: 'cover',
                 backgroundPosition: 'auto',
-                color: 'white', // Text color for better contrast
+                color: 'white', 
             }}
         >
             <div className="bg-sndbg rounded-full p-4 w-full mb-4 flex flex-col">
                 <h3 className="text-xl font-semibold text-center">{news.title}</h3>
                 <p className="text-center mb-2">{news.description}</p>
             </div>
-            <div className="flex-grow" /> {/* Flexible space to push the button down */}
+            <div className="flex-grow" /> 
             {isCodeCorrect && (
                 <input
                     type="checkbox"

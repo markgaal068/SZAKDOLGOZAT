@@ -1,13 +1,13 @@
 import { MongoClient, ObjectId } from "mongodb";
 
-const uri = "mongodb+srv://markgaal068:rGAW8V26qKPVM49s@kinizsi.wabej.mongodb.net/?retryWrites=true&w=majority&appName=kinizsi"; // Cseréld ki az adataidra
+const uri = "mongodb+srv://markgaal068:rGAW8V26qKPVM49s@kinizsi.wabej.mongodb.net/?retryWrites=true&w=majority&appName=kinizsi"; // SAJÁT ADAT!
 const client = new MongoClient(uri);
 
 export default async function handler(req, res) {
     if (req.method === 'DELETE') {
-        const { id } = req.body; // A törölni kívánt hír azonosítója
+        const { id } = req.body; 
 
-        // Ellenőrizzük, hogy az ID létezik-e
+
         if (!id) {
             return res.status(400).json({ message: 'ID is required' });
         }
@@ -17,12 +17,12 @@ export default async function handler(req, res) {
             const database = client.db("kinizsi"); // Adatbázis neve
             const newsCollection = database.collection("news"); // Gyűjtemény neve
 
-            // Ellenőrizzük, hogy az ID érvényes ObjectId formátumban van
+
             if (!ObjectId.isValid(id)) {
                 return res.status(400).json({ message: 'Invalid ID format' });
             }
 
-            // Töröljük a hírt az azonosító alapján
+
             const result = await newsCollection.deleteOne({ _id: new ObjectId(id) });
 
             if (result.deletedCount === 1) {

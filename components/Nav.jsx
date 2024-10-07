@@ -43,14 +43,14 @@ const Nav = () => {
     const timeoutRef = useRef(null)
 
     const handleMouseEnter = () => {
-        clearTimeout(timeoutRef.current) // Töröljük a timeoutot
-        setIsDropdownOpen(true) // Nyisd meg a legördülő menüt
+        clearTimeout(timeoutRef.current) 
+        setIsDropdownOpen(true) 
     }
 
     const handleMouseLeave = () => {
         timeoutRef.current = setTimeout(() => {
-            setIsDropdownOpen(false) // Csukd be a menüt 0.5 másodperc múlva
-        }, 100) // 500 ms késleltetés
+            setIsDropdownOpen(false) 
+        }, 100) 
     }
 
     return (
@@ -65,7 +65,7 @@ const Nav = () => {
                     {link.dropdown ? (
                         <div 
                             className="relative" 
-                            onMouseEnter={handleMouseEnter} // Tartsd nyitva a legördülőt, ha fölé viszik az egeret
+                            onMouseEnter={handleMouseEnter} 
                         >
                             <Link 
                                 href={link.path} 
@@ -78,8 +78,8 @@ const Nav = () => {
                             {isDropdownOpen && (
                                 <div 
                                     className="absolute top-full left-0 bg-sndbg shadow-lg rounded-md mt-2 z-50 border-b border-accent"
-                                    onMouseEnter={handleMouseEnter} // Tartsd nyitva, ha a legördülő menü területén van az egér
-                                    onMouseLeave={handleMouseLeave} // Zárd be, ha eltávolítják az egeret
+                                    onMouseEnter={handleMouseEnter} 
+                                    onMouseLeave={handleMouseLeave} 
                                 >
                                     <ul className="flex flex-col">
                                         {link.dropdown.map((subLink, subIndex) => (

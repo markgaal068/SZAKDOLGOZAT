@@ -55,7 +55,7 @@ export default function News() {
             title: newTitle,
             description: newDescription,
             content: newContent,
-            images: await Promise.all(newImages.map(convertToBase64)), // Convert images to base64
+            images: await Promise.all(newImages.map(convertToBase64)), 
         };
 
         try {
@@ -99,7 +99,7 @@ export default function News() {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ id: newsItem._id }), // assumed your news item has an _id
+                    body: JSON.stringify({ id: newsItem._id }), 
                 });
 
                 if (!response.ok) {

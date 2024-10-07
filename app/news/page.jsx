@@ -161,7 +161,7 @@ export default function News() {
                     ))}
                 </div>
 
-                <div className="pagination flex justify-center mt-8">
+                <div className="pagination flex justify-center mb-2 gap-1">
                     {Array.from({ length: totalPages }, (_, index) => (
                         <Button key={index} onClick={() => paginate(index + 1)}>
                             {index + 1}

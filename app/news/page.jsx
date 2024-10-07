@@ -23,7 +23,6 @@ export default function News() {
             try {
                 const response = await fetch('/api/news');
                 const data = await response.json();
-                // A legújabb hírek kerüljenek az elejére
                 setNewsData(data.reverse());
             } catch (error) {
                 console.error('Hiba történt a hírek betöltésekor:', error);
@@ -70,7 +69,6 @@ export default function News() {
 
             if (response.ok) {
                 const addedNews = await response.json();
-                // Az új hír az első helyre kerül a listában
                 setNewsData((prevData) => [addedNews, ...prevData]);
                 setIsAddingNews(false);
                 setIsCodeCorrect(false);
@@ -82,8 +80,7 @@ export default function News() {
             console.error('Hiba történt a hír hozzáadása közben:', error);
         }
     };
-    
-    // Function to convert a file to base64
+
     const convertToBase64 = (file) => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -159,6 +156,7 @@ export default function News() {
                             toggleSelectNews={toggleSelectNews}
                             openPopup={openPopup}
                             selectedToDelete={selectedToDelete}
+                            
                         />
                     ))}
                 </div>

@@ -9,9 +9,20 @@ export default function NewsItem({
     selectedToDelete,
 }) {
     return (
-        <div className="rounded-[40px] bg-sndbg border border-bg p-6 flex flex-col items-center hover:border-accent border-2 xl:gap-10 m-5">
-            <h3 className="text-xl font-semibold text-center">{news.title}</h3>
-            <p className="text-center mb-4">{news.description}</p>
+        <div
+            className={`rounded-[40px] border border-bg p-6 flex flex-col hover:border-accent border-2 xl:gap-10 m-5 h-[350px] ${!news.images || news.images.length === 0 ? 'bg-sndbg' : ''}`}
+            style={{
+                backgroundImage: news.images && news.images.length > 0 ? `url(${news.images[0]})` : 'none',
+                backgroundSize: 'cover',
+                backgroundPosition: 'auto',
+                color: 'white', // Text color for better contrast
+            }}
+        >
+            <div className="bg-sndbg rounded-full p-4 w-full mb-4 flex flex-col">
+                <h3 className="text-xl font-semibold text-center">{news.title}</h3>
+                <p className="text-center mb-2">{news.description}</p>
+            </div>
+            <div className="flex-grow" /> {/* Flexible space to push the button down */}
             {isCodeCorrect && (
                 <input
                     type="checkbox"
@@ -19,7 +30,7 @@ export default function NewsItem({
                     onChange={() => toggleSelectNews(index)}
                 />
             )}
-            <Button onClick={() => openPopup(news)}>
+            <Button onClick={() => openPopup(news)} className="mt-4">
                 További információk
             </Button>
         </div>

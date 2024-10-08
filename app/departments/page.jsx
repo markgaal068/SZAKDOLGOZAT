@@ -45,7 +45,7 @@ export default function Teams() {
 // Team data
 const departmentData = [
   {
-    title: "Labdarúgás",
+    title: "labdarúgás",
     description: "Lorem lorem lorem lorem",
     tableLink: "./szakosztalyok/labdarugas",
     background: "./foca.webp",

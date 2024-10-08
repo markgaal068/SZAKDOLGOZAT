@@ -60,6 +60,7 @@ const departmentData = [
     title: "Asztalitenisz",
     description: "Lorem lorem lorem lorem",
     tableLink: "./szakosztalyok/asztalitenisz",
+    background: "./pingpong.webp",
   },
   {
     title: "Sakk",
@@ -70,6 +71,7 @@ const departmentData = [
     title: "Tenisz",
     description: "Lorem lorem lorem lorem",
     tableLink: "./szakosztalyok/tenisz",
+    background: "./tennis.webp",
   },
   {
     title: "Lovas",

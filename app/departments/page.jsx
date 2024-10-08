@@ -66,6 +66,7 @@ const departmentData = [
     title: "Sakk",
     description: "Lorem lorem lorem lorem",
     tableLink: "./szakosztalyok/sakk",
+    background: "./sakk.webp",
   },
   {
     title: "Tenisz",
@@ -77,6 +78,7 @@ const departmentData = [
     title: "Lovas",
     description: "Lorem lorem lorem lorem",
     tableLink: "./szakosztalyok/lovas",
+    background: "./lovaglas.webp"
   },
   {
     title: "Lövészet",

@@ -84,10 +84,12 @@ const departmentData = [
     title: "Lövészet",
     description: "Lorem lorem lorem lorem",
     tableLink: "./szakosztalyok/loveszet",
+    background: "./loveszet.webp"
   },
   {
     title: "Ritmikus Gimnasztika",
     description: "Lorem lorem lorem lorem",
     tableLink: "./szakosztalyok/rg",
+    background: "./rg.webp"
   },
 ];

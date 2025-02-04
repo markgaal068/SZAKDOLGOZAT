@@ -6,43 +6,77 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <main className="h-screen fixed flex items-center justify-center"> 
-      <div className="grid grid-cols-1 xl:grid-cols-2 h-full gap-0 overflow-hidden"> 
-
+    <main className="h-screen flex items-center justify-center relative overflow-hidden bg-sndbg/10">
+      {/* Háttér animáció */}
+      <motion.div 
+        className="absolute inset-0 bg-gradient-radial from-transparent to-sndbg opacity-50"
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
+      
+      <div className="relative z-10 grid grid-cols-1 xl:grid-cols-2 h-full gap-0">
+        {/* Címer */}
         <motion.div 
           className="flex items-center justify-center p-4 order-2 xl:order-2" 
-          initial={{ y: 0 }} 
-          animate={{ y: [0, -50, 0] }} 
-          transition={{ duration: 5, ease: "easeInOut", repeat: Infinity }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5 }}
         >
-          <Image
-            src="/kinizsicimer.png" 
-            alt="Címer"
-            width={600} 
-            height={600} 
-            className="items-center justify-center"
-          />
+          <motion.div 
+            animate={{ y: [0, -20, 0] }} 
+            transition={{ duration: 5, ease: "easeInOut", repeat: Infinity }}
+            className="shadow-2xl rounded-full p-4 bg-accent"
+          >
+            <Image
+              src="/kinizsicimer.png" 
+              alt="Címer"
+              width={500} 
+              height={500} 
+              className="rounded-full bg-sndbg"
+            />
+          </motion.div>
         </motion.div>
 
-        <div className="flex flex-col items-center justify-center h-full order-1 xl:order-1"> 
-          <h1 className="text-2xl xl:text-6xl font-bold mb-4 text-center">
-            Üdvözlünk az <span className="text-accent">Ácsi Kinizsi SC</span> weboldalán!
+        {/* Szöveges rész */}
+        <motion.div 
+          className="flex flex-col items-center justify-center h-full text-white text-center p-8" 
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <h1 className="text-3xl xl:text-6xl font-extrabold mb-6">
+            Üdvözlünk az <span className="text-green-400">Ácsi Kinizsi SC</span> weboldalán!
           </h1>
-          <div className="flex space-x-4">
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" 
-               className="flex items-center justify-center rounded-full border-2 border-accent bg-transparent text-accent hover:bg-accent hover:text-sndbg transition duration-300 p-4">
-              <FaFacebook className="text-3xl" />
-            </a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" 
-               className="flex items-center justify-center rounded-full border-2 border-accent bg-transparent text-accent hover:bg-accent hover:text-sndbg transition duration-300 p-4">
-              <FaInstagram className="text-3xl" />
-            </a>
-            <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" 
-               className="flex items-center justify-center rounded-full border-2 border-accent bg-transparent text-accent hover:bg-accent hover:text-sndbg transition duration-300 p-4">
-              <FaYoutube className="text-3xl" />
-            </a>
+          <p className="text-lg xl:text-xl mb-8 text-gray-300">
+            Csatlakozz közösségünkhöz és kövesd legfrissebb híreinket!
+          </p>
+          
+          {/* Közösségi ikonok */}
+          <div className="flex space-x-6">
+            {[{
+              href: "https://www.facebook.com",
+              icon: <FaFacebook className="text-4xl" />
+            }, {
+              href: "https://www.instagram.com",
+              icon: <FaInstagram className="text-4xl" />
+            }, {
+              href: "https://www.youtube.com",
+              icon: <FaYoutube className="text-4xl" />
+            }].map(({ href, icon }, index) => (
+              <motion.a 
+                key={index} 
+                href={href} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.2, rotate: 10 }}
+                whileTap={{ scale: 0.9 }}
+                className="flex items-center justify-center rounded-full border-4 border-green-400 bg-transparent text-green-400 hover:bg-green-400 hover:text-black transition duration-300 p-5 shadow-lg"
+              >
+                {icon}
+              </motion.a>
+            ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </main>
   );

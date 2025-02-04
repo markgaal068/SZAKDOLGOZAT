@@ -4,43 +4,58 @@ import Image from "next/image";
 
 export default function Popup({ news, closePopup }) {
     useEffect(() => {
-        document.body.style.overflow = 'hidden'; 
+        document.body.style.overflow = "hidden";
 
         return () => {
-            document.body.style.overflow = 'auto'; 
+            document.body.style.overflow = "auto";
         };
     }, []);
 
     return (
-        <div className="popup fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center">
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center p-4">
             <div
-                className="bg-sndbg p-6 rounded-lg shadow-lg w-full max-w-5xl relative"
-                style={{ height: '90vh', overflowY: 'auto', margin: '20px' }} 
+                className="bg-sndbg p-8 rounded-3xl shadow-xl w-full max-w-3xl relative flex flex-col items-center"
+                style={{
+                    maxHeight: "85vh",
+                    overflow: "hidden",
+                }}
             >
-                <Button onClick={closePopup} className="absolute top-2 right-2 text-white z-50">
-                    X
+                {/* Bezárás gomb */}
+                <Button
+                    onClick={closePopup}
+                    className="absolute top-4 right-4 text-accent bg-transparent hover:bg-accent hover:text-sndbg transition-all rounded-full p-2 border-none"
+                >
+                    ✕
                 </Button>
 
-                {/* Add margin to create space above the first element */}
-                <div className="mt-10"> {/* Adjust this value as needed */}
-                    {news.images && news.images.length > 0 ? (
-                        <div className="mb-4 flex justify-center"> 
-                            <Image
-                                src={news.images[0]} 
-                                alt="Hír kép"
-                                width={300} 
-                                height={200}
-                                className="w-[60%] rounded-lg opacity-90"
-                            />
-                        </div>
-                    ) : null}
+                {/* Kép */}
+                {news.images && news.images.length > 0 && (
+                    <div className="mb-6 w-full flex justify-center">
+                        <Image
+                            src={news.images[0]}
+                            alt="Hír kép"
+                            width={400}
+                            height={250}
+                            className="w-[80%] max-h-[250px] object-cover rounded-xl shadow-md"
+                        />
+                    </div>
+                )}
 
-                    <h3 className="text-3xl font-bold text-accent text-center uppercase mb-4">
-                        {news.title}
-                    </h3>
-                </div>
+                {/* Cím */}
+                <h3 className="text-4xl font-semibold text-accent text-center uppercase mb-4">
+                    {news.title}
+                </h3>
 
-                <div className="mb-4 text-white text-justify" dangerouslySetInnerHTML={{ __html: news.content }} />
+                {/* Tartalom csúszkával */}
+                <div
+                    className="text-white text-lg leading-relaxed overflow-y-auto px-4"
+                    style={{
+                        maxHeight: "50vh",
+                        scrollbarWidth: "thin",
+                        scrollbarColor: "#3cba54 #323946",
+                    }}
+                    dangerouslySetInnerHTML={{ __html: news.content }}
+                />
             </div>
         </div>
     );

@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-
 export default function NewsItem({
     news,
     index,
@@ -10,29 +8,39 @@ export default function NewsItem({
 }) {
     return (
         <div
-            className={`rounded-[40px] border border-bg p-6 flex flex-col hover:border-accent border-2 xl:gap-10 m-5 h-[350px] ${!news.images || news.images.length === 0 ? 'bg-sndbg' : ''}`}
+            className="relative rounded-[40px] p-6 flex flex-col m-5 h-[350px] transition-transform duration-500 ease-in-out transform hover:scale-105 cursor-pointer"
             style={{
-                backgroundImage: news.images && news.images.length > 0 ? `url(${news.images[0]})` : 'none',
-                backgroundSize: 'cover',
-                backgroundPosition: 'auto',
-                color: 'white', 
+                background: "linear-gradient(to right, #3cba54, #323946)",
+                backgroundSize: "200% 100%", // Kétszer akkora háttér, hogy el lehessen tolni
+                backgroundPosition: "100% 0%", // Alapból a sötét domináljon
+                transition: "background-position 1s ease-in-out", // Lágy animáció
             }}
+            onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundPosition = "0% 0%"; // Hoverre a zöld feltölti a hátteret
+            }}
+            onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundPosition = "100% 0%"; // Visszaáll az eredeti állapotra
+            }}
+            onClick={() => openPopup(news)}
         >
-            <div className="bg-sndbg rounded-full p-4 w-full mb-4 flex flex-col">
-                <h3 className="text-xl font-semibold text-center">{news.title}</h3>
-                <p className="text-center mb-2">{news.description}</p>
+            {/* Középre igazított tartalom */}
+            <div className="relative z-10 flex flex-col justify-center items-center p-4 w-full h-full text-center space-y-4">
+                <h3 className="text-4xl font-semibold text-white">{news.title}</h3>
+                <p className="text-lg text-white opacity-90">{news.description}</p>
             </div>
-            <div className="flex-grow" /> 
+
+            {/* Ha a kód helyes, megjelenik a törlés checkbox */}
             {isCodeCorrect && (
-                <input
-                    type="checkbox"
-                    checked={selectedToDelete.has(index)}
-                    onChange={() => toggleSelectNews(index)}
-                />
+                <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex items-center text-white text-sm space-x-2">
+                    <input
+                        type="checkbox"
+                        checked={selectedToDelete.has(index)}
+                        onChange={() => toggleSelectNews(index)}
+                        className="text-accent bg-bg accent-accent rounded-full"
+                    />
+                    <span>Törlés kiválasztása</span>
+                </div>
             )}
-            <Button onClick={() => openPopup(news)} className="mt-4">
-                További információk
-            </Button>
         </div>
     );
 }

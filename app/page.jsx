@@ -54,13 +54,13 @@ export default function Home() {
           {/* Közösségi ikonok */}
           <div className="flex space-x-6">
             {[{
-              href: "https://www.facebook.com",
+              href: "https://www.facebook.com/profile.php?id=100041322827349",
               icon: <FaFacebook className="text-4xl" />
             }, {
-              href: "https://www.instagram.com",
+              href: "https://www.instagram.com/kinizsi_handball/",
               icon: <FaInstagram className="text-4xl" />
             }, {
-              href: "https://www.youtube.com",
+              href: "https://www.youtube.com/@acskinizsisckezilabda5429",
               icon: <FaYoutube className="text-4xl" />
             }].map(({ href, icon }, index) => (
               <motion.a 

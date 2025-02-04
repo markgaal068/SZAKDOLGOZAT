@@ -1,15 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { FaFacebook, FaInstagram, FaYoutube, FaShareAlt } from "react-icons/fa";
 
 export default function About() {
+
+  const sharePage = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: "Az Ácsi Kinizsi SC Története",
+        url: window.location.href,
+      });
+    } else {
+      alert("A megosztás nem támogatott ezen a böngészőn.");
+    }
+  };
+
+
   return (
     <section className="history py-8 bg-sndbg/50 relative">
       <div className="absolute top-0 left-0 w-full h-full bg-pattern opacity-20 z-0"></div>
 
       <div className="relative z-10 text-lg leading-relaxed text-gray-200">
         {/* Főcím */}
-        <motion.div 
+        <motion.div
           className="text-center mb-8"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -25,7 +39,7 @@ export default function About() {
         </motion.div>
 
         {/* Történet */}
-        <motion.p 
+        <motion.p
           className="mb-6 ml-10 mr-10 text-gray-300"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -44,7 +58,7 @@ export default function About() {
             Az újonnan alakult club öt szakosztállyal kezdte meg működését:
           </motion.p>
 
-          <motion.ul 
+          <motion.ul
             className="list-decimal list-inside pl-6 mb-6 ml-10 space-y-2"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -58,7 +72,7 @@ export default function About() {
           </motion.ul>
         </div>
 
-        <motion.p 
+        <motion.p
           className="mb-6 ml-10 mr-10 text-gray-300"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -67,7 +81,7 @@ export default function About() {
           A sport club mindig fontos szerepet töltött be a község, majd később a városi rangra emelkedett Ács életében. Az Ácsi Kinizsi SC-t a második világháború vihara sem tudta eltüntetni a megyei sport történetéből.
         </motion.p>
 
-        <motion.p 
+        <motion.p
           className="mb-6 ml-10 mr-10 text-gray-300"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -76,7 +90,7 @@ export default function About() {
           A Kinizsi fejlődésének, fennmaradásának záloga a lelkes, segítőkész, tenni vágyó ácsi lakosok összefogásának köszönhető. Meg kell említeni a volt Ácsi Cukorgyár fontos szerepét, amelyre talán nem túlzás az Ácsi Kinizsi SC „főszponzoraként” emlékezni.
         </motion.p>
 
-        <motion.p 
+        <motion.p
           className="mb-6 ml-10 mr-10 text-gray-300"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -85,7 +99,7 @@ export default function About() {
           Az Ácsi Kinizsi SC szakosztályai mindig fontos és meghatározó szerepet töltöttek be a megye és helyenként az ország sportéletében. Szakosztályaink és sportolóink a Megyei III-tól az NBII-es bajnokságig mérethették meg magukat.
         </motion.p>
 
-        <motion.p 
+        <motion.p
           className="mb-6 ml-10 mr-10 text-gray-300"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -94,7 +108,7 @@ export default function About() {
           A közelmúlt és a jelen egy megváltozott képet mutat, az Ácsi Cukorgyár megszűnése komoly űrt hagyott az egyesület támogatottságát illetően. Ezt a hiányt betölteni a Hartmann Hungary Kft. tudta, amely Ács legnagyobb vállalata, és részt vállal a sport club támogatásából.
         </motion.p>
 
-        <motion.p 
+        <motion.p
           className="mb-6 ml-10 mr-10 text-gray-300"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -104,7 +118,7 @@ export default function About() {
         </motion.p>
 
         <div className="bg-sndbg p-6 rounded-lg shadow-lg my-8">
-          <motion.h3 
+          <motion.h3
             className="text-xl font-semibold text-accent mb-4"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -112,7 +126,7 @@ export default function About() {
           >
             A Kinizsi Sport Club jelenleg működő szakosztályai:
           </motion.h3>
-          <motion.ul 
+          <motion.ul
             className="list-disc list-inside pl-6 space-y-2 text-gray-200"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -127,7 +141,7 @@ export default function About() {
           </motion.ul>
         </div>
 
-        <motion.p 
+        <motion.p
           className="mb-6 ml-10 mr-10 text-gray-300"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -136,7 +150,7 @@ export default function About() {
           A sport club vezetői, sportolói azon munkálkodnak, hogy a gyengébb szerepléseket feledtessék, és maradandó élményeket nyújtsanak a szurkolóknak!
         </motion.p>
 
-        <motion.p 
+        <motion.p
           className="text-center font-bold text-xl text-accent mt-12"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -144,6 +158,45 @@ export default function About() {
         >
           Hajrá Ácsi Kinizsi SC!
         </motion.p>
+
+
+        {/* Közösségi Média */}
+        <motion.div
+          className="flex justify-center gap-6 mb-6 mt-6"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          {[
+            { href: "https://www.facebook.com/profile.php?id=100041322827349", Icon: FaFacebook, hoverColor: "hover:text-blue-600" },
+            { href: "https://www.instagram.com/kinizsi_handball/", Icon: FaInstagram, hoverColor: "hover:text-pink-600" },
+            { href: "https://www.youtube.com/@acskinizsisckezilabda5429", Icon: FaYoutube, hoverColor: "hover:text-red-600" }
+          ].map(({ href, Icon, hoverColor }, index) => (
+            <motion.a
+              key={href}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.2, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className={`text-3xl text-accent transition ${hoverColor}`}
+            >
+              <Icon />
+            </motion.a>
+          ))}
+
+          <motion.button
+            onClick={sharePage}
+            whileHover={{ scale: 1.2, rotate: -5 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            className="text-3xl text-accent hover:text-gray-500 transition"
+          >
+            <FaShareAlt />
+          </motion.button>
+        </motion.div>
+
       </div>
     </section>
   );

@@ -1,0 +1,100 @@
+[
+    {
+        "first_name": "Péter",
+        "last_name": "Szakács",
+        "position": "Vezetőedző",
+        "image_link": "https://cdn.mksz.hu/mksz-public/1087842-Szak%C3%A1cs%20P%C3%A9ter%20fot%C3%B3%202022.jpg",
+        "profile_link": "https://www.mksz.hu/jatekos-adatlap/1567"
+    },
+    {
+        "first_name": "Krisztina",
+        "last_name": "Benkovitsné Péntek",
+        "position": "Beálló",
+        "image_link": "https://cdn.mksz.hu/mksz-public/1855932-P%C3%A9ntek%20Krisztina.jpg",
+        "profile_link": "https://www.mksz.hu/jatekos-adatlap/43387"
+    },
+    {
+        "first_name": "Flóra",
+        "last_name": "Csordás",
+        "position": "Átlövő",
+        "image_link": "https://cdn.mksz.hu/mksz-public/1485315-Csord%C3%A1s%20Fl%C3%B3ra.jpg",
+        "profile_link": "https://www.mksz.hu/jatekos-adatlap/35855"
+    },
+    {
+        "first_name": "Réka",
+        "last_name": "Darmo",
+        "position": "Kapus",
+        "image_link": "https://cdn.mksz.hu/mksz-public/2024/11/01/2500510-darmo%20r%C3%A9ka.jpeg",
+        "profile_link": "https://www.mksz.hu/jatekos-adatlap/22196"
+    },
+    {
+        "first_name": "Mária",
+        "last_name": "Fehér",
+        "position": "Irányító",
+        "image_link": "https://cdn.mksz.hu/mksz-public/1288358-Feh%C3%A9r%20M%C3%A1ria%20%C3%BAj.jpg",
+        "profile_link": "https://www.mksz.hu/jatekos-adatlap/2653"
+    },
+    {
+        "first_name": "Rita",
+        "last_name": "Gerencsér",
+        "position": "Beálló",
+        "image_link": "https://cdn.mksz.hu/mksz-public/1516427-Gerencs%C3%A9r%20Rita.jpg",
+        "profile_link": "https://www.mksz.hu/jatekos-adatlap/2277"
+    },
+    {
+        "first_name": "Nikolett",
+        "last_name": "Janes-Bors",
+        "position": "Szélső",
+        "image_link": "https://cdn.mksz.hu/mksz-public/1498526-image0.jpeg",
+        "profile_link": "https://www.mksz.hu/jatekos-adatlap/58112"
+    },
+    {
+        "first_name": "Éva",
+        "last_name": "Metka",
+        "position": "Átlövő",
+        "image_link": "https://cdn.mksz.hu/mksz-public/1495876-Metka%20%C3%89va.jpg",
+        "profile_link": "https://www.mksz.hu/jatekos-adatlap/58199"
+    },
+    {
+        "first_name": "Virág",
+        "last_name": "Péczi",
+        "position": "Szélső",
+        "image_link": "https://cdn.mksz.hu/mksz-public/1480318-P%C3%A9czi%20Vir%C3%A1g.jpg",
+        "profile_link": "https://www.mksz.hu/jatekos-adatlap/49822"
+    },
+    {
+        "first_name": "Bernadett",
+        "last_name": "Szücs",
+        "position": "Kapus",
+        "image_link": "https://cdn.mksz.hu/mksz-public/1516424-Sz%C5%B1cs%20Bernadett.jpg",
+        "profile_link": "https://www.mksz.hu/jatekos-adatlap/2279"
+    },
+    {
+        "first_name": "Mónika",
+        "last_name": "Takács",
+        "position": "Kapus",
+        "image_link": "https://cdn.mksz.hu/mksz-public/1495894-Tak%C3%A1cs%20M%C3%B3nika.jpg",
+        "profile_link": "https://www.mksz.hu/jatekos-adatlap/103861"
+    },
+    {
+        "first_name": "Ramóna",
+        "last_name": "Torma",
+        "position": "Átlövő",
+        "image_link": "https://cdn.mksz.hu/mksz-public/1457773-received_665633268595049.jpeg",
+        "profile_link": "https://www.mksz.hu/jatekos-adatlap/51970"
+    },
+    {
+        "first_name": "Éva",
+        "last_name": "Tóth",
+        "position": "Szélső",
+        "image_link": "https://cdn.mksz.hu/mksz-public/1485349-T%C3%B3th%20%C3%89va.jpg",
+        "profile_link": "https://www.mksz.hu/jatekos-adatlap/58182"
+    },
+    {
+        "first_name": "Betti",
+        "last_name": "Török",
+        "position": "Átlövő",
+        "image_link": "https://cdn.mksz.hu/mksz-public/1495895-T%C3%B6r%C3%B6k%20Bernadett.jpg",
+        "profile_link": "https://www.mksz.hu/jatekos-adatlap/2283"
+    }
+]

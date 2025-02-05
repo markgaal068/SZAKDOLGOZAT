@@ -55,7 +55,7 @@ const teamData = [
   {
     title: "Női felnőtt",
     image: "/kezi.webp", // Placeholder kép
-    tableLink: "#", // Vak link
+    tableLink: "/SPORTOK/kezilabda/noifelnott", // Vak link
   },
   {
     title: "Férfi Felnőtt",

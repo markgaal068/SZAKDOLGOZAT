@@ -1,24 +1,48 @@
-"use client"; 
+"use client";
 
-import Image from "next/image"; 
-import { Button } from "@/components/ui/button"; 
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
-export default function Handball() {
+export default function Teams() {
   return (
-    <section>
+    <section className="pb-12">
       <div className="mx-4 xl:mx-16">
-        <h2 className="heading text-center text-3xl xl:text-6xl font-bold mb-12 mt-12"> 
-            <span className="text-accent">Kézilabda</span> Szakosztály
-        </h2>
+        {/* Főcím */}
+        <motion.h2
+          className="heading text-center text-3xl xl:text-6xl font-bold mb-12 mt-12 text-white"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <span className="text-accent">Kézilabda</span><span> Szakosztály</span>
+        </motion.h2>
 
-        <div className="teams-container grid grid-cols-1 xl:grid-cols-2">
+        {/* Szakosztályok rácsos elrendezése */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {teamData.map((team, index) => (
-            <div className="rounded-[40px] bg-sndbg border border-bg p-6 flex flex-col items-center m-10 hover:border-accent border-2" key={index}>
-              <Image src={team.image} alt={team.title} width={300} height={200} className="rounded-[20px] mb-4" />
-              <h3 className="text-xl font-semibold text-center">{team.title}</h3>
-              <p className="text-center mb-4">{team.description}</p>
-              <Button>A Csapat</Button>
-            </div>
+            <Link href={team.tableLink} key={index} className="relative group block">
+              <motion.div
+                className="relative w-full h-64 xl:h-96 overflow-hidden rounded-2xl"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 * index }}
+              >
+                {/* Háttérkép */}
+                <Image
+                  src={team.image}
+                  alt={team.title}
+                  layout="fill"
+                  objectFit="cover"
+                />
+                {/* Zöld overlay csak desktop nézetben */}
+                <div className="absolute inset-0 bg-green-700 opacity-70 md:group-hover:opacity-0 transition-opacity duration-300" />
+                {/* Szakosztály neve a kép közepén */}
+                <div className="absolute inset-0 flex items-center justify-center text-white lg:text-5xl font-bold text-center md:group-hover:opacity-0 transition-opacity duration-300">
+                  {team.title}
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>
@@ -26,42 +50,26 @@ export default function Handball() {
   );
 }
 
-//ÁTÍRANDÓ CSAPATOKRA!!!
+// Szakosztály adatok
 const teamData = [
   {
-    image: "/kep.jpg",
-    title: "Labdarúgás",
-    description: "Lorem lorem lorem lorem",
-    tableLink: "https://www.mksz.hu/versenyek/upNoiVersenyek/32021930/320216840",
+    title: "Női felnőtt",
+    image: "/kezi.webp", // Placeholder kép
+    tableLink: "#", // Vak link
   },
   {
-    image: "/kep.jpg",
-    title: "Kézilabda",
-    description: "Lorem lorem lorem lorem",
-    tableLink: "https://www.mksz.hu/versenyek/upNoiVersenyek/32021918/320216813",
+    title: "Férfi Felnőtt",
+    image: "/kezi.webp", // Placeholder kép
+    tableLink: "/SPORTOK/kezilabda/ferfifelnott", // Vak link
   },
   {
-    image: "/kep.jpg",
-    title: "Asztalitenisz",
-    description: "Lorem lorem lorem lorem",
-    tableLink: "https://www.mksz.hu/versenyek/felnottNoiVersenyek/32021963/320217258",
+    title: "Leány Ifjúsági",
+    image: "/kezi.webp", // Placeholder kép
+    tableLink: "#", // Vak link
   },
   {
-    image: "/kep.jpg", 
-    title: "Sakk",
-    description: "Lorem lorem lorem lorem",
-    tableLink: "https://www.mksz.hu/versenyek/felnottNoiVersenyek/32021902/320216604",
-  },
-  {
-    image: "/kep.jpg",
-    title: "Tenisz",
-    description: "Lorem lorem lorem lorem",
-    tableLink: "https://www.mksz.hu/versenyek/upFerfiVersenyek/32021915/320216798",
-  },
-  {
-    image: "/kep.jpg",
-    title: "Lovas",
-    description: "Lorem lorem lorem lorem",
-    tableLink: "https://www.mksz.hu/versenyek/felnottFerfiVersenyek/32021900/320216591",
+    title: "Leány Serdülő",
+    image: "/kezi.webp", // Placeholder kép
+    tableLink: "#", // Vak link
   },
 ];

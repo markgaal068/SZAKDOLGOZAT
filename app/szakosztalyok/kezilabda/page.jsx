@@ -65,11 +65,11 @@ const teamData = [
   {
     title: "Leány Ifjúsági",
     image: "/kezi.webp", // Placeholder kép
-    tableLink: "#", // Vak link
+    tableLink: "/SPORTOK/kezilabda/leanyifi", // Vak link
   },
   {
     title: "Leány Serdülő",
     image: "/kezi.webp", // Placeholder kép
-    tableLink: "#", // Vak link
+    tableLink: "/SPORTOK/kezilabda/leanyseri", // Vak link
   },
 ];

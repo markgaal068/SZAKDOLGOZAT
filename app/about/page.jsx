@@ -88,6 +88,7 @@ export default function About() {
             </motion.div>
           ))}
         </div>
+
         <motion.p
           className="mb-6 ml-10 mr-10 text-gray-300 text-center"
           initial={{ opacity: 0, y: 50 }}
@@ -105,6 +106,7 @@ export default function About() {
         >
           Hajrá Ácsi Kinizsi SC!
         </motion.p>
+
         {/* Közösségi Média */}
         <motion.div
           className="flex justify-center gap-6 mb-6 mt-6"
@@ -125,7 +127,6 @@ export default function About() {
             Icon: FaYoutube,
             hoverColor: "hover:text-red-600"
           }].map(({ href, Icon, hoverColor }, index) => (
-            
             <motion.a
               key={href}
               href={href}
@@ -151,6 +152,45 @@ export default function About() {
           </motion.button>
         </motion.div>
       </div>
+
+      {/* Impresszum */}
+      <footer className="impresszum bg-accent/20 py-4 mt-12">
+        <div className="max-w-7xl mx-auto text-center text-lg text-gray-200">
+          <motion.div
+            className="flex flex-col items-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <p className="text-gray-300 mb-2">
+              <strong>Cég neve:</strong> Ácsi Kinizsi SC
+            </p>
+            <p className="text-gray-300 mb-2">
+              <strong>Székhely:</strong> 2941 Ács, Gyár utca 81., Magyarország
+            </p>
+            <p className="text-gray-300 mb-2">
+              <strong>Kapcsolat:</strong> <a href="mailto:acs.sportcsarnok@gmail.com" className="text-accent">email</a>
+            </p>
+            <p className="text-gray-300 mb-2">
+              <strong>Telefon:</strong> +36 20 340 0898
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="mt-4 text-sm text-gray-400"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            <p>&copy; 2025 Ácsi Kinizsi SC. Minden jog fenntartva.</p>
+            {/* Hiperhivatkozás a sütikhez */}
+            <p className="mt-2">
+              <a href="https://www.cookiebot.com/en/privacy-policy/" className="text-accent hover:text-accent/80">Süti politika</a>
+            </p>
+          </motion.div>
+        </div>
+      </footer>
+
     </section>
   );
 }

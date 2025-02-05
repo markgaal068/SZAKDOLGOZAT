@@ -35,7 +35,7 @@ export default function TablePage() {
             >
                 Felnőtt Férfi Kézilabda Csapatunk
             </motion.h2>
-            
+
             {/* Táblázat animáció */}
             <motion.div
                 className="overflow-x-auto mb-12"
@@ -60,7 +60,10 @@ export default function TablePage() {
                     </thead>
                     <tbody>
                         {tableData.map((row, index) => (
-                            <tr key={index} className="border-t hover:bg-accent/10">
+                            <tr
+                                key={index}
+                                className={`border-t hover:bg-accent/20 ${row[1] === 'Ácsi Kinizsi SC' ? 'bg-accent/10' : ''}`}
+                            >
                                 <td className="py-3 px-4 text-left">{row[0]}</td>
                                 <td className="py-3 px-4 text-left">{row[1]}</td>
                                 <td className="py-3 px-4 text-left">{row[2]}</td>
@@ -76,6 +79,7 @@ export default function TablePage() {
                     </tbody>
                 </table>
             </motion.div>
+
 
             <div className="mb-6">
                 {/* Stáb és Játékosok Cím */}

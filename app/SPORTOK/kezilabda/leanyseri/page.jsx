@@ -9,13 +9,13 @@ export default function TablePage() {
 
     useEffect(() => {
         async function fetchTableData() {
-            const response = await fetch('/mksznoifelnott.json');
+            const response = await fetch('/mkszleanyseri.json');
             const data = await response.json();
             setTableData(data.slice(1)); // Skip the header row
         }
 
         async function fetchPlayersData() {
-            const response = await fetch('/mksznoifelnottjatekosok.json');
+            const response = await fetch('/mkszleanyserijatekosok.json');
             const data = await response.json();
             setPlayersData(data);
         }
@@ -33,9 +33,9 @@ export default function TablePage() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
             >
-                Felnőtt Női Kézilabda Csapatunk
+                Leány Ifjúsági Kézilabda Csapatunk
             </motion.h2>
-            
+
             {/* Táblázat animáció */}
             <motion.div
                 className="overflow-x-auto mb-12"
@@ -62,7 +62,7 @@ export default function TablePage() {
                         {tableData.map((row, index) => (
                             <tr
                                 key={index}
-                                className={`border-t hover:bg-accent/20 ${row[1] === 'Ácsi Kinizsi SC.' ? 'bg-accent/10' : ''}`}
+                                className={`border-t hover:bg-accent/20 ${row[1] === 'Ácsi Kinizsi' ? 'bg-accent/10' : ''}`}
                             >
                                 <td className="py-3 px-4 text-left">{row[0]}</td>
                                 <td className="py-3 px-4 text-left">{row[1]}</td>

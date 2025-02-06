@@ -9,13 +9,13 @@ export default function TablePage() {
 
     useEffect(() => {
         async function fetchTableData() {
-            const response = await fetch('/mkszffifelnott.json');
+            const response = await fetch('/teamdatas/kezilabda/ffifelnott/mkszffifelnott.json');
             const data = await response.json();
             setTableData(data.slice(1)); // Skip the header row
         }
 
         async function fetchPlayersData() {
-            const response = await fetch('/mkszffifelnottjatekosok.json');
+            const response = await fetch('/teamdatas/kezilabda/ffifelnott/mkszffifelnottjatekosok.json');
             const data = await response.json();
             setPlayersData(data);
         }

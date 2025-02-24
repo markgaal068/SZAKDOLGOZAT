@@ -1,8 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useState, useRef } from "react"
+import { CiLogin } from "react-icons/ci"
 
 const links = [
     {
@@ -39,6 +40,7 @@ const links = [
 
 const Nav = () => {
     const pathname = usePathname()
+    const router = useRouter()
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const timeoutRef = useRef(null)
 
@@ -54,7 +56,7 @@ const Nav = () => {
     }
 
     return (
-        <nav className="flex gap-8 relative">
+        <nav className="flex items-center gap-8 relative">
             {links.map((link, index) => (
                 <div 
                     key={index} 
@@ -63,10 +65,7 @@ const Nav = () => {
                     onMouseLeave={link.dropdown ? handleMouseLeave : null}
                 >
                     {link.dropdown ? (
-                        <div 
-                            className="relative" 
-                            onMouseEnter={handleMouseEnter} 
-                        >
+                        <div className="relative" onMouseEnter={handleMouseEnter}>
                             <Link 
                                 href={link.path} 
                                 className={`${link.path === pathname && "text-accent border-b-2 border-accent"} capitalize font-medium hover:text-accent transition-all`}
@@ -103,6 +102,14 @@ const Nav = () => {
                     )}
                 </div>
             ))}
+
+            {/* Bejelentkezés ikon */}
+            <button 
+                className="ml-auto text-2xl text-white hover:text-accent transition-all"
+                onClick={() => router.push("/loginpage")}
+            >
+                <CiLogin />
+            </button>
         </nav>
     )
 }

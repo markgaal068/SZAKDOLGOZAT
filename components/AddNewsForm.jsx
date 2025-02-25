@@ -29,20 +29,20 @@ export default function AddNewsForm({ handleAddNews }) {
             <input
                 type="text"
                 className="border rounded p-2 w-full text-accent"
-                placeholder="Hír címe"
+                placeholder="Cím"
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
             />
             <input
                 type="text"
                 className="border rounded p-2 w-full mt-4 text-accent"
-                placeholder="Hír leírása"
+                placeholder="Leírás"
                 value={newDescription}
                 onChange={(e) => setNewDescription(e.target.value)}
             />
             <textarea
                 className="border rounded p-2 w-full mt-4 h-32 text-accent"
-                placeholder="Hír tartalma"
+                placeholder="Tartalom"
                 value={newContent}
                 onChange={(e) => setNewContent(e.target.value)}
             />

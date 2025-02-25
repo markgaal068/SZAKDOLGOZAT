@@ -54,21 +54,21 @@ export default function EditNewsForm({ news, handleEditNews, cancelEdit }) {
     };
 
     return (
-        <div className="bg-sndbg p-6 rounded-3xl shadow-xl max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-accent text-center mb-4">Hír szerkesztése</h3>
+        <div className="rounded-lg bg-sndbg shadow-md p-6 flex flex-col items-center">
+            <h3 className="text-2xl font-semibold text-center mb-4">Hír szerkesztése</h3>
 
-            <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+            <form onSubmit={handleSubmit} onCancel={cancelEdit}  className="flex w-full flex-col space-y-4">
                 {/* Cím */}
                 <label className="text-accent font-semibold">Cím:</label>
-                <Input value={title} onChange={(e) => setTitle(e.target.value)} required />
+                <Input value={title} onChange={(e) => setTitle(e.target.value)} required className="border rounded p-2 w-full text-accent"/>
 
                 {/* Leírás */}
                 <label className="text-accent font-semibold">Leírás:</label>
-                <Textarea value={description} onChange={(e) => setDescription(e.target.value)} required />
+                <Textarea value={description} onChange={(e) => setDescription(e.target.value)} required className="border rounded p-2 w-full text-accent"/>
 
                 {/* Tartalom */}
                 <label className="text-accent font-semibold">Tartalom:</label>
-                <Textarea value={content} onChange={(e) => setContent(e.target.value)} required />
+                <Textarea value={content} onChange={(e) => setContent(e.target.value)} required className="border rounded p-2 w-full text-accent"/>
 
                 {/* Képek */}
                 <label className="text-accent font-semibold">Képek:</label>
@@ -95,7 +95,7 @@ export default function EditNewsForm({ news, handleEditNews, cancelEdit }) {
                     <Button type="submit" className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
                         Mentés
                     </Button>
-                    <Button type="button" onClick={cancelEdit} className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">
+                    <Button type="cancel" className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">
                         Mégse
                     </Button>
                 </div>

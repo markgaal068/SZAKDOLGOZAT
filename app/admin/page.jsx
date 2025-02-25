@@ -23,9 +23,9 @@ export default function AdminPage() {
   };
 
   return (
-    <div className="min-h-screen bg-sndbg flex">
+    <div className="min-h-screen bg-bg flex">
       {/* Sidebar */}
-      <div className="bg-bg/60 text-white w-64 p-6">
+      <div className="bg-sndbg text-white w-64 p-6">
         <h1 className="text-2xl font-bold mb-8"><span className='text-accent'>Admin</span> Panel</h1>
         <nav>
           <button

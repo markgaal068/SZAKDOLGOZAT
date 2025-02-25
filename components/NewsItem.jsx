@@ -15,19 +15,27 @@ export default function NewsItem({
         openPopup(news);
     };
 
+    // Ha van kép, azt használja háttérként, egyébként marad az eredeti színátmenet
+    const backgroundImage = news.images && news.images.length > 0
+        ? `url(${news.images[0]})`
+        : "linear-gradient(to right, #3cba54, #323946)";
+
     return (
         <div
-            className="relative rounded-[40px] p-6 flex flex-col m-5 h-[350px] transition-transform duration-300 ease-in-out transform hover:scale-[1.03] cursor-pointer"
+            className="relative rounded-[40px] p-6 flex flex-col m-5 h-[450px] transition-transform duration-300 ease-in-out transform hover:scale-[1.03] cursor-pointer"
             style={{
-                background: "linear-gradient(to right, #3cba54, #323946)",
-                backgroundSize: "200% 100%",
-                backgroundPosition: "100% 0%",
+                background: backgroundImage,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
                 transition: "background-position 0.8s ease-in-out",
             }}
             onMouseEnter={(e) => (e.currentTarget.style.backgroundPosition = "0% 0%")}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundPosition = "100% 0%")}
             onClick={handleClick} // Kattintási eseményt kezelő függvény
         >
+            {/* Átlátszó színátmenet */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent rounded-[40px]"></div>
+
             {/* Középre igazított tartalom */}
             <div className="relative z-10 flex flex-col justify-center items-center p-4 w-full h-full text-center space-y-4">
                 <h3 className="text-4xl font-semibold text-white">{news.title}</h3>

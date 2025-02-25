@@ -8,59 +8,69 @@ const AdminUsers = () => {
             username: "admin01",
             password: "adminpass123",
             email: "admin01@example.com",
+            telefon: "123 456 789",
             role: "Adminisztrátor"
         },
         {
             username: "editor01",
             password: "editorpass456",
+            telefon: "123 456 789",
             email: "editor01@example.com",
             role: "Szerkesztő"
         },
         {
             username: "editor02",
             password: "editorpass789",
+            telefon: "123 456 789",
             email: "editor02@example.com",
             role: "Szerkesztő"
         },
         {
             username: "editor03",
             password: "editorpass101",
+            telefon: "123 456 789",
             email: "editor03@example.com",
             role: "Szerkesztő"
         },
         {
             username: "editor04",
             password: "editorpass102",
+            telefon: "123 456 789",
             email: "editor04@example.com",
             role: "Szerkesztő"
         },
         {
             username: "editor05",
             password: "editorpass103",
+            telefon: "123 456 789",
             email: "editor05@example.com",
             role: "Szerkesztő"
         },
         {
             username: "editor06",
             password: "editorpass104",
+            telefon: "123 456 789",
             email: "editor06@example.com",
             role: "Szerkesztő"
         },
         {
             username: "editor07",
             password: "editorpass105",
+            telefon: "123 456 789",
             email: "editor07@example.com",
             role: "Szerkesztő"
         },
         {
             username: "editor08",
             password: "editorpass106",
+            telefon: "123 456 789",
             email: "editor08@example.com",
             role: "Szerkesztő"
         },
         {
             username: "editor09",
             password: "editorpass107",
+            telefon: "123 456 789",
             email: "editor09@example.com",
             role: "Szerkesztő"
         }
@@ -85,6 +95,7 @@ const AdminUsers = () => {
                             <th className="p-3 text-left text-accent font-semibold">Felhasználónév</th>
                             <th className="p-3 text-left text-accent font-semibold">Jelszó</th>
                             <th className="p-3 text-left text-accent font-semibold">E-mail</th>
+                            <th className="p-3 text-left text-accent font-semibold">Telefon</th>
                             <th className="p-3 text-left text-accent font-semibold">Jogosultsági szint</th>
                             <th className="p-3 text-left text-accent font-semibold">Szerkesztés</th>
                             <th className="p-3 text-left text-accent font-semibold">Törlés</th>
@@ -98,6 +109,7 @@ const AdminUsers = () => {
                                     {user.password}
                                 </td>
                                 <td className="p-3">{user.email}</td>
+                                <td className="p-3">{user.telefon}</td>
                                 <td className="p-3">{user.role}</td>
                                 <td className="p-3">
                                     <button

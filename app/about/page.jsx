@@ -169,7 +169,7 @@ export default function About() {
               <strong>Székhely:</strong> 2941 Ács, Gyár utca 81., Magyarország
             </p>
             <p className="text-gray-300 mb-2">
-              <strong>Kapcsolat:</strong> <a href="mailto:acs.sportcsarnok@gmail.com" className="text-accent">email</a>
+              <strong>Kapcsolat:</strong> <a href="mailto:acs.sportcsarnok@gmail.com" className="text-accent">acs.sportcsarnok@gmail.com</a>
             </p>
             <p className="text-gray-300 mb-2">
               <strong>Telefon:</strong> +36 20 340 0898

@@ -1,89 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import EditUsersForm from "./EditUsersForm";
 
 const AdminUsers = () => {
-    const [users, setUsers] = useState([
-        {
-            username: "admin01",
-            password: "adminpass123",
-            email: "admin01@example.com",
-            telefon: "123 456 789",
-            role: "Adminisztrátor"
-        },
-        {
-            username: "editor01",
-            password: "editorpass456",
-            telefon: "123 456 789",
-            email: "editor01@example.com",
-            role: "Szerkesztő"
-        },
-        {
-            username: "editor02",
-            password: "editorpass789",
-            telefon: "123 456 789",
-            email: "editor02@example.com",
-            role: "Szerkesztő"
-        },
-        {
-            username: "editor03",
-            password: "editorpass101",
-            telefon: "123 456 789",
-            email: "editor03@example.com",
-            role: "Szerkesztő"
-        },
-        {
-            username: "editor04",
-            password: "editorpass102",
-            telefon: "123 456 789",
-            email: "editor04@example.com",
-            role: "Szerkesztő"
-        },
-        {
-            username: "editor05",
-            password: "editorpass103",
-            telefon: "123 456 789",
-            email: "editor05@example.com",
-            role: "Szerkesztő"
-        },
-        {
-            username: "editor06",
-            password: "editorpass104",
-            telefon: "123 456 789",
-            email: "editor06@example.com",
-            role: "Szerkesztő"
-        },
-        {
-            username: "editor07",
-            password: "editorpass105",
-            telefon: "123 456 789",
-            email: "editor07@example.com",
-            role: "Szerkesztő"
-        },
-        {
-            username: "editor08",
-            password: "editorpass106",
-            telefon: "123 456 789",
-            email: "editor08@example.com",
-            role: "Szerkesztő"
-        },
-        {
-            username: "editor09",
-            password: "editorpass107",
-            telefon: "123 456 789",
-            email: "editor09@example.com",
-            role: "Szerkesztő"
+    const [users, setUsers] = useState([]);
+    const [selectedUser, setSelectedUser] = useState(null); // Aktuálisan szerkesztett felhasználó állapota
+
+    useEffect(() => {
+        axios.get("/api/getusers")
+            .then(response => setUsers(response.data))
+            .catch(error => console.error("Hiba a felhasználók lekérésekor:", error));
+    }, []);
+
+    const handleEdit = (user) => {
+        setSelectedUser(user); // Beállítjuk a kiválasztott felhasználót
+    };
+
+    const handleSave = (updatedUser) => {
+        setUsers(users.map((u) => (u.id === updatedUser.id ? updatedUser : u))); // Frissítjük a listát
+        setSelectedUser(null); // Bezárjuk a modált
+    };
+
+    const handleDelete = (userId) => {
+        console.log("userId:", userId); // Hibakeresés
+        if (!userId) {
+            console.error("Hiba: userId nincs megadva");
+            return;
         }
-    ]);
-
-    const handleEdit = (index) => {
-        // Handle edit logic here
-        alert(`Edit user at index: ${index}`);
+    
+        axios.delete(`/api/deleteusers?userId=${userId}`) // Javított URL
+            .then(() => {
+                setUsers(users.filter(user => user._id !== userId)); // _id használata, ha MongoDB ObjectId-t használsz
+            })
+            .catch(error => console.error("Hiba a felhasználó törlésekor:", error));
     };
-
-    const handleDelete = (index) => {
-        setUsers(users.filter((_, i) => i !== index));
-    };
+    
 
     return (
         <div className="p-6">
@@ -93,7 +46,6 @@ const AdminUsers = () => {
                     <thead>
                         <tr>
                             <th className="p-3 text-left text-accent font-semibold">Felhasználónév</th>
-                            <th className="p-3 text-left text-accent font-semibold">Jelszó</th>
                             <th className="p-3 text-left text-accent font-semibold">E-mail</th>
                             <th className="p-3 text-left text-accent font-semibold">Telefon</th>
                             <th className="p-3 text-left text-accent font-semibold">Jogosultsági szint</th>
@@ -102,18 +54,15 @@ const AdminUsers = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user, index) => (
-                            <tr key={index} className="border-b">
+                        {users.map((user) => (
+                            <tr key={user.id} className="border-b">
                                 <td className="p-3">{user.username}</td>
-                                <td className="p-3 relative group">
-                                    {user.password}
-                                </td>
                                 <td className="p-3">{user.email}</td>
-                                <td className="p-3">{user.telefon}</td>
+                                <td className="p-3">{user.tel}</td>
                                 <td className="p-3">{user.role}</td>
                                 <td className="p-3">
                                     <button
-                                        onClick={() => handleEdit(index)}
+                                        onClick={() => handleEdit(user)}
                                         className="bg-accent/70 text-white px-4 py-2 rounded-md hover:bg-accent transition-all"
                                     >
                                         Szerkesztés
@@ -121,7 +70,7 @@ const AdminUsers = () => {
                                 </td>
                                 <td className="p-3">
                                     <button
-                                        onClick={() => handleDelete(index)}
+                                        onClick={() => handleDelete(user._id)}
                                         className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-all"
                                     >
                                         Törlés
@@ -138,6 +87,14 @@ const AdminUsers = () => {
                     Felhasználó hozzáadása
                 </button>
             </div>
+
+            {selectedUser && (
+                <EditUsersForm
+                    user={selectedUser}
+                    onClose={() => setSelectedUser(null)}
+                    onSave={handleSave}
+                />
+            )}
         </div>
     );
 };

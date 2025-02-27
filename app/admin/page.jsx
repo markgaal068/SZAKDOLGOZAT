@@ -4,6 +4,7 @@ import { useState } from 'react';
 import AdminLanding from '@/components/AdminLanding';
 import AdminNews from '@/components/AdminNews';
 import AdminUsers from '@/components/AdminUsers';
+import AdminTools from '@/components/AdminTools';
 
 export default function AdminPage() {
   const [activeComponent, setActiveComponent] = useState('AdminLanding'); // Kezdeti komponens
@@ -17,6 +18,8 @@ export default function AdminPage() {
         return <AdminUsers />;
       case 'AdminNews':
         return <AdminNews />;
+      case 'AdminTools':
+        return <AdminTools />;
       default:
         return null;
     }
@@ -45,6 +48,12 @@ export default function AdminPage() {
             className="block py-2.5 px-4 rounded hover:bg-accent transition duration-200 font-bold"
           >
             Hírek szerkesztése
+          </button>
+          <button
+            onClick={() => setActiveComponent('AdminTools')}
+            className="block py-2.5 px-4 rounded hover:bg-accent transition duration-200 font-bold"
+          >
+            Formázási tagek
           </button>
         </nav>
       </div>

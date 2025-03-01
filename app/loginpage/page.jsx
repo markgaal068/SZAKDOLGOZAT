@@ -21,7 +21,7 @@ const LoginPage = () => {
             username,
             password,
         });
-        
+
         if (res?.error) {
             console.log("Bejelentkezési hiba:", res.error);
             setError(res.error || "Hibás felhasználónév vagy jelszó");
@@ -44,32 +44,33 @@ const LoginPage = () => {
             </div>
 
             {/* Bejelentkezési panel */}
-            <div className="relative z-10 bg-transparent p-10 rounded-3xl shadow-2xl w-[600px] flex flex-col items-center">
-                <h2 className="text-6xl font-bold text-accent mb-6">Bejelentkezés</h2>
+            <div className="relative z-10 bg-transparent p-6 md:p-10 rounded-3xl shadow-2xl max-w-lg w-full flex flex-col items-center">
+                <h2 className="text-4xl md:text-6xl font-bold text-accent mb-6">Bejelentkezés</h2>
                 {error && <p className="text-red-500">{error}</p>}
-                <form className="w-full flex flex-col gap-5" onSubmit={handleSubmit}>
+                <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
                     <input
                         type="text"
                         placeholder="Felhasználónév"
-                        className="w-full p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-4 focus:ring-accent text-lg text-accent"
+                        className="w-full p-3 md:p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-4 focus:ring-accent text-lg text-accent"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
                     <input
                         type="password"
                         placeholder="Jelszó"
-                        className="w-full p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-4 focus:ring-accent text-lg text-accent"
+                        className="w-full p-3 md:p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-4 focus:ring-accent text-lg text-accent"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <button
                         type="submit"
-                        className="w-full bg-accent text-white py-3 rounded-lg font-semibold text-lg hover:bg-accent-dark transition-all shadow-md"
+                        className="w-full bg-accent text-white py-3 md:py-4 rounded-lg font-semibold text-lg hover:bg-accent-dark transition-all shadow-md"
                     >
                         Bejelentkezés
                     </button>
                 </form>
             </div>
+
         </div>
     );
 };

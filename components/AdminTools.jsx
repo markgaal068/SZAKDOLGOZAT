@@ -33,7 +33,7 @@ export default function AdminTools() {
   ];
 
   return (
-    <div className="p-4">
+    <div className="p-4 overflow-x-auto">
       <h1 className="text-2xl font-bold mb-4">HTML Szövegformázási Tagek</h1>
       <table className="table-auto w-full border-collapse border border-bg">
         <thead>

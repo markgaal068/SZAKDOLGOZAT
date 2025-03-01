@@ -45,29 +45,29 @@ const Nav = () => {
     const timeoutRef = useRef(null)
 
     const handleMouseEnter = () => {
-        clearTimeout(timeoutRef.current) 
-        setIsDropdownOpen(true) 
+        clearTimeout(timeoutRef.current)
+        setIsDropdownOpen(true)
     }
 
     const handleMouseLeave = () => {
         timeoutRef.current = setTimeout(() => {
-            setIsDropdownOpen(false) 
-        }, 100) 
+            setIsDropdownOpen(false)
+        }, 100)
     }
 
     return (
         <nav className="flex items-center gap-8 relative">
             {links.map((link, index) => (
-                <div 
-                    key={index} 
+                <div
+                    key={index}
                     className="relative"
                     onMouseEnter={link.dropdown ? handleMouseEnter : null}
                     onMouseLeave={link.dropdown ? handleMouseLeave : null}
                 >
                     {link.dropdown ? (
                         <div className="relative" onMouseEnter={handleMouseEnter}>
-                            <Link 
-                                href={link.path} 
+                            <Link
+                                href={link.path}
                                 className={`${link.path === pathname && "text-accent border-b-2 border-accent"} capitalize font-medium hover:text-accent transition-all`}
                             >
                                 {link.name}
@@ -75,10 +75,10 @@ const Nav = () => {
 
                             {/* Dropdown menu for departments */}
                             {isDropdownOpen && (
-                                <div 
+                                <div
                                     className="absolute top-full left-0 bg-sndbg shadow-lg rounded-md mt-2 z-50 border-b border-accent"
-                                    onMouseEnter={handleMouseEnter} 
-                                    onMouseLeave={handleMouseLeave} 
+                                    onMouseEnter={handleMouseEnter}
+                                    onMouseLeave={handleMouseLeave}
                                 >
                                     <ul className="flex flex-col">
                                         {link.dropdown.map((subLink, subIndex) => (
@@ -93,8 +93,8 @@ const Nav = () => {
                             )}
                         </div>
                     ) : (
-                        <Link 
-                            href={link.path} 
+                        <Link
+                            href={link.path}
                             className={`${link.path === pathname && "text-accent border-b-2 border-accent"} capitalize font-medium hover:text-accent transition-all`}
                         >
                             {link.name}
@@ -104,12 +104,13 @@ const Nav = () => {
             ))}
 
             {/* Bejelentkezés ikon */}
-            <button 
-                className="ml-auto text-2xl text-white hover:text-accent transition-all"
+            <button
+                className="ml-auto text-white hover:text-accent transition-all flex items-center gap-2"
                 onClick={() => router.push("/loginpage")}
             >
-                <CiLogin />
+                Bejelentkezés <CiLogin className="text-2xl"/>
             </button>
+
         </nav>
     )
 }

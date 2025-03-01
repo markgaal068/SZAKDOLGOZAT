@@ -13,7 +13,7 @@ const AdminLanding = () => {
                     height={400} 
                     className="object-contain"
                 />
-                <h1 className="text-4xl font-bold text-accent mt-6">
+                <h1 className="text-4xl font-bold text-center text-accent mt-6">
                     Üdvözöljük az oldalon!
                 </h1>
             </div>

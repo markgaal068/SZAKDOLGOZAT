@@ -3,10 +3,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import EditUsersForm from "./EditUsersForm";
+import AddUsersForm from "./AddUsersForm";
 
 const AdminUsers = () => {
     const [users, setUsers] = useState([]);
-    const [selectedUser, setSelectedUser] = useState(null); // Aktuálisan szerkesztett felhasználó állapota
+    const [selectedUser, setSelectedUser] = useState(null);
+    const [showAddUserForm, setShowAddUserForm] = useState(false);
 
     useEffect(() => {
         axios.get("/api/getusers")
@@ -15,28 +17,32 @@ const AdminUsers = () => {
     }, []);
 
     const handleEdit = (user) => {
-        setSelectedUser(user); // Beállítjuk a kiválasztott felhasználót
+        setSelectedUser(user);
     };
 
     const handleSave = (updatedUser) => {
-        setUsers(users.map((u) => (u.id === updatedUser.id ? updatedUser : u))); // Frissítjük a listát
-        setSelectedUser(null); // Bezárjuk a modált
+        setUsers(users.map((u) => (u.id === updatedUser.id ? updatedUser : u)));
+        setSelectedUser(null);
     };
 
     const handleDelete = (userId) => {
-        console.log("userId:", userId); // Hibakeresés
+        console.log("userId:", userId);
         if (!userId) {
             console.error("Hiba: userId nincs megadva");
             return;
         }
     
-        axios.delete(`/api/deleteusers?userId=${userId}`) // Javított URL
+        axios.delete(`/api/deleteusers?userId=${userId}`)
             .then(() => {
-                setUsers(users.filter(user => user._id !== userId)); // _id használata, ha MongoDB ObjectId-t használsz
+                setUsers(users.filter(user => user._id !== userId));
             })
             .catch(error => console.error("Hiba a felhasználó törlésekor:", error));
     };
-    
+
+    const handleAddUser = (newUser) => {
+        setUsers([...users, newUser]);
+        setShowAddUserForm(false);
+    };
 
     return (
         <div className="p-6">
@@ -46,6 +52,7 @@ const AdminUsers = () => {
                     <thead>
                         <tr>
                             <th className="p-3 text-left text-accent font-semibold">Felhasználónév</th>
+                            <th className="p-3 text-left text-accent font-semibold">Teljes Név</th>
                             <th className="p-3 text-left text-accent font-semibold">E-mail</th>
                             <th className="p-3 text-left text-accent font-semibold">Telefon</th>
                             <th className="p-3 text-left text-accent font-semibold">Jogosultsági szint</th>
@@ -57,6 +64,7 @@ const AdminUsers = () => {
                         {users.map((user) => (
                             <tr key={user.id} className="border-b">
                                 <td className="p-3">{user.username}</td>
+                                <td className="p-3">{user.fullname}</td>
                                 <td className="p-3">{user.email}</td>
                                 <td className="p-3">{user.tel}</td>
                                 <td className="p-3">{user.role}</td>
@@ -83,7 +91,10 @@ const AdminUsers = () => {
             </div>
 
             <div className="mt-6 flex justify-end">
-                <button className="bg-accent/70 text-white px-6 py-3 rounded-md hover:bg-accent transition-all">
+                <button
+                    onClick={() => setShowAddUserForm(true)}
+                    className="bg-accent/70 text-white px-6 py-3 rounded-md hover:bg-accent transition-all"
+                >
                     Felhasználó hozzáadása
                 </button>
             </div>
@@ -93,6 +104,14 @@ const AdminUsers = () => {
                     user={selectedUser}
                     onClose={() => setSelectedUser(null)}
                     onSave={handleSave}
+                />
+            )}
+
+            {showAddUserForm && (
+                <AddUsersForm
+                    user={{ username: "", password: "", email: "", tel: "", role: "" }}
+                    onClose={() => setShowAddUserForm(false)}
+                    onSave={handleAddUser}
                 />
             )}
         </div>

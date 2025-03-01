@@ -40,6 +40,11 @@ export default function Popup({ news, closePopup }) {
                 <h3 className="text-4xl font-semibold text-accent text-center uppercase mb-4">{news.title}</h3>
 
                 <div className="text-white text-lg leading-relaxed overflow-y-auto px-4" style={{ maxHeight: "50vh", scrollbarWidth: "thin", scrollbarColor: "#3cba54 #323946" }} dangerouslySetInnerHTML={{ __html: news.content }} />
+
+                {/* Szerző és dátum rész */}
+                <div className="mt-4 text-sm text-gray-400 text-center w-full">
+                    <p>Szerző: <span className="font-medium">{news.author}</span> | Hozzáadva: <span className="font-medium">{new Date(news.createdAt).toLocaleDateString()}</span></p>
+                </div>
             </div>
         </div>
     );

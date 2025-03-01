@@ -44,7 +44,6 @@ export default NextAuth({
                     throw new Error("Nincs ilyen felhasználó");
                 }
 
-
                 const isValid = await compare(credentials.password, user.password);
 
                 if (!isValid) {
@@ -52,8 +51,13 @@ export default NextAuth({
                     throw new Error("Hibás jelszó");
                 }
 
-
-                return { id: user._id, name: user.username };
+                // Visszaadjuk a felhasználó adatait, beleértve a fullName és role mezőket
+                return {
+                    id: user._id,
+                    name: user.username,
+                    fullname: user.fullname, // Feltételezve, hogy az adatbázisban van ilyen mező
+                    role: user.role, // Feltételezve, hogy az adatbázisban van ilyen mező
+                };
             },
         }),
     ],
@@ -66,12 +70,16 @@ export default NextAuth({
             if (user) {
                 token.id = user.id;
                 token.name = user.name;
+                token.fullname = user.fullname; // Hozzáadjuk a teljes nevet a tokenhez
+                token.role = user.role; // Hozzáadjuk a szerepkört a tokenhez
             }
             return token;
         },
         async session({ session, token }) {
             session.user.id = token.id;
             session.user.name = token.name;
+            session.user.fullname = token.fullname; // Hozzáadjuk a teljes nevet a sessionhez
+            session.user.role = token.role; // Hozzáadjuk a szerepkört a sessionhez
             return session;
         }
     },

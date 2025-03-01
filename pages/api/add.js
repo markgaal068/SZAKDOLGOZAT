@@ -1,18 +1,18 @@
 import { MongoClient } from "mongodb";
 
-const uri = "mongodb+srv://markgaal068:rGAW8V26qKPVM49s@kinizsi.wabej.mongodb.net/?retryWrites=true&w=majority&appName=kinizsi"; //SAJÁT ADAT!
+const uri = "mongodb+srv://markgaal068:rGAW8V26qKPVM49s@kinizsi.wabej.mongodb.net/?retryWrites=true&w=majority&appName=kinizsi"; // SAJÁT ADAT!
 const client = new MongoClient(uri);
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
-        const { title, description, content, images } = req.body;
+        const { title, description, content, images, author, createdAt } = req.body;
 
         try {
             await client.connect();
             const database = client.db("kinizsi"); // Adatbázis neve
             const newsCollection = database.collection("news"); // Gyűjtemény neve
 
-            const newNewsItem = { title, description, content, images };
+            const newNewsItem = { title, description, content, images, author, createdAt };
             await newsCollection.insertOne(newNewsItem);
 
             res.status(201).json({ message: 'Hír hozzáadva', newNewsItem });

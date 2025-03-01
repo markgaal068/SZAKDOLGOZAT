@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import AddNewsForm from "@/components/AddNewsForm";
 import EditNewsForm from "@/components/EditNewsForm";
+import { useSession } from "next-auth/react"; // NextAuth session hook
 
 const AdminNews = () => {
+    const { data: session } = useSession(); // Session lekérése
     const [newsData, setNewsData] = useState([]);
     const [editingNews, setEditingNews] = useState(null);
 
@@ -21,11 +23,21 @@ const AdminNews = () => {
     };
 
     const handleAddNews = async (newTitle, newDescription, newContent, newImages) => {
+        if (!session?.user) {
+            console.error("Nincs bejelentkezve felhasználó!");
+            return;
+        }
+
+        const author = session.user.fullname; // Szerző neve
+        const createdAt = new Date().toISOString(); // Aktuális dátum
+
         const newNewsItem = {
             title: newTitle,
             description: newDescription,
             content: newContent,
             images: await Promise.all(newImages.map(convertToBase64)),
+            author, // Szerző hozzáadása
+            createdAt, // Dátum hozzáadása
         };
 
         try {
@@ -90,7 +102,7 @@ const AdminNews = () => {
             <h2 className="text-3xl font-bold text-center mb-6"><span className="text-accent">Hírek</span> Kezelése</h2>
 
             {!editingNews ? (
-                <AddNewsForm handleAddNews={handleAddNews} />
+                <AddNewsForm handleAddNews={handleAddNews} session={session} /> 
             ) : (
                 <EditNewsForm news={editingNews} handleEditNews={handleEditNews} />
             )}

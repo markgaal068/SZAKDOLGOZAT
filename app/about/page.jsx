@@ -185,6 +185,10 @@ export default function About() {
             <p>&copy; 2025 Ácsi Kinizsi SC. Minden jog fenntartva.</p>
             {/* Hiperhivatkozás a sütikhez */}
             <p className="mt-2">
+              Oldal készítője: 
+              <a href="https://www.gaalmark.hu" className="text-accent hover:text-accent/80"> Gaál Márk</a>
+            </p>
+            <p className="mt-2">
               <a href="https://www.cookiebot.com/en/privacy-policy/" className="text-accent hover:text-accent/80">Süti politika</a>
             </p>
           </motion.div>

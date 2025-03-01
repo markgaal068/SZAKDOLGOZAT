@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-export default function AddNewsForm({ handleAddNews }) {
+export default function AddNewsForm({ handleAddNews, session }) {
     const [newTitle, setNewTitle] = useState("");
     const [newDescription, setNewDescription] = useState("");
     const [newContent, setNewContent] = useState("");
@@ -12,8 +12,12 @@ export default function AddNewsForm({ handleAddNews }) {
         setNewImages(files);
     };
 
-    // Hír hozzáadása
     const handleSubmit = () => {
+        if (!session?.user) {
+            console.error("Nincs bejelentkezve felhasználó!");
+            return;
+        }
+
         handleAddNews(newTitle, newDescription, newContent, newImages);
 
         // Űrlap törlése a hozzáadás után

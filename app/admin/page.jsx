@@ -1,18 +1,35 @@
 "use client";
 
-import { useState } from "react";
-import { useSession } from "next-auth/react";
+import { useState, useEffect } from "react";
+import { useSession, signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import AdminLanding from "@/components/AdminLanding";
 import AdminNews from "@/components/AdminNews";
 import AdminUsers from "@/components/AdminUsers";
 import AdminTools from "@/components/AdminTools";
-import { CiMenuFries } from "react-icons/ci";
 import { GrUserAdmin } from "react-icons/gr";
 
 export default function AdminPage() {
   const [activeComponent, setActiveComponent] = useState("AdminLanding"); 
   const [menuOpen, setMenuOpen] = useState(false);
-  const { data: session } = useSession(); 
+  const { data: session, status } = useSession(); 
+  const router = useRouter();
+
+  useEffect(() => {
+    // Ha a session betöltődött és nincs bejelentkezve a felhasználó, irány a login oldal
+    if (status === "unauthenticated") {
+      router.push("/");
+    }
+  }, [status, router]);
+
+  if (status === "loading") {
+    return <p>Betöltés...</p>;
+  }
+
+  // Ha valamiért mégis sikerülne idetévedni bejelentkezés nélkül, ne jelenjen meg semmi
+  if (!session) {
+    return null;
+  }
 
   const renderComponent = () => {
     switch (activeComponent) {

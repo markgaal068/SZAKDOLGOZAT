@@ -106,15 +106,9 @@ const Nav = () => {
             {/* Ha be van jelentkezve, megjelenik az "Admin Panel" és a "Kijelentkezés" gomb */}
             {session ? (
                 <div className="ml-auto flex items-center gap-4">
-                    <button
-                        className="text-white hover:text-accent transition-all font-medium"
-                        onClick={() => router.push("/admin")}
-                    >
+                    <Link href="/admin" className="text-white hover:text-accent transition-all font-medium">
                         Admin Panel
-                    </button>
-                    {/* <Link href="/admin" className="text-white hover:text-accent transition-all font-medium">
-                        Admin Panel
-                    </Link> */}
+                    </Link>
                     <button
                         className="text-white hover:text-accent transition-all flex items-center gap-2"
                         onClick={() => signOut({ callbackUrl: "/" })}

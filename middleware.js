@@ -4,7 +4,7 @@ import { getToken } from "next-auth/jwt";
 export async function middleware(req) {
     const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
-    // Ha a felhasználó nincs bejelentkezve és az admin oldalra próbál menni
+    // Ha nincs token (tehát nem bejelentkezett a felhasználó), irányítsd át a főoldalra
     if (!token && req.nextUrl.pathname.startsWith("/admin")) {
         return NextResponse.redirect(new URL("/", req.url));
     }

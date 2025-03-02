@@ -30,33 +30,46 @@ export default function AddNewsForm({ handleAddNews, session }) {
 
     const handleInsertTag = () => {
         if (!selectedTag) return;
-        setNewContent((prev) => `${prev}<${selectedTag}></${selectedTag}>`);
+        setNewContent((prev) => `${prev}${selectedTag}`);
     };
 
     const htmlTags = [
-        { name: "Bekezdés", tag: "p"},
-        { name: "Félkövér", tag: "strong"},
-        { name: "Dőlt", tag: "em"},
-        { name: "Aláhúzott", tag: "u"},
-        { name: "Sortörés", tag: "br"},
-        { name: "Idézet", tag: "blockquote"},
-        { name: "Kódrészlet", tag: "code"},
-        { name: "Kiemelés", tag: "mark"},
-        { name: "Áthúzott", tag: "del"},
-        { name: "Címsor 1", tag: "h1"},
-        { name: "Címsor 2", tag: "h2"},
-        { name: "Felsorolás", tag: "ul"},
-        { name: "Számozott lista", tag: "ol"},
-        { name: "Listaelem", tag: "li"},
-        { name: "Táblázat", tag: "table"},
-        { name: "Táblázat sor", tag: "tr"},
-        { name: "Táblázat fejléc", tag: "th"},
-        { name: "Táblázat cella", tag: "td"},
-        { name: "Kép", tag: "img src=''"},
-        { name: "Link", tag: "a href=''"},
-        { name: "Szöveg külön", tag: "span"},
-        { name: "Blokk külön", tag: "div"},
+        { name: "Alcím", tag: "<h3></h3>"},
+        { name: "Áthúzott", tag: "<del></del>"},
+        { name: "Bevezető", tag: "<section class='intro'></section>"},
+        { name: "Blokk külön", tag: "<div></div>"},
+        { name: "Cikk cím", tag: "<header><h1></h1></header>"},
+        { name: "Cikkek közötti hivatkozás", tag: "<a href=''></a>"},
+        { name: "Cikk vége", tag: "<footer><p>Vége</p></footer>"},
+        { name: "Citált szöveg", tag: "<cite></cite>"},
+        { name: "Dőlt", tag: "<em></em>"},
+        { name: "Félkövér", tag: "<strong></strong>"},
+        { name: "Felsorolás", tag: "<ul></ul>"},
+        { name: "Források", tag: "<aside><p>Forrás: </p></aside>"},
+        { name: "Idézet", tag: "<blockquote></blockquote>"},
+        { name: "Képaláírás", tag: "<figcaption></figcaption>"},
+        { name: "Kép", tag: "<img src=''>"},
+        { name: "Kép (figura)", tag: "<figure><img src=''></img></figure>"},
+        { name: "Kiadás dátuma", tag: "<footer><p>Dátum: </p></footer>"},
+        { name: "Kiemelés", tag: "<mark></mark>"},
+        { name: "Kódrészlet", tag: "<code></code>"},
+        { name: "Link", tag: "<a href=''></a>"},
+        { name: "Listaelem", tag: "<li></li>"},
+        { name: "Oldalsáv", tag: "<aside></aside>"},
+        { name: "Számozott lista", tag: "<ol></ol>"},
+        { name: "Szöveg külön", tag: "<span></span>"},
+        { name: "Szöveg kiemelés (citálás)", tag: "<q></q>"},
+        { name: "Sortörés", tag: "<br>"},
+        { name: "Szerző", tag: "<footer><p>Írta: </p></footer>"},
+        { name: "Táblázat", tag: "<table></table>"},
+        { name: "Táblázat cella", tag: "<td></td>"},
+        { name: "Táblázat fejléc", tag: "<th></th>"},
+        { name: "Táblázat sor", tag: "<tr></tr>"},
+        { name: "Videó", tag: "<video controls><source src=''></video>"},
+        { name: "Cikkek közötti hivatkozás", tag: "<a href=''></a>"}
     ];
+    
+    
 
     return (
         <div className="rounded-lg bg-sndbg shadow-md p-6 flex flex-col items-center">

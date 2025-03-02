@@ -2,23 +2,25 @@ import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
 export async function middleware(req) {
-    const { pathname, origin } = req.nextUrl;
+    const url = req.nextUrl.clone();
     const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
-    // Ha a felhasználó nincs bejelentkezve és az admin oldalra próbál belépni, átirányítjuk a főoldalra
-    if (!token && pathname.startsWith("/admin")) {
-        return NextResponse.redirect(`${origin}/`);
+    // Ha nincs token és az admin oldalt próbálja elérni, visszairányítjuk a főoldalra
+    if (!token && url.pathname.startsWith("/admin")) {
+        url.pathname = "/";
+        return NextResponse.redirect(url);
     }
 
-    // Ha a felhasználó be van jelentkezve és a login oldalt próbálja megnyitni, átirányítjuk az admin oldalra
-    if (token && pathname === "/loginpage") {
-        return NextResponse.redirect(`${origin}/admin`);
+    // Ha van token, és a login oldalt próbálja megnyitni, irányítsuk át az admin panelre
+    if (token && url.pathname === "/loginpage") {
+        url.pathname = "/admin";
+        return NextResponse.redirect(url);
     }
 
     return NextResponse.next();
 }
 
-// Middleware konfiguráció a megfelelő útvonalakhoz
+// Middleware konfiguráció az admin felületre és a login oldalra
 export const config = {
     matcher: ["/admin/:path*", "/loginpage"],
 };

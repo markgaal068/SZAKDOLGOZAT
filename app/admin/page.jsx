@@ -75,7 +75,7 @@ export default function AdminPage() {
               </div>
               <div>
                 <p className="text-lg font-semibold">Üdv, <span className="font-bold">{session.user.fullname}</span>!</p>
-                <p className="text-sm text-white text-opacity-80">{session.user.role} szerepkörben</p>
+                <p className="text-sm text-white text-opacity-80">{session.user.role}</p>
               </div>
             </div>
           </div>

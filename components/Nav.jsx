@@ -3,7 +3,8 @@
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useState, useRef } from "react"
-import { CiLogin } from "react-icons/ci"
+import { signIn, signOut, useSession } from "next-auth/react"
+import { CiLogin, CiLogout } from "react-icons/ci"
 
 const links = [
     {
@@ -41,18 +42,18 @@ const links = [
 const Nav = () => {
     const pathname = usePathname()
     const router = useRouter()
+    const { data: session } = useSession()
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const timeoutRef = useRef(null)
 
+
     const handleMouseEnter = () => {
-        clearTimeout(timeoutRef.current)
+        if (timeoutRef.current) clearTimeout(timeoutRef.current)
         setIsDropdownOpen(true)
     }
 
     const handleMouseLeave = () => {
-        timeoutRef.current = setTimeout(() => {
-            setIsDropdownOpen(false)
-        }, 100)
+        timeoutRef.current = setTimeout(() => setIsDropdownOpen(false), 100)
     }
 
     return (
@@ -61,11 +62,11 @@ const Nav = () => {
                 <div
                     key={index}
                     className="relative"
-                    onMouseEnter={link.dropdown ? handleMouseEnter : null}
-                    onMouseLeave={link.dropdown ? handleMouseLeave : null}
+                    onMouseEnter={link.dropdown ? handleMouseEnter : undefined}
+                    onMouseLeave={link.dropdown ? handleMouseLeave : undefined}
                 >
                     {link.dropdown ? (
-                        <div className="relative" onMouseEnter={handleMouseEnter}>
+                        <div className="relative">
                             <Link
                                 href={link.path}
                                 className={`${link.path === pathname && "text-accent border-b-2 border-accent"} capitalize font-medium hover:text-accent transition-all`}
@@ -73,7 +74,6 @@ const Nav = () => {
                                 {link.name}
                             </Link>
 
-                            {/* Dropdown menu for departments */}
                             {isDropdownOpen && (
                                 <div
                                     className="absolute top-full left-0 bg-sndbg shadow-lg rounded-md mt-2 z-50 border-b border-accent"
@@ -103,14 +103,29 @@ const Nav = () => {
                 </div>
             ))}
 
-            {/* Bejelentkezés ikon */}
-            <button
-                className="ml-auto text-white hover:text-accent transition-all flex items-center gap-2"
-                onClick={() => router.push("/loginpage")}
-            >
-                Bejelentkezés <CiLogin className="text-2xl"/>
-            </button>
+            {/* Ha be van jelentkezve, megjelenik az "Admin Panel" és a "Kijelentkezés" gomb */}
+            {session ? (
+                <div className="ml-auto flex items-center gap-4">
+                    <Link href="/admin" className="text-white hover:text-accent transition-all font-medium">
+                        Admin Panel
+                    </Link>
+                    <button
+                        className="text-white hover:text-accent transition-all flex items-center gap-2"
+                        onClick={() => signOut({ callbackUrl: "/" })}
+                    >
+                        Kijelentkezés <CiLogout className="text-2xl" />
+                    </button>
 
+                </div>
+            ) : (
+                // Ha nincs bejelentkezve, a "Bejelentkezés" gomb látszik
+                <button
+                    className="ml-auto text-white hover:text-accent transition-all flex items-center gap-2"
+                    onClick={() => router.push("/loginpage")}
+                >
+                    Bejelentkezés <CiLogin className="text-2xl" />
+                </button>
+            )}
         </nav>
     )
 }

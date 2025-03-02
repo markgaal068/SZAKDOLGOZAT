@@ -1,15 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import axios from "axios";
 import EditUsersForm from "./EditUsersForm";
 import AddUsersForm from "./AddUsersForm";
 
 const AdminUsers = () => {
+    const { data: session } = useSession();
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [showAddUserForm, setShowAddUserForm] = useState(false);
     const [loading, setLoading] = useState(true);
+
+    const isAdmin = session?.user?.role === "Adminisztrátor"; // Ellenőrizzük, hogy admin-e
 
     useEffect(() => {
         fetchUsers();
@@ -27,7 +31,7 @@ const AdminUsers = () => {
     };
 
     const handleEdit = (user) => {
-        setSelectedUser(user);
+        if (isAdmin) setSelectedUser(user);
     };
 
     const handleSave = async (updatedUser) => {
@@ -73,7 +77,7 @@ const AdminUsers = () => {
             {loading ? (
                 <p className="text-center text-accent">Betöltés...</p>
             ) : (
-                <div className="overflow-x-auto shadow-md rounded-lg">
+                <div className="overflow-x-auto shadow-md rounded-lg sm-overflow-x-auto">
                     <table className="min-w-full bg-bg table-auto">
                         <thead>
                             <tr className="bg-sndbg">
@@ -95,7 +99,12 @@ const AdminUsers = () => {
                                     <td className="p-3">
                                         <button
                                             onClick={() => handleEdit(user)}
-                                            className="bg-accent/70 text-white px-4 py-2 rounded-md hover:bg-accent transition-all"
+                                            disabled={!isAdmin}
+                                            className={`px-4 py-2 rounded-md transition-all ${
+                                                isAdmin
+                                                    ? "bg-accent/70 text-white hover:bg-accent"
+                                                    : "bg-gray-500 text-gray-300 cursor-not-allowed"
+                                            }`}
                                         >
                                             Szerkesztés
                                         </button>
@@ -103,7 +112,12 @@ const AdminUsers = () => {
                                     <td className="p-3">
                                         <button
                                             onClick={() => handleDelete(user._id)}
-                                            className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-all"
+                                            disabled={!isAdmin}
+                                            className={`px-4 py-2 rounded-md transition-all ${
+                                                isAdmin
+                                                    ? "bg-red-500 text-white hover:bg-red-600"
+                                                    : "bg-gray-500 text-gray-300 cursor-not-allowed"
+                                            }`}
                                         >
                                             Törlés
                                         </button>
@@ -118,7 +132,12 @@ const AdminUsers = () => {
             <div className="mt-6 flex justify-end">
                 <button
                     onClick={() => setShowAddUserForm(true)}
-                    className="bg-accent/70 text-white px-6 py-3 rounded-md hover:bg-accent transition-all"
+                    disabled={!isAdmin}
+                    className={`px-6 py-3 rounded-md transition-all ${
+                        isAdmin
+                            ? "bg-accent/70 text-white hover:bg-accent"
+                            : "bg-gray-500 text-gray-300 cursor-not-allowed"
+                    }`}
                 >
                     Felhasználó hozzáadása
                 </button>

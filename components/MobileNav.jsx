@@ -28,7 +28,7 @@ const MobileNav = () => {
             <SheetTrigger className='flex justify-center items-center' onClick={() => setIsOpen(true)}>
                 <CiMenuFries className='text-[32px] text-accent' />
             </SheetTrigger>
-            <SheetContent className="flex flex-col">
+            <SheetContent className="flex flex-col max-h-screen overflow-y-auto pb-16">
                 {/* Logo */}
                 <div className='mt-32 mb-20 text-center text-2xl'>
                     <Link href="/" onClick={closeSheet}>

@@ -2,8 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
-  body{
-    @apply font-primary bg-bg text-white leading-loose
+@layer base {
+  body {
+    @apply font-primary bg-bg text-white leading-loose;
+  }
+
+  /* Görgetősáv stílusok mindenhol */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #323946;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #3cba54;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2a9e42;
+  }
+
+  /* Firefox támogatás */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #3cba54 #323946;
   }
 }

@@ -16,7 +16,6 @@ export default function AdminPage() {
   const router = useRouter();
 
   useEffect(() => {
-    // Ha a session betöltődött és nincs bejelentkezve a felhasználó, irány a login oldal
     if (status === "unauthenticated") {
       router.push("/");
     }
@@ -26,7 +25,6 @@ export default function AdminPage() {
     return <p>Betöltés...</p>;
   }
 
-  // Ha valamiért mégis sikerülne idetévedni bejelentkezés nélkül, ne jelenjen meg semmi
   if (!session) {
     return null;
   }

@@ -214,7 +214,7 @@ export default function TrainingAttendance() {
                     </div>
                     <div className="flex gap-4">
                         <button onClick={saveAttendance} className="px-4 py-2 rounded transition-all bg-accent/70 text-white hover:bg-accent">Mentés</button>
-                        <button onClick={deleteAttendance} className="px-4 py-2 rounded transition-all bg-accent/70 text-white hover:bg-accent" variant="destructive">Visszaállítás</button>
+                        <button onClick={deleteAttendance} className="px-4 py-2 rounded transition-all bg-accent/70 text-white hover:bg-accent" variant="destructive" disabled>Visszaállítás</button>
                     </div>
                 </div>
 

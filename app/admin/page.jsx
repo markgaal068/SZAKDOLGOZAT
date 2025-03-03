@@ -7,6 +7,7 @@ import AdminLanding from "@/components/AdminLanding";
 import AdminNews from "@/components/AdminNews";
 import AdminUsers from "@/components/AdminUsers";
 import AdminTools from "@/components/AdminTools";
+import AdminFuel from "@/components/AdminFuel"
 import { GrUserAdmin } from "react-icons/gr";
 
 export default function AdminPage() {
@@ -39,6 +40,8 @@ export default function AdminPage() {
         return <AdminNews />;
       case "AdminTools":
         return <AdminTools />;
+      case "AdminFuel":
+        return <AdminFuel />
       default:
         return null;
     }
@@ -65,6 +68,7 @@ export default function AdminPage() {
             { label: "Felhasználók", id: "AdminUsers" },
             { label: "Hírek szerkesztése", id: "AdminNews" },
             { label: "Formázási tagek", id: "AdminTools" },
+            { label: "Pézecske", id: "AdminFuel"},
           ].map((item) => (
             <button
               key={item.id}

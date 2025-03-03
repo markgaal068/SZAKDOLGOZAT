@@ -68,7 +68,7 @@ export default function AdminPage() {
             { label: "Felhasználók", id: "AdminUsers" },
             { label: "Hírek szerkesztése", id: "AdminNews" },
             { label: "Formázási tagek", id: "AdminTools" },
-            { label: "Pézecske", id: "AdminFuel"},
+            { label: "Edzéslátogatás", id: "AdminFuel"},
           ].map((item) => (
             <button
               key={item.id}

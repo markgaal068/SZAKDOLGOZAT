@@ -4,22 +4,28 @@ import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import PDFDownload from "@/components/PDFdownloadAttendance";
 
 const months = ["Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Október", "November", "December"];
 
 const teams = {
-    "Férfi Felnőtt": "/teamdatas/kezilabda/ffifelnott/mkszffifelnottjatekosok.json",
-    "Női Felnőtt": "/teamdatas/kezilabda/noifelnott/mksznoifelnottjatekosok.json",
-    "Leány Ifi": "/teamdatas/kezilabda/leanyifi/mkszleanyifijatekosok.json",
-    "Leány Serdülő": "/teamdatas/kezilabda/leanyseri/mkszleanyserijatekosok.json"
+    "Kézilabda - Férfi Felnőtt": "/teamdatas/kezilabda/ffifelnott/mkszffifelnottjatekosok.json",
+    "Kézilabda - Női Felnőtt": "/teamdatas/kezilabda/noifelnott/mksznoifelnottjatekosok.json",
+    "Kézilabda - Leány Ifi": "/teamdatas/kezilabda/leanyifi/mkszleanyifijatekosok.json",
+    "Kézilabda - Leány Serdülő": "/teamdatas/kezilabda/leanyseri/mkszleanyserijatekosok.json"
+};
+
+// Segédfüggvény a hónap napjainak számának meghatározásához
+const getDaysInMonth = (year, month) => {
+    return new Date(year, month + 1, 0).getDate();
 };
 
 export default function TrainingAttendance() {
     const { data: session } = useSession();
     const [players, setPlayers] = useState([]);
-    const [selectedTeam, setSelectedTeam] = useState("Férfi Felnőtt");
+    const [selectedTeam, setSelectedTeam] = useState("Kézilabda - Férfi Felnőtt");
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-    const [columns, setColumns] = useState(Array.from({ length: 20 }, (_, i) => `2025-${String(currentMonth + 1).padStart(2, '0')}-${String(i + 1).padStart(2, '0')}`));
+    const [columns, setColumns] = useState([]);
     const [attendance, setAttendance] = useState({});
     const [hatóságiÁr, setHatóságiÁr] = useState("");
     const [kopásDíj, setKopásDíj] = useState("");
@@ -34,45 +40,130 @@ export default function TrainingAttendance() {
             .catch(err => console.error("Fetch error:", err));
     }, [selectedTeam]);
 
-    const handleAttendanceChange = (player, column, value) => {
-        setAttendance(prev => ({
-            ...prev,
-            [currentMonth]: {
-                ...prev[currentMonth],
-                [player]: {
-                    ...(prev[currentMonth]?.[player] || {}),
-                    [column]: value
-                }
+    useEffect(() => {
+        const fetchAttendance = async () => {
+            const res = await fetch(`/api/attendance?team=${selectedTeam}&month=${currentMonth}`);
+            const data = await res.json();
+    
+            // Az aktuális hónap napjainak száma
+            const year = new Date().getFullYear(); // Az aktuális év
+            const daysInMonth = getDaysInMonth(year, currentMonth);
+    
+            if (data && Object.keys(data).length !== 0) {
+                setAttendance(data.attendance || {});
+                setHatóságiÁr(data.hatóságiÁr || "");
+                setKopásDíj(data.kopásDíj || "");
+                setFogyasztás(data.fogyasztás || "");
+                setColumns(data.columns || Array.from({ length: daysInMonth }, (_, i) =>
+                    `${year}-${String(currentMonth + 1).padStart(2, '0')}-${String(i + 1).padStart(2, '0')}`
+                ));
+            } else {
+                // Ha nincsenek adatok a hónapra, akkor üres oszlopokat állítunk be
+                setAttendance({});
+                setHatóságiÁr("");
+                setKopásDíj("");
+                setFogyasztás("");
+                setColumns(Array.from({ length: daysInMonth }, (_, i) =>
+                    `${year}-${String(currentMonth + 1).padStart(2, '0')}-${String(i + 1).padStart(2, '0')}`
+                ));
             }
-        }));
+        };
+        fetchAttendance();
+    }, [selectedTeam, currentMonth]);
+    
+
+    const handleAttendanceChange = (player, column, value) => {
+        const newAttendance = {
+            ...attendance,
+            [player]: {
+                ...(attendance[player] || {}),
+                [column]: value
+            }
+        };
+        setAttendance(newAttendance);
     };
 
     const handleKmChange = (player, value) => {
         if (isAdmin) {
-            setAttendance(prev => ({
-                ...prev,
-                [currentMonth]: {
-                    ...prev[currentMonth],
-                    [player]: {
-                        ...(prev[currentMonth]?.[player] || {}),
-                        ["megtett_km"]: value
-                    }
+            const newAttendance = {
+                ...attendance,
+                [player]: {
+                    ...(attendance[player] || {}),
+                    ["megtett_km"]: value
                 }
-            }));
+            };
+            setAttendance(newAttendance);
+        }
+    };
+
+    const saveAttendance = async () => {
+        try {
+            const res = await fetch('/api/attendance', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    attendance,
+                    currentMonth,
+                    selectedTeam,
+                    hatóságiÁr,
+                    kopásDíj,
+                    fogyasztás
+                }),
+            });
+            if (res.ok) {
+                alert("Adatok sikeresen mentve!");
+            } else {
+                alert("Hiba történt a mentés során.");
+            }
+        } catch (error) {
+            console.error("Hiba:", error);
+            alert("Hiba történt a mentés során.");
+        }
+    };
+
+    const deleteAttendance = async () => {
+        try {
+            const res = await fetch('/api/attendance', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ team: selectedTeam, month: currentMonth }),
+            });
+            if (res.ok) {
+                setAttendance({}); // Töröljük a helyi állapotot is
+                setHatóságiÁr(""); // Visszaállítjuk a hatósági árat
+                setKopásDíj(""); // Visszaállítjuk a kopás díjat
+                setFogyasztás(""); // Visszaállítjuk a fogyasztást
+                alert("Adatok sikeresen törölve!");
+            } else {
+                alert("Hiba történt a törlés során.");
+            }
+        } catch (error) {
+            console.error("Hiba:", error);
+            alert("Hiba történt a törlés során.");
         }
     };
 
     const calculateFizetendo = (player, km) => {
-        const megtekettKm = km || 0;
+        const megtettKm = km || 0;
         const autoEdzesek = columns.reduce((acc, column) => {
-            if (attendance[currentMonth]?.[player]?.[column] === "auto") {
+            if (attendance[player]?.[column] === "auto") {
                 return acc + 1;
             }
             return acc;
         }, 0);
-
-        const totalFizetendo = (megtekettKm / 100 * fogyasztás * hatóságiÁr) + (megtekettKm * kopásDíj);
-        return (totalFizetendo * autoEdzesek).toFixed(2);
+        const vonatEdzesek = columns.reduce((bcc, column) => {
+            if (attendance[player]?.[column] === "vonat") {
+                return bcc + 1;
+            }
+            return bcc
+        }, 0);
+        const totalFizetendo = (megtettKm / 100 * fogyasztás * hatóságiÁr) + (megtettKm * kopásDíj);
+        const vonatFizetendo = (megtettKm * 15)
+        return (totalFizetendo * autoEdzesek + vonatFizetendo * vonatEdzesek).toFixed(2);
     };
 
     return (
@@ -92,19 +183,41 @@ export default function TrainingAttendance() {
                         </Select>
                         {isAdmin && (
                             <div className="flex flex-col md:flex-row gap-4 w-full text-accent">
-                                <Input type="number" placeholder="Hatósági ár" value={hatóságiÁr} onChange={(e) => setHatóságiÁr(e.target.value)} className="w-full" />
-                                <Input type="number" placeholder="Kopás díj" value={kopásDíj} onChange={(e) => setKopásDíj(e.target.value)} className="w-full" />
-                                <Input type="number" placeholder="Fogyasztás" value={fogyasztás} onChange={(e) => setFogyasztás(e.target.value)} className="w-full" />
+                                <Input
+                                    type="number"
+                                    placeholder="Hatósági ár"
+                                    value={hatóságiÁr}
+                                    onChange={(e) => setHatóságiÁr(e.target.value)}
+                                    className="w-full"
+                                />
+                                <Input
+                                    type="number"
+                                    placeholder="Kopás díj"
+                                    value={kopásDíj}
+                                    onChange={(e) => setKopásDíj(e.target.value)}
+                                    className="w-full"
+                                />
+                                <Input
+                                    type="number"
+                                    placeholder="Fogyasztás"
+                                    value={fogyasztás}
+                                    onChange={(e) => setFogyasztás(e.target.value)}
+                                    className="w-full"
+                                />
                             </div>
                         )}
                     </div>
                     <div className="flex justify-between items-center mb-6">
-                        <Button onClick={() => setCurrentMonth(prev => (prev > 0 ? prev - 1 : 11))}>Előző hónap</Button>
+                        <button onClick={() => setCurrentMonth(prev => (prev > 0 ? prev - 1 : 11))} className="px-4 py-2 rounded transition-all bg-accent/70 text-white hover:bg-accent">Előző hónap</button>
                         <span className="text-xl font-semibold">{months[currentMonth]}</span>
-                        <Button onClick={() => setCurrentMonth(prev => (prev < 11 ? prev + 1 : 0))}>Következő hónap</Button>
+                        <button onClick={() => setCurrentMonth(prev => (prev < 11 ? prev + 1 : 0))} className="px-4 py-2 rounded transition-all bg-accent/70 text-white hover:bg-accent">Következő hónap</button>
+                    </div>
+                    <div className="flex gap-4">
+                        <button onClick={saveAttendance} className="px-4 py-2 rounded transition-all bg-accent/70 text-white hover:bg-accent">Mentés</button>
+                        <button onClick={deleteAttendance} className="px-4 py-2 rounded transition-all bg-accent/70 text-white hover:bg-accent" variant="destructive">Visszaállítás</button>
                     </div>
                 </div>
-    
+
                 <div className="bg-sndbg shadow-lg rounded-lg overflow-x-auto w-[80vw]">
                     <Table className="">
                         <TableHeader>
@@ -130,17 +243,19 @@ export default function TrainingAttendance() {
                                     <TableCell>{player.last_name} {player.first_name}</TableCell>
                                     <TableCell>{player.position}</TableCell>
                                     <TableCell>
-                                        <Input type="number" value={attendance[currentMonth]?.[`${player.last_name}-${player.first_name}`]?.["megtett_km"] || ""} 
-                                            onChange={(e) => handleKmChange(`${player.last_name}-${player.first_name}`, e.target.value)} 
+                                        <Input type="number" value={attendance[`${player.last_name}-${player.first_name}`]?.["megtett_km"] || ""}
+                                            onChange={(e) => handleKmChange(`${player.last_name}-${player.first_name}`, e.target.value)}
                                             className="text-accent w-[120px]" />
                                     </TableCell>
                                     <TableCell>
-                                        {calculateFizetendo(`${player.last_name}-${player.first_name}`, attendance[currentMonth]?.[`${player.last_name}-${player.first_name}`]?.["megtett_km"])} Ft
+                                        {calculateFizetendo(`${player.last_name}-${player.first_name}`, attendance[`${player.last_name}-${player.first_name}`]?.["megtett_km"])} Ft
                                     </TableCell>
                                     {columns.map((col, index) => (
                                         <TableCell key={index} className="text-accent w-[120px]">
-                                            <Select value={attendance[currentMonth]?.[`${player.last_name}-${player.first_name}`]?.[col] || "default"} 
-                                                onValueChange={(value) => handleAttendanceChange(`${player.last_name}-${player.first_name}`, col, value)}>
+                                            <Select
+                                                value={attendance[`${player.last_name}-${player.first_name}`]?.[col] || "tbd"}
+                                                onValueChange={(value) => handleAttendanceChange(`${player.last_name}-${player.first_name}`, col, value)}
+                                            >
                                                 <SelectTrigger>
                                                     <SelectValue placeholder="Mivel érkezett?" />
                                                 </SelectTrigger>
@@ -148,17 +263,30 @@ export default function TrainingAttendance() {
                                                     <SelectItem value="vonat">Vonat</SelectItem>
                                                     <SelectItem value="auto">Autó</SelectItem>
                                                     <SelectItem value="nem_jelent_meg">Nem jelent meg</SelectItem>
+                                                    <SelectItem value="nem_jar_tamogatas">Nem jár támogatás</SelectItem>
+                                                    <SelectItem value="nem_volt_edzes">Nem volt edzés</SelectItem>
+                                                    <SelectItem value="tbd">TBD</SelectItem>
                                                 </SelectContent>
                                             </Select>
                                         </TableCell>
                                     ))}
+
                                 </TableRow>
                             ))}
                         </TableBody>
                     </Table>
                 </div>
+                <PDFDownload
+                    players={players}
+                    attendance={attendance}
+                    columns={columns}
+                    currentMonth={currentMonth}
+                    hatóságiÁr={hatóságiÁr}
+                    kopásDíj={kopásDíj}
+                    fogyasztás={fogyasztás}
+                    teamName={selectedTeam}
+                />
             </div>
         </div>
     );
-    
 }

@@ -20,6 +20,22 @@ const getDaysInMonth = (year, month) => {
     return new Date(year, month + 1, 0).getDate();
 };
 
+// Segédfüggvény az alapértelmezett napok (Kedd, Csütörtök, Péntek, Szombat) meghatározásához
+const getDefaultDays = (year, month) => {
+    const daysInMonth = getDaysInMonth(year, month);
+    const defaultDays = [];
+
+    for (let day = 1; day <= daysInMonth; day++) {
+        const date = new Date(year, month, day);
+        const dayOfWeek = date.getDay(); // 0 (vasárnap) - 6 (szombat)
+        if (dayOfWeek === 2 || dayOfWeek === 4 || dayOfWeek === 5 || dayOfWeek === 6) { // Kedd, Csütörtök, Péntek, Szombat
+            defaultDays.push(date.toISOString().split('T')[0]);
+        }
+    }
+
+    return defaultDays;
+};
+
 export default function TrainingAttendance() {
     const { data: session } = useSession();
     const [players, setPlayers] = useState([]);
@@ -44,33 +60,26 @@ export default function TrainingAttendance() {
         const fetchAttendance = async () => {
             const res = await fetch(`/api/attendance?team=${selectedTeam}&month=${currentMonth}`);
             const data = await res.json();
-    
-            // Az aktuális hónap napjainak száma
-            const year = new Date().getFullYear(); // Az aktuális év
-            const daysInMonth = getDaysInMonth(year, currentMonth);
-    
+
+            const year = new Date().getFullYear();
+            const defaultDays = getDefaultDays(year, currentMonth);
+
             if (data && Object.keys(data).length !== 0) {
                 setAttendance(data.attendance || {});
                 setHatóságiÁr(data.hatóságiÁr || "");
                 setKopásDíj(data.kopásDíj || "");
                 setFogyasztás(data.fogyasztás || "");
-                setColumns(data.columns || Array.from({ length: daysInMonth }, (_, i) =>
-                    `${year}-${String(currentMonth + 1).padStart(2, '0')}-${String(i + 1).padStart(2, '0')}`
-                ));
+                setColumns(data.columns || defaultDays); // Ha nincsenek mentett napok, akkor alapértelmezett napok
             } else {
-                // Ha nincsenek adatok a hónapra, akkor üres oszlopokat állítunk be
                 setAttendance({});
                 setHatóságiÁr("");
                 setKopásDíj("");
                 setFogyasztás("");
-                setColumns(Array.from({ length: daysInMonth }, (_, i) =>
-                    `${year}-${String(currentMonth + 1).padStart(2, '0')}-${String(i + 1).padStart(2, '0')}`
-                ));
+                setColumns(defaultDays); // Alapértelmezett napok
             }
         };
         fetchAttendance();
     }, [selectedTeam, currentMonth]);
-    
 
     const handleAttendanceChange = (player, column, value) => {
         const newAttendance = {
@@ -109,7 +118,8 @@ export default function TrainingAttendance() {
                     selectedTeam,
                     hatóságiÁr,
                     kopásDíj,
-                    fogyasztás
+                    fogyasztás,
+                    columns // Mentjük a kiválasztott napokat is
                 }),
             });
             if (res.ok) {
@@ -133,10 +143,12 @@ export default function TrainingAttendance() {
                 body: JSON.stringify({ team: selectedTeam, month: currentMonth }),
             });
             if (res.ok) {
-                setAttendance({}); // Töröljük a helyi állapotot is
-                setHatóságiÁr(""); // Visszaállítjuk a hatósági árat
-                setKopásDíj(""); // Visszaállítjuk a kopás díjat
-                setFogyasztás(""); // Visszaállítjuk a fogyasztást
+                setAttendance({});
+                setHatóságiÁr("");
+                setKopásDíj("");
+                setFogyasztás("");
+                const year = new Date().getFullYear();
+                setColumns(getDefaultDays(year, currentMonth)); // Visszaállítjuk az alapértelmezett napokra
                 alert("Adatok sikeresen törölve!");
             } else {
                 alert("Hiba történt a törlés során.");
@@ -270,7 +282,6 @@ export default function TrainingAttendance() {
                                             </Select>
                                         </TableCell>
                                     ))}
-
                                 </TableRow>
                             ))}
                         </TableBody>

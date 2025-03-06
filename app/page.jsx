@@ -14,10 +14,10 @@ export default function Home() {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
       
-      <div className="relative z-10 grid grid-cols-1 xl:grid-cols-2 h-full gap-0">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 p-6 w-full">
         {/* Címer */}
         <motion.div 
-          className="flex items-center justify-center p-4 order-2 xl:order-2" 
+          className="flex items-center justify-center p-4 order-2 md:order-1"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5 }}
@@ -30,8 +30,8 @@ export default function Home() {
             <Image
               src="/kinizsicimer.png" 
               alt="Címer"
-              width={500} 
-              height={500} 
+              width={400} 
+              height={400} 
               className="rounded-full bg-sndbg"
             />
           </motion.div>
@@ -39,12 +39,12 @@ export default function Home() {
 
         {/* Szöveges rész */}
         <motion.div 
-          className="flex flex-col items-center justify-center h-full text-white text-center p-8" 
+          className="flex flex-col items-center justify-center text-white text-center p-8 order-1 md:order-2" 
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <h1 className="text-3xl xl:text-6xl font-extrabold mb-6">
+          <h1 className="text-3xl xl:text-5xl font-extrabold mb-6">
             Üdvözlünk az <span className="text-green-400">Ácsi Kinizsi SC</span> weboldalán!
           </h1>
           <p className="text-lg xl:text-xl mb-8 text-gray-300">
@@ -52,16 +52,16 @@ export default function Home() {
           </p>
           
           {/* Közösségi ikonok */}
-          <div className="flex space-x-6">
+          <div className="flex space-x-4 sm:space-x-6 justify-center">
             {[{
               href: "https://www.facebook.com/profile.php?id=100041322827349",
-              icon: <FaFacebook className="text-4xl" />
+              icon: <FaFacebook className="text-3xl sm:text-4xl" />
             }, {
               href: "https://www.instagram.com/kinizsi_handball/",
-              icon: <FaInstagram className="text-4xl" />
+              icon: <FaInstagram className="text-3xl sm:text-4xl" />
             }, {
               href: "https://www.youtube.com/@acskinizsisckezilabda5429",
-              icon: <FaYoutube className="text-4xl" />
+              icon: <FaYoutube className="text-3xl sm:text-4xl" />
             }].map(({ href, icon }, index) => (
               <motion.a 
                 key={index} 
@@ -70,7 +70,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, rotate: 10 }}
                 whileTap={{ scale: 0.9 }}
-                className="flex items-center justify-center rounded-full border-4 border-green-400 bg-transparent text-green-400 hover:bg-green-400 hover:text-black transition duration-300 p-5 shadow-lg"
+                className="flex items-center justify-center rounded-full border-4 border-green-400 bg-transparent text-green-400 hover:bg-green-400 hover:text-black transition duration-300 p-4 sm:p-5 shadow-lg"
               >
                 {icon}
               </motion.a>

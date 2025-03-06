@@ -1,67 +1,43 @@
-"use client"; 
+"use client"
+import { useEffect } from 'react';
+import Link from 'next/link';
 
-import Image from "next/image"; 
-import { Button } from "@/components/ui/button"; 
+export default function Construction() {
+  useEffect(() => {
+    document.body.classList.add('overflow-hidden');
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, []);
 
-export default function Handball() {
   return (
-    <section>
-      <div className="mx-4 xl:mx-16">
-        <h2 className="heading text-center text-3xl xl:text-6xl font-bold mb-12 mt-12"> 
-            <span className="text-accent">Tenisz</span> Szakosztály
-        </h2>
+    <div className="flex h-screen items-center justify-center bg-gradient-to-b from-bg via-sndbg to-accent text-white text-center p-4 relative overflow-hidden">
+      {/* Kép háttérként, opacityval */}
+      <div className="absolute inset-0 flex justify-center items-center">
+        <img src="/kinizsicimer.png" alt="Kinizsi Címer" className="opacity-30 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl" />
+      </div>
 
-        <div className="teams-container grid grid-cols-1 xl:grid-cols-2">
-          {teamData.map((team, index) => (
-            <div className="rounded-[40px] bg-sndbg border border-bg p-6 flex flex-col items-center m-10 hover:border-accent border-2" key={index}>
-              <Image src={team.image} alt={team.title} width={300} height={200} className="rounded-md mb-4" />
-              <h3 className="text-xl font-semibold text-center">{team.title}</h3>
-              <p className="text-center mb-4">{team.description}</p>
-              <Button>A Csapat</Button>
-            </div>
-          ))}
+      <div className="max-w-2xl z-10 px-4 sm:px-8 md:px-12">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Üdvözlünk a Kinizsi Tenisz Szakosztályánál!</h1>
+        <p className="text-base sm:text-lg md:text-xl mb-8">
+          A Kinizsi Tenisz szakosztálya több éves múltra tekint vissza. 
+          Az oldalunk jelenleg fejlesztés alatt áll, de hamarosan rengeteg 
+          információval várunk, hogy te is részese lehess a csapatunknak!
+        </p>
+        <p className="text-base sm:text-lg md:text-xl font-semibold mb-6">
+          Az adatok feltöltése folyamatban, kérlek, tarts velünk türelemmel!
+        </p>
+        <div className="space-x-4">
+          <Link href="/">
+            <button className="bg-accent/70 hover:bg-accent text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300">
+              Vissza a kezdőlapra
+            </button>
+          </Link>
+        </div>
+        <div className="mt-8">
+          <p className="text-sm italic">Köszönjük, hogy érdeklődsz a Kinizsi Tenisz szakosztálya iránt!</p>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
-
-//ÁTÍRANDÓ CSAPATOKRA!!!
-const teamData = [
-  {
-    image: "/kep.jpg",
-    title: "Labdarúgás",
-    description: "Lorem lorem lorem lorem",
-    tableLink: "https://www.mksz.hu/versenyek/upNoiVersenyek/32021930/320216840",
-  },
-  {
-    image: "/kep.jpg",
-    title: "Kézilabda",
-    description: "Lorem lorem lorem lorem",
-    tableLink: "https://www.mksz.hu/versenyek/upNoiVersenyek/32021918/320216813",
-  },
-  {
-    image: "/kep.jpg",
-    title: "Asztalitenisz",
-    description: "Lorem lorem lorem lorem",
-    tableLink: "https://www.mksz.hu/versenyek/felnottNoiVersenyek/32021963/320217258",
-  },
-  {
-    image: "/kep.jpg", 
-    title: "Sakk",
-    description: "Lorem lorem lorem lorem",
-    tableLink: "https://www.mksz.hu/versenyek/felnottNoiVersenyek/32021902/320216604",
-  },
-  {
-    image: "/kep.jpg",
-    title: "Tenisz",
-    description: "Lorem lorem lorem lorem",
-    tableLink: "https://www.mksz.hu/versenyek/upFerfiVersenyek/32021915/320216798",
-  },
-  {
-    image: "/kep.jpg",
-    title: "Lovas",
-    description: "Lorem lorem lorem lorem",
-    tableLink: "https://www.mksz.hu/versenyek/felnottFerfiVersenyek/32021900/320216591",
-  },
-];

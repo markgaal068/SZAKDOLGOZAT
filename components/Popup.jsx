@@ -27,7 +27,7 @@ export default function Popup({ news, closePopup }) {
 
                 {news.images && news.images.length > 0 && (
                     <div className="relative mb-6 w-full flex justify-center">
-                        <Image src={news.images[currentImageIndex]} alt="Hír kép" width={400} height={250} className="w-[80%] max-h-[250px] object-cover rounded-xl shadow-md" />
+                        <Image src={news.images[currentImageIndex]} alt="Hír kép" width={400} height={250} className="w-[80%] max-h-[250px] object-cover rounded-xl shadow-md mx-auto" />
                         {news.images.length > 1 && (
                             <>
                                 <button className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full" onClick={prevImage}>{"<"}</button>
@@ -39,7 +39,7 @@ export default function Popup({ news, closePopup }) {
 
                 <h3 className="text-4xl font-semibold text-accent text-center uppercase mb-4">{news.title}</h3>
 
-                <div className="text-white text-lg leading-relaxed overflow-y-auto px-4" style={{ maxHeight: "50vh", scrollbarWidth: "thin", scrollbarColor: "#3cba54 #323946" }} dangerouslySetInnerHTML={{ __html: news.content }} />
+                <div className="text-white text-lg leading-relaxed overflow-y-auto px-4 text-justify" style={{ maxHeight: "50vh", scrollbarWidth: "thin", scrollbarColor: "#3cba54 #323946" }} dangerouslySetInnerHTML={{ __html: news.content }} />
 
                 {/* Szerző és dátum rész */}
                 <div className="mt-4 text-sm text-gray-400 text-center w-full">

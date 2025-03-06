@@ -18,15 +18,19 @@ export default function AddNewsForm({ handleAddNews, session }) {
             console.error("Nincs bejelentkezve felhasználó!");
             return;
         }
-
-        handleAddNews(newTitle, newDescription, newContent, newImages);
-
+    
+        const author = session.user.name;  // Bejelentkezett felhasználó neve
+        const createdAt = new Date().toISOString(); // Létrehozási dátum
+    
+        handleAddNews(newTitle, newDescription, newContent, newImages, author, createdAt);
+    
         // Űrlap törlése a hozzáadás után
         setNewTitle("");
         setNewDescription("");
         setNewContent("");
         setNewImages([]);
     };
+    
 
     const handleInsertTag = () => {
         if (!selectedTag) return;
@@ -49,8 +53,6 @@ export default function AddNewsForm({ handleAddNews, session }) {
         { name: "Idézet", tag: "<blockquote></blockquote>"},
         { name: "Képaláírás", tag: "<figcaption></figcaption>"},
         { name: "Kép", tag: "<img src=''>"},
-        { name: "Kép (figura)", tag: "<figure><img src=''></img></figure>"},
-        { name: "Kiadás dátuma", tag: "<footer><p>Dátum: </p></footer>"},
         { name: "Kiemelés", tag: "<mark></mark>"},
         { name: "Kódrészlet", tag: "<code></code>"},
         { name: "Link", tag: "<a href=''></a>"},
@@ -60,13 +62,11 @@ export default function AddNewsForm({ handleAddNews, session }) {
         { name: "Szöveg külön", tag: "<span></span>"},
         { name: "Szöveg kiemelés (citálás)", tag: "<q></q>"},
         { name: "Sortörés", tag: "<br>"},
-        { name: "Szerző", tag: "<footer><p>Írta: </p></footer>"},
         { name: "Táblázat", tag: "<table></table>"},
         { name: "Táblázat cella", tag: "<td></td>"},
         { name: "Táblázat fejléc", tag: "<th></th>"},
         { name: "Táblázat sor", tag: "<tr></tr>"},
         { name: "Videó", tag: "<video controls><source src=''></video>"},
-        { name: "Cikkek közötti hivatkozás", tag: "<a href=''></a>"}
     ];
     
     

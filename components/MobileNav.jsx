@@ -4,6 +4,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { signOut, useSession } from 'next-auth/react';
 import { CiMenuFries, CiLogin, CiLogout } from 'react-icons/ci';
 
@@ -39,14 +40,20 @@ const MobileNav = () => {
                 {/* Navbar */}
                 <nav className='flex flex-col justify-center items-center gap-8 font-bold mb-12'>
                     {links.map((link, index) => (
-                        <Link
-                            href={link.path}
+                        <motion.div
                             key={index}
-                            onClick={closeSheet}
-                            className={`${link.path === pathname ? "text-accent border-b-2 border-accent" : ""} text-xl capitalize hover:text-accent transition-all`}
+                            initial={{ opacity: 0, x: 24 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.3, delay: index * 0.06, ease: "easeOut" }}
                         >
-                            {link.name}
-                        </Link>
+                            <Link
+                                href={link.path}
+                                onClick={closeSheet}
+                                className={`${link.path === pathname ? "text-accent border-b-2 border-accent" : ""} text-xl capitalize hover:text-accent transition-all`}
+                            >
+                                {link.name}
+                            </Link>
+                        </motion.div>
                     ))}
                 </nav>
 

@@ -20,7 +20,8 @@ module.exports = {
 		
 	},
 	fontFamily:{
-		primary: "var(--font-open-sans)"
+		primary: "var(--font-open-sans)",
+		sport: "var(--font-oswald)"
 	},
 	extend: {
   		colors: {

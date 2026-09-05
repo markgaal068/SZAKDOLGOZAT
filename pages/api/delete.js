@@ -1,6 +1,6 @@
 import { MongoClient, ObjectId } from "mongodb";
 
-const uri = "mongodb+srv://markgaal068:rGAW8V26qKPVM49s@kinizsi.wabej.mongodb.net/?retryWrites=true&w=majority&appName=kinizsi"; // SAJÁT ADAT!
+const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
 
 export default async function handler(req, res) {

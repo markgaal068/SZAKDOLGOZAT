@@ -1,7 +1,16 @@
 import { MongoClient, ObjectId } from "mongodb";
 
-const uri = "mongodb+srv://markgaal068:rGAW8V26qKPVM49s@kinizsi.wabej.mongodb.net/?retryWrites=true&w=majority&appName=kinizsi"; //SAJÁT ADAT!
+const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
+
+// Lásd add.js - a beágyazott base64 képek miatt kell a megemelt limit.
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: "12mb",
+        },
+    },
+};
 
 export default async function handler(req, res) {
     if (req.method === 'PUT') {

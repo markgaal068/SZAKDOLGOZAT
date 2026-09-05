@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { fileToCompressedDataUrl } from "@/lib/image";
 
 export default function EditNewsForm({ news, handleEditNews, cancelEdit }) {
     const [title, setTitle] = useState(news.title);
@@ -9,11 +10,14 @@ export default function EditNewsForm({ news, handleEditNews, cancelEdit }) {
     const [content, setContent] = useState(news.content);
     const [images, setImages] = useState(news.images || []);
 
-    // Új képek feltöltése
-    const handleImageUpload = (e) => {
+    // Új képek feltöltése - base64 data URL-ként mentjük, nem
+    // URL.createObjectURL()-lel, mert az csak ideiglenes, a böngésző
+    // munkamenetéhez kötött link lenne, ami mentés után halott linkként
+    // került volna be az adatbázisba.
+    const handleImageUpload = async (e) => {
         const files = Array.from(e.target.files);
-        const newImages = files.map((file) => URL.createObjectURL(file));
-        setImages([...images, ...newImages]);
+        const newImages = await Promise.all(files.map((file) => fileToCompressedDataUrl(file)));
+        setImages((prev) => [...prev, ...newImages]);
     };
 
     // Kép törlése

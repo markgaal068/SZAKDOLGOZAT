@@ -3,8 +3,20 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* A tailwind.config.js rounded-lg/md/sm utilityjai erre a változóra
+       épülnek - enélkül a lekerekítés csendben nem érvényesült sehol. */
+    --radius: 0.75rem;
+  }
+
   body {
     @apply font-primary bg-bg text-white leading-loose;
+  }
+
+  /* Látható fókusz-jelzés billentyűzetes navigációhoz */
+  :focus-visible {
+    outline: 2px solid theme("colors.accent");
+    outline-offset: 2px;
   }
 
   /* Görgetősáv stílusok mindenhol */

@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import PlayerPopup from '@/components/PlayerPopup';
 
 export default function TablePage() {
     const [tableData, setTableData] = useState([]);
     const [playersData, setPlayersData] = useState([]);
+    const [selectedPlayer, setSelectedPlayer] = useState(null);
 
     useEffect(() => {
         async function fetchTableData() {
@@ -15,7 +17,7 @@ export default function TablePage() {
         }
 
         async function fetchPlayersData() {
-            const response = await fetch('/teamdatas/kezilabda/noifelnott/mksznoifelnottjatekosok.json');
+            const response = await fetch('/api/players?team=noifelnott');
             const data = await response.json();
             setPlayersData(data);
         }
@@ -92,11 +94,9 @@ export default function TablePage() {
                 </motion.h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     {playersData.map((player, index) => (
-                        <motion.a
+                        <motion.div
                             key={index}
-                            href={player.profile_link}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            onClick={() => setSelectedPlayer(player)}
                             className={`text-center p-6 rounded-lg shadow-lg transition-all transform hover:scale-105 cursor-pointer ${index % 2 === 0 ? 'bg-accent text-sndbg hover:text-accent hover:bg-sndbg' : 'bg-sndbg text-accent hover:text-sndbg hover:bg-accent'} h-72`}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -110,10 +110,14 @@ export default function TablePage() {
                             <h3 className="text-xl font-bold uppercase">{player.last_name}</h3>
                             <p className="text-md text-white font-semibold text-lg">{player.first_name}</p>
                             <p className="text-md text-white font-semibold">{player.position}</p>
-                        </motion.a>
+                        </motion.div>
                     ))}
                 </div>
             </div>
+
+            {selectedPlayer && (
+                <PlayerPopup player={selectedPlayer} closePopup={() => setSelectedPlayer(null)} />
+            )}
         </section>
     );
 }

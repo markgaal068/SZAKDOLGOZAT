@@ -1,163 +1,380 @@
 [
-    {
-        "first_name": "László",
-        "last_name": "Jaczkó",
-        "position": "Vezetőedző",
-        "image_link": "https://cdn.mksz.hu/mksz-public/914871-4278-jaczk%C3%B3%20l%C3%A1szl%C3%B3.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/1172/Edz%C5%91"
-    },
-    {
-        "first_name": "Balázs",
-        "last_name": "Blahó",
-        "position": "Szélső",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1491225-Blah%C3%B3%20Bal%C3%A1zs.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/35866"
-    },
-    {
-        "first_name": "Ádám",
-        "last_name": "Csuka",
-        "position": "Átlövő",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1495868-Csuka%20%C3%81d%C3%A1m.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/33794"
-    },
-    {
-        "first_name": "Benjámin",
-        "last_name": "Csuka",
-        "position": "Átlövő",
-        "image_link": "https://cdn.mksz.hu/mksz-public/2024/09/19/2423152-Csuka%20Benj%C3%A1min.jfif",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/8729"
-    },
-    {
-        "first_name": "Csaba",
-        "last_name": "Csupor",
-        "position": "Kapus",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1215497-Csupor%20Csaba%20j%C3%B3.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/28098"
-    },
-    {
-        "first_name": "Dávid",
-        "last_name": "Csupor",
-        "position": "Irányító",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1491231-Csupor%20D%C3%A1vid.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/28097"
-    },
-    {
-        "first_name": "Kristóf",
-        "last_name": "Czirják",
-        "position": "Átlövő",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1448387-Czirj%C3%A1k%20Krist%C3%B3f.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/28092"
-    },
-    {
-        "first_name": "Márk",
-        "last_name": "Gaál",
-        "position": "Beálló",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1132954-received_5353914221382964.jpeg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/37312"
-    },
-    {
-        "first_name": "Norbert",
-        "last_name": "Horváth",
-        "position": "Beálló",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1491247-Horv%C3%A1th%20Norbert.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/8742"
-    },
-    {
-        "first_name": "Attila",
-        "last_name": "Janes",
-        "position": "Átlövő",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1488093-Janes%20Attila.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/8731"
-    },
-    {
-        "first_name": "Dominik",
-        "last_name": "Jász",
-        "position": "Irányító",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1491253-J%C3%A1sz%20Dominik.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/50683"
-    },
-    {
-        "first_name": "Ádám",
-        "last_name": "Kastal",
-        "position": "Irányító",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1857654-Kastal%20%C3%81d%C3%A1m.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/101157"
-    },
-    {
-        "first_name": "Zsolt",
-        "last_name": "Király",
-        "position": "Irányító",
-        "image_link": "https://cdn.mksz.hu/mksz-public/2025/02/06/2663648-Kir%C3%A1ly%20Zsolt.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/31419/"
-    },
-    {
-        "first_name": "Gyula Máté",
-        "last_name": "Kis",
-        "position": "Szélső",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1236340-Kis%20Gyula%20M%C3%A1t%C3%A9.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/126106"
-    },
-    {
-        "first_name": "Marcell",
-        "last_name": "Kovács",
-        "position": "Átlövő",
-        "image_link": "https://cdn.mksz.hu/mksz-public/2024/09/19/2417142-Kov%C3%A1cs%20Marcell.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/42738"
-    },
-    {
-        "first_name": "András",
-        "last_name": "Lencz",
-        "position": "Védekező specialista",
-        "image_link": "https://cdn.mksz.hu/mksz-public/818582-Lencz%20Andr%C3%A1s%20%C3%BAj.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/2262"
-    },
-    {
-        "first_name": "Richárd",
-        "last_name": "Megyesi",
-        "position": "Kapus",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1491271-Megyesi%20Rich%C3%A1rd.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/58185"
-    },
-    {
-        "first_name": "Dániel",
-        "last_name": "Mészáros",
-        "position": "Beálló",
-        "image_link": "https://cdn.mksz.hu/mksz-public/2024/10/09/2464856-K%C3%A9pkiv%C3%A1g%C3%A1s.jpg",
-        "profile_link":"https://www.mksz.hu/jatekos-adatlap/6745/J%C3%A1t%C3%A9kos"
-    },
-    {
-        "first_name": "Olivér",
-        "last_name": "Narancsik",
-        "position": "Szélső",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1491297-Narancsik%20Oliv%C3%A9r.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/33796"
-    },
-    {
-        "first_name": "Martin Tibor",
-        "last_name": "Németh",
-        "position": "Kapus",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1491304-N%C3%A9meth%20Martin.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/46128"
-    },
-    {
-        "first_name": "Benjamin",
-        "last_name": "Sauerbrei",
-        "position": "Átlövő",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1491311-Sauerbrei%20Benjamin.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/8751"
-    },
-    {
-        "first_name": "Balázs",
-        "last_name": "Vadász",
-        "position": "Szélső",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1491320-Vad%C3%A1sz%20Bal%C3%A1zs.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/93186"
-    },
-    {
-        "first_name": "Ádám",
-        "last_name": "Varga",
-        "position": "Szélső",
-        "image_link": "https://cdn.mksz.hu/mksz-public/1806359-Varga%20%C3%81d%C3%A1m.jpg",
-        "profile_link": "https://www.mksz.hu/jatekos-adatlap/101428"
+  {
+    "first_name": "Balázs",
+    "last_name": "Blahó",
+    "position": "",
+    "birth_year": "2000",
+    "image_link": "https://cdn.mksz.hu/mksz-public/2026/08/13/30305282-Blah%C3%B3%20Bal%C3%A1zs.jpeg",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/35866",
+    "stats": {
+      "merkozes": "10",
+      "gy": "2",
+      "d": "0",
+      "v": "8",
+      "lott_gol": "35",
+      "sarga_lap": "",
+      "ket_perc": "2",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "9",
+      "hetmeteres_gol": "8"
     }
+  },
+  {
+    "first_name": "Ádám",
+    "last_name": "Csuka",
+    "position": "",
+    "birth_year": "1994",
+    "image_link": "https://cdn.mksz.hu/mkszhu-public/img/slider/sample_slider.png",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/33794",
+    "stats": {
+      "merkozes": "4",
+      "gy": "1",
+      "d": "0",
+      "v": "3",
+      "lott_gol": "1",
+      "sarga_lap": "",
+      "ket_perc": "2",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "",
+      "hetmeteres_gol": ""
+    }
+  },
+  {
+    "first_name": "Benjámin",
+    "last_name": "Csuka",
+    "position": "",
+    "birth_year": "1992",
+    "image_link": "https://cdn.mksz.hu/mksz-public/2024/09/19/2423152-Csuka%20Benj%C3%A1min.jfif",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/8729",
+    "stats": {
+      "merkozes": "16",
+      "gy": "4",
+      "d": "0",
+      "v": "12",
+      "lott_gol": "39",
+      "sarga_lap": "1",
+      "ket_perc": "10",
+      "kizaras": "1",
+      "kizar_feljelentes": "",
+      "hetmeteres": "17",
+      "hetmeteres_gol": "12"
+    }
+  },
+  {
+    "first_name": "Kristóf",
+    "last_name": "Czirják",
+    "position": "",
+    "birth_year": "2003",
+    "image_link": "https://cdn.mksz.hu/mksz-public/2026/02/28/30313303-Czirj%C3%A1k%20Krist%C3%B3f.jpg",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/28092",
+    "stats": {
+      "merkozes": "8",
+      "gy": "2",
+      "d": "0",
+      "v": "6",
+      "lott_gol": "39",
+      "sarga_lap": "",
+      "ket_perc": "1",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "3",
+      "hetmeteres_gol": "2"
+    }
+  },
+  {
+    "first_name": "Márk",
+    "last_name": "Gaál",
+    "position": "",
+    "birth_year": "2003",
+    "image_link": "https://cdn.mksz.hu/mksz-public/2025/10/03/2983326-Ga%C3%A1l%20M%C3%A1rk.jpeg",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/37312",
+    "stats": {
+      "merkozes": "5",
+      "gy": "1",
+      "d": "0",
+      "v": "4",
+      "lott_gol": "2",
+      "sarga_lap": "",
+      "ket_perc": "1",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "",
+      "hetmeteres_gol": ""
+    }
+  },
+  {
+    "first_name": "Norbert",
+    "last_name": "Horváth",
+    "position": "",
+    "birth_year": "1993",
+    "image_link": "https://cdn.mksz.hu/mksz-public/2026/08/08/30305268-Horv%C3%A1th%20Norbert.jpeg",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/8742",
+    "stats": {
+      "merkozes": "16",
+      "gy": "4",
+      "d": "0",
+      "v": "12",
+      "lott_gol": "72",
+      "sarga_lap": "2",
+      "ket_perc": "7",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "2",
+      "hetmeteres_gol": ""
+    }
+  },
+  {
+    "first_name": "Dominik",
+    "last_name": "Jász",
+    "position": "",
+    "birth_year": "1995",
+    "image_link": "https://cdn.mksz.hu/mksz-public/2026/03/01/30305263-J%C3%A1sz%20Dominik.jpeg",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/50683",
+    "stats": {
+      "merkozes": "10",
+      "gy": "2",
+      "d": "0",
+      "v": "8",
+      "lott_gol": "19",
+      "sarga_lap": "",
+      "ket_perc": "",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "",
+      "hetmeteres_gol": ""
+    }
+  },
+  {
+    "first_name": "Zsolt",
+    "last_name": "Király",
+    "position": "",
+    "birth_year": "2001",
+    "image_link": "https://cdn.mksz.hu/mksz-public/2025/02/06/2663648-Kir%C3%A1ly%20Zsolt.jpg",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/31419",
+    "stats": {
+      "merkozes": "7",
+      "gy": "3",
+      "d": "0",
+      "v": "4",
+      "lott_gol": "12",
+      "sarga_lap": "1",
+      "ket_perc": "2",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "",
+      "hetmeteres_gol": ""
+    }
+  },
+  {
+    "first_name": "Gyula Máté",
+    "last_name": "Kis",
+    "position": "",
+    "birth_year": "1989",
+    "image_link": "https://cdn.mksz.hu/mksz-public/2026/03/01/30305258-Kis%20Gyula%20M%C3%A1t%C3%A9.jpeg",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/126106",
+    "stats": {
+      "merkozes": "5",
+      "gy": "2",
+      "d": "0",
+      "v": "3",
+      "lott_gol": "1",
+      "sarga_lap": "",
+      "ket_perc": "",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "1",
+      "hetmeteres_gol": "1"
+    }
+  },
+  {
+    "first_name": "András",
+    "last_name": "Lencz",
+    "position": "",
+    "birth_year": "1986",
+    "image_link": "https://cdn.mksz.hu/mkszhu-public/img/slider/sample_slider.png",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/2262",
+    "stats": {
+      "merkozes": "1",
+      "gy": "0",
+      "d": "0",
+      "v": "1",
+      "lott_gol": "",
+      "sarga_lap": "",
+      "ket_perc": "2",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "",
+      "hetmeteres_gol": ""
+    }
+  },
+  {
+    "first_name": "Richárd",
+    "last_name": "Megyesi",
+    "position": "",
+    "birth_year": "2000",
+    "image_link": "https://cdn.mksz.hu/mkszhu-public/img/slider/sample_slider.png",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/58185",
+    "stats": {
+      "merkozes": "14",
+      "gy": "3",
+      "d": "0",
+      "v": "11",
+      "lott_gol": "",
+      "sarga_lap": "",
+      "ket_perc": "",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "",
+      "hetmeteres_gol": ""
+    }
+  },
+  {
+    "first_name": "Dániel",
+    "last_name": "Mészáros",
+    "position": "",
+    "birth_year": "1988",
+    "image_link": "https://cdn.mksz.hu/mksz-public/2026/02/26/30305247-M%C3%A9sz%C3%A1ros%20D%C3%A1niel.jpeg",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/6745",
+    "stats": {
+      "merkozes": "15",
+      "gy": "4",
+      "d": "0",
+      "v": "11",
+      "lott_gol": "25",
+      "sarga_lap": "1",
+      "ket_perc": "5",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "22",
+      "hetmeteres_gol": "15"
+    }
+  },
+  {
+    "first_name": "Martin Tibor",
+    "last_name": "Németh",
+    "position": "",
+    "birth_year": "2001",
+    "image_link": "https://cdn.mksz.hu/mksz-public/2025/04/11/2762196-ny%C3%ADlv%C3%A1ntart%C3%A1si%20k%C3%A9p.png",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/46128",
+    "stats": {
+      "merkozes": "15",
+      "gy": "3",
+      "d": "0",
+      "v": "12",
+      "lott_gol": "4",
+      "sarga_lap": "1",
+      "ket_perc": "",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "",
+      "hetmeteres_gol": ""
+    }
+  },
+  {
+    "first_name": "Martin",
+    "last_name": "Orbán",
+    "position": "",
+    "birth_year": "1993",
+    "image_link": "https://cdn.mksz.hu/mksz-public/2025/11/16/30096482-Orb%C3%A1n%20Martin.jpg",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/8746",
+    "stats": {
+      "merkozes": "11",
+      "gy": "2",
+      "d": "0",
+      "v": "9",
+      "lott_gol": "19",
+      "sarga_lap": "",
+      "ket_perc": "",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "",
+      "hetmeteres_gol": ""
+    }
+  },
+  {
+    "first_name": "Benjamin",
+    "last_name": "Sauerbrei",
+    "position": "",
+    "birth_year": "1993",
+    "image_link": "https://cdn.mksz.hu/mksz-public/2026/03/01/30305271-Sauerbrei%20Benj%C3%A1min.jpeg",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/8751",
+    "stats": {
+      "merkozes": "10",
+      "gy": "3",
+      "d": "0",
+      "v": "7",
+      "lott_gol": "36",
+      "sarga_lap": "4",
+      "ket_perc": "6",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "1",
+      "hetmeteres_gol": ""
+    }
+  },
+  {
+    "first_name": "Péter",
+    "last_name": "Szakács",
+    "position": "",
+    "birth_year": "1984",
+    "image_link": "https://cdn.mksz.hu/mksz-public/2025/08/30/2882549-Szak%C3%A1cs%20P%C3%A9ter.jpg",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/1567",
+    "stats": {
+      "merkozes": "16",
+      "gy": "4",
+      "d": "0",
+      "v": "12",
+      "lott_gol": "148",
+      "sarga_lap": "",
+      "ket_perc": "5",
+      "kizaras": "1",
+      "kizar_feljelentes": "",
+      "hetmeteres": "18",
+      "hetmeteres_gol": "13"
+    }
+  },
+  {
+    "first_name": "István János",
+    "last_name": "Takács",
+    "position": "",
+    "birth_year": "2007",
+    "image_link": "https://cdn.mksz.hu/mksz-public/2025/10/17/3018120-Tak%C3%A1csI%20Istv%C3%A1n.jpeg",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/936989",
+    "stats": {
+      "merkozes": "14",
+      "gy": "3",
+      "d": "0",
+      "v": "11",
+      "lott_gol": "40",
+      "sarga_lap": "",
+      "ket_perc": "1",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "1",
+      "hetmeteres_gol": "1"
+    }
+  },
+  {
+    "first_name": "Péter",
+    "last_name": "Takács",
+    "position": "",
+    "birth_year": "2004",
+    "image_link": "https://cdn.mksz.hu/mksz-public/2026/02/14/30243739-Tak%C3%A1cs%20P%C3%A9ter.jpeg",
+    "profile_link": "https://mksz.hu/jatekos-adatlap/101162",
+    "stats": {
+      "merkozes": "1",
+      "gy": "0",
+      "d": "0",
+      "v": "1",
+      "lott_gol": "",
+      "sarga_lap": "",
+      "ket_perc": "",
+      "kizaras": "",
+      "kizar_feljelentes": "",
+      "hetmeteres": "",
+      "hetmeteres_gol": ""
+    }
+  }
 ]

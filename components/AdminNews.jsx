@@ -18,7 +18,11 @@ const AdminNews = () => {
         try {
             const response = await fetch('/api/news');
             const data = await response.json();
-            setNewsData(data.reverse());
+            // Valódi dátum szerinti rendezés, ne csak a beszúrási sorrend megfordítása
+            const sorted = [...data].sort(
+                (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+            );
+            setNewsData(sorted);
         } catch (error) {
             console.error('Hiba történt a hírek betöltésekor:', error);
         }

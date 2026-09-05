@@ -2,10 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import PlayerPopup from '@/components/PlayerPopup';
 
 export default function TablePage() {
     const [tableData, setTableData] = useState([]);
     const [playersData, setPlayersData] = useState([]);
+    const [topScorers, setTopScorers] = useState([]);
+    const [selectedPlayer, setSelectedPlayer] = useState(null);
 
     useEffect(() => {
         async function fetchTableData() {
@@ -15,13 +18,25 @@ export default function TablePage() {
         }
 
         async function fetchPlayersData() {
-            const response = await fetch('/teamdatas/kezilabda/ffifelnott/mkszffifelnottjatekosok.json');
+            const response = await fetch('/api/players?team=ffifelnott');
             const data = await response.json();
             setPlayersData(data);
         }
 
+        async function fetchTopScorers() {
+            try {
+                const response = await fetch('/teamdatas/kezilabda/ffifelnott/mkszffifelnottgollovok.json');
+                if (!response.ok) return;
+                const data = await response.json();
+                setTopScorers(data.slice(1)); // Skip the header row
+            } catch {
+                // Ha még nincs lefuttatva a góllövőlista-scraper, egyszerűen nem jelenik meg a szekció.
+            }
+        }
+
         fetchTableData();
         fetchPlayersData();
+        fetchTopScorers();
     }, []);
 
     return (
@@ -80,6 +95,36 @@ export default function TablePage() {
                 </table>
             </motion.div>
 
+            {topScorers.length > 0 && (
+                <motion.div
+                    className="overflow-x-auto mb-12"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                >
+                    <h2 className="text-3xl font-semibold text-center mb-4 text-white">
+                        Házi <span className="text-accent">Góllövőlista</span>
+                    </h2>
+                    <table className="min-w-full table-auto border-collapse">
+                        <thead>
+                            <tr className="bg-green-600 text-white">
+                                <th className="py-3 px-4 text-left">Hely</th>
+                                <th className="py-3 px-4 text-left">Név</th>
+                                <th className="py-3 px-4 text-left">Gól</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {topScorers.map((row, index) => (
+                                <tr key={index} className="border-t hover:bg-accent/20">
+                                    <td className="py-3 px-4 text-left">{row[0]}</td>
+                                    <td className="py-3 px-4 text-left">{row[1]}</td>
+                                    <td className="py-3 px-4 text-left">{row[3]}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </motion.div>
+            )}
 
             <div className="mb-6">
                 {/* Stáb és Játékosok Cím */}
@@ -93,11 +138,9 @@ export default function TablePage() {
                 </motion.h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     {playersData.map((player, index) => (
-                        <motion.a
+                        <motion.div
                             key={index}
-                            href={player.profile_link}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            onClick={() => setSelectedPlayer(player)}
                             className={`text-center p-6 rounded-lg shadow-lg transition-all transform hover:scale-105 cursor-pointer ${index % 2 === 0 ? 'bg-accent text-sndbg hover:text-accent hover:bg-sndbg' : 'bg-sndbg text-accent hover:text-sndbg hover:bg-accent'} h-72`}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -111,10 +154,14 @@ export default function TablePage() {
                             <h3 className="text-xl font-bold uppercase">{player.last_name}</h3>
                             <p className="text-md text-white font-semibold text-lg">{player.first_name}</p>
                             <p className="text-md text-white font-semibold">{player.position}</p>
-                        </motion.a>
+                        </motion.div>
                     ))}
                 </div>
             </div>
+
+            {selectedPlayer && (
+                <PlayerPopup player={selectedPlayer} closePopup={() => setSelectedPlayer(null)} />
+            )}
         </section>
     );
 }

@@ -102,7 +102,7 @@ export default function AddNewsForm({ handleAddNews, session }) {
                 >
                     <option value="">Formázási típus</option>
                     {htmlTags.map((tag) => (
-                        <option key={tag.tag} value={tag.tag}>{tag.name}</option>
+                        <option key={tag.name} value={tag.tag}>{tag.name}</option>
                     ))}
                 </select>
                 <Button className="bg-accent text-white" onClick={handleInsertTag}>

@@ -2,9 +2,17 @@
 
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { useState, useRef } from "react"
-import { signIn, signOut, useSession } from "next-auth/react"
+import { motion } from "framer-motion"
+import { signOut, useSession } from "next-auth/react"
 import { CiLogin, CiLogout } from "react-icons/ci"
+import {
+    NavigationMenu,
+    NavigationMenuContent,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu"
 
 const links = [
     {
@@ -39,94 +47,97 @@ const links = [
     },
 ]
 
+// Egy sima nav-link, ami az aktív állapotot egy framer-motion "pill"-lel
+// jelzi - ha másik linkre lépünk, az aláhúzás átcsúszik rá.
+const NavLink = ({ href, isActive, children }) => (
+    <Link
+        href={href}
+        className={`relative px-3 py-2 capitalize font-medium transition-colors ${isActive ? "text-accent" : "text-white hover:text-accent"
+            }`}
+    >
+        {children}
+        {isActive && (
+            <motion.span
+                layoutId="nav-active-underline"
+                className="absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-accent"
+                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+            />
+        )}
+    </Link>
+)
+
 const Nav = () => {
     const pathname = usePathname()
     const router = useRouter()
     const { data: session } = useSession()
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-    const timeoutRef = useRef(null)
 
-
-    const handleMouseEnter = () => {
-        if (timeoutRef.current) clearTimeout(timeoutRef.current)
-        setIsDropdownOpen(true)
-    }
-
-    const handleMouseLeave = () => {
-        timeoutRef.current = setTimeout(() => setIsDropdownOpen(false), 100)
-    }
+    const isDepartmentsActive =
+        pathname === "/departments" || pathname.startsWith("/szakosztalyok")
 
     return (
-        <nav className="flex items-center gap-8 relative">
-            {links.map((link, index) => (
-                <div
-                    key={index}
-                    className="relative"
-                    onMouseEnter={link.dropdown ? handleMouseEnter : undefined}
-                    onMouseLeave={link.dropdown ? handleMouseLeave : undefined}
-                >
-                    {link.dropdown ? (
-                        <div className="relative">
-                            <Link
-                                href={link.path}
-                                className={`${link.path === pathname && "text-accent border-b-2 border-accent"} capitalize font-medium hover:text-accent transition-all`}
-                            >
-                                {link.name}
-                            </Link>
-
-                            {isDropdownOpen && (
-                                <div
-                                    className="absolute top-full left-0 bg-sndbg shadow-lg rounded-md mt-2 z-50 border-b border-accent"
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
+        <div className="flex items-center gap-6">
+            <NavigationMenu>
+                <NavigationMenuList>
+                    {links.map((link) =>
+                        link.dropdown ? (
+                            <NavigationMenuItem key={link.path}>
+                                <NavigationMenuTrigger
+                                    className={isDepartmentsActive ? "text-accent" : undefined}
                                 >
-                                    <ul className="flex flex-col">
-                                        {link.dropdown.map((subLink, subIndex) => (
-                                            <li key={subIndex} className="whitespace-nowrap px-4 py-2">
-                                                <Link href={subLink.path} className="capitalize font-medium text-white hover:text-accent">
-                                                    {subLink.name}
-                                                </Link>
+                                    {link.name}
+                                </NavigationMenuTrigger>
+                                <NavigationMenuContent>
+                                    <ul className="grid w-[240px] gap-1 p-2">
+                                        {link.dropdown.map((subLink) => (
+                                            <li key={subLink.path}>
+                                                <NavigationMenuLink asChild>
+                                                    <Link
+                                                        href={subLink.path}
+                                                        className={`block rounded-lg px-3 py-2 text-sm capitalize transition-colors hover:bg-white/5 hover:text-accent ${pathname === subLink.path ? "text-accent" : "text-white/90"
+                                                            }`}
+                                                    >
+                                                        {subLink.name}
+                                                    </Link>
+                                                </NavigationMenuLink>
                                             </li>
                                         ))}
                                     </ul>
-                                </div>
-                            )}
-                        </div>
-                    ) : (
-                        <Link
-                            href={link.path}
-                            className={`${link.path === pathname && "text-accent border-b-2 border-accent"} capitalize font-medium hover:text-accent transition-all`}
-                        >
-                            {link.name}
-                        </Link>
+                                </NavigationMenuContent>
+                            </NavigationMenuItem>
+                        ) : (
+                            <NavigationMenuItem key={link.path}>
+                                <NavLink href={link.path} isActive={link.path === pathname}>
+                                    {link.name}
+                                </NavLink>
+                            </NavigationMenuItem>
+                        )
                     )}
-                </div>
-            ))}
+                </NavigationMenuList>
+            </NavigationMenu>
 
             {/* Ha be van jelentkezve, megjelenik az "Admin Panel" és a "Kijelentkezés" gomb */}
             {session ? (
-                <div className="ml-auto flex items-center gap-4">
-                    <Link href="/admin" className="text-white hover:text-accent transition-all font-medium">
+                <div className="flex items-center gap-4">
+                    <Link href="/admin" className="text-white hover:text-accent transition-colors font-medium">
                         Admin Panel
                     </Link>
                     <button
-                        className="text-white hover:text-accent transition-all flex items-center gap-2"
+                        className="text-white hover:text-accent transition-colors flex items-center gap-2"
                         onClick={() => signOut({ callbackUrl: "/" })}
                     >
                         Kijelentkezés <CiLogout className="text-2xl" />
                     </button>
-
                 </div>
             ) : (
                 // Ha nincs bejelentkezve, a "Bejelentkezés" gomb látszik
                 <button
-                    className="ml-auto text-white hover:text-accent transition-all flex items-center gap-2"
+                    className="text-white hover:text-accent transition-colors flex items-center gap-2"
                     onClick={() => router.push("/loginpage")}
                 >
                     Bejelentkezés <CiLogin className="text-2xl" />
                 </button>
             )}
-        </nav>
+        </div>
     )
 }
 

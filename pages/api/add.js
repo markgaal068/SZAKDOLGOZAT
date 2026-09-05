@@ -1,7 +1,17 @@
 import { MongoClient } from "mongodb";
 
-const uri = "mongodb+srv://markgaal068:rGAW8V26qKPVM49s@kinizsi.wabej.mongodb.net/?retryWrites=true&w=majority&appName=kinizsi"; // SAJÁT ADAT!
+const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
+
+// A base64-be kódolt képek miatt a body simán túllépi az alapértelmezett 1mb-os
+// Next.js limitet - a hírekhez becsatolt fotók emiatt csendben elszálltak (413).
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: "12mb",
+        },
+    },
+};
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {

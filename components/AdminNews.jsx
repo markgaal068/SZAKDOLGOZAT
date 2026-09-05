@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import AddNewsForm from "@/components/AddNewsForm";
 import EditNewsForm from "@/components/EditNewsForm";
 import { useSession } from "next-auth/react"; // NextAuth session hook
+import { fileToCompressedDataUrl } from "@/lib/image";
 
 const AdminNews = () => {
     const { data: session } = useSession(); // Session lekérése
     const [newsData, setNewsData] = useState([]);
     const [editingNews, setEditingNews] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null);
 
     useEffect(() => {
         fetchNews();
@@ -28,6 +30,8 @@ const AdminNews = () => {
             return;
         }
 
+        setErrorMessage(null);
+
         const author = session.user.fullname; // Szerző neve
         const createdAt = new Date().toISOString(); // Aktuális dátum
 
@@ -35,7 +39,7 @@ const AdminNews = () => {
             title: newTitle,
             description: newDescription,
             content: newContent,
-            images: await Promise.all(newImages.map(convertToBase64)),
+            images: await Promise.all(newImages.map((file) => fileToCompressedDataUrl(file))),
             author, // Szerző hozzáadása
             createdAt, // Dátum hozzáadása
         };
@@ -49,9 +53,15 @@ const AdminNews = () => {
 
             if (response.ok) {
                 fetchNews();
+            } else if (response.status === 413) {
+                setErrorMessage("A feltöltött kép(ek) mérete túl nagy. Próbálj kisebb fájlokat feltölteni.");
+            } else {
+                const data = await response.json().catch(() => ({}));
+                setErrorMessage(data.error || "Hiba történt a hír hozzáadásakor.");
             }
         } catch (error) {
             console.error('Hiba történt a hír hozzáadásakor:', error);
+            setErrorMessage("Hiba történt a hír hozzáadásakor.");
         }
     };
 
@@ -88,18 +98,15 @@ const AdminNews = () => {
         }
     };
 
-    const convertToBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = (error) => reject(error);
-        });
-    };
-
     return (
         <div className="p-6">
             <h2 className="text-3xl font-bold text-center mb-6"><span className="text-accent">Hírek</span> Kezelése</h2>
+
+            {errorMessage && (
+                <p className="text-center text-red-400 bg-red-950/40 border border-red-500/40 rounded-lg py-2 px-4 mb-4">
+                    {errorMessage}
+                </p>
+            )}
 
             {!editingNews ? (
                 <AddNewsForm handleAddNews={handleAddNews} session={session} /> 

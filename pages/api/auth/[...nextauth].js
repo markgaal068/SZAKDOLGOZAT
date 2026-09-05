@@ -64,7 +64,7 @@ export default NextAuth({
     session: {
         strategy: "jwt", // JWT token alapú session kezelés
     },
-    secret: process.env.NEXTAUTH_SECRET || "s3cureR@nd0mK3y!1234", // A titkos kulcsot környezeti változóban tárold
+    secret: process.env.NEXTAUTH_SECRET, // Kötelező .env.local-ban beállítani - lásd .env.example
     callbacks: {
         async jwt({ token, user }) {
             if (user) {

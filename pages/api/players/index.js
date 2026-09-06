@@ -4,7 +4,7 @@ const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
 
 // Érvényes csapat-azonosítók - ugyanazok, mint a public/teamdatas/kezilabda/ mappák
-export const VALID_TEAMS = ["ffifelnott", "noifelnott", "leanyifi", "leanyseri"];
+export const VALID_TEAMS = ["ffifelnott", "noifelnott", "leanyseri"];
 
 export default async function handler(req, res) {
     if (req.method !== "GET") {

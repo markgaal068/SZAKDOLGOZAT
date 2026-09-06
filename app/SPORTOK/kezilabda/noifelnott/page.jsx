@@ -3,27 +3,56 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import PlayerPopup from '@/components/PlayerPopup';
+import { TeamSchedule, TeamTopScorers } from '@/components/TeamMatchesPanel';
+import { isKinizsiTeam } from '@/lib/utils';
+
+const TEAM_ID = 'noifelnott';
 
 export default function TablePage() {
     const [tableData, setTableData] = useState([]);
     const [playersData, setPlayersData] = useState([]);
+    const [topScorers, setTopScorers] = useState([]);
+    const [matches, setMatches] = useState([]);
     const [selectedPlayer, setSelectedPlayer] = useState(null);
 
     useEffect(() => {
         async function fetchTableData() {
-            const response = await fetch('/teamdatas/kezilabda/noifelnott/mksznoifelnott.json');
+            const response = await fetch(`/teamdatas/kezilabda/${TEAM_ID}/mksz${TEAM_ID}.json`);
             const data = await response.json();
             setTableData(data.slice(1)); // Skip the header row
         }
 
         async function fetchPlayersData() {
-            const response = await fetch('/api/players?team=noifelnott');
+            const response = await fetch(`/api/players?team=${TEAM_ID}`);
             const data = await response.json();
             setPlayersData(data);
         }
 
+        async function fetchTopScorers() {
+            try {
+                const response = await fetch(`/teamdatas/kezilabda/${TEAM_ID}/mksz${TEAM_ID}gollovok.json`);
+                if (!response.ok) return;
+                const data = await response.json();
+                setTopScorers(data.slice(1)); // Skip the header row
+            } catch {
+                // Ha még nincs lefuttatva az import script, egyszerűen nem jelenik meg a szekció.
+            }
+        }
+
+        async function fetchMatches() {
+            try {
+                const response = await fetch(`/teamdatas/kezilabda/${TEAM_ID}/mksz${TEAM_ID}menetrend.json`);
+                if (!response.ok) return;
+                setMatches(await response.json());
+            } catch {
+                // Ha még nincs lefuttatva az import script, egyszerűen nem jelenik meg a szekció.
+            }
+        }
+
         fetchTableData();
         fetchPlayersData();
+        fetchTopScorers();
+        fetchMatches();
     }, []);
 
     return (
@@ -64,7 +93,7 @@ export default function TablePage() {
                         {tableData.map((row, index) => (
                             <tr
                                 key={index}
-                                className={`border-t hover:bg-accent/20 ${row[1] === 'Ácsi Kinizsi SC.' ? 'bg-accent/10' : ''}`}
+                                className={`border-t hover:bg-accent/20 ${isKinizsiTeam(row[1]) ? 'bg-accent/10' : ''}`}
                             >
                                 <td className="py-3 px-4 text-left">{row[0]}</td>
                                 <td className="py-3 px-4 text-left">{row[1]}</td>
@@ -81,6 +110,18 @@ export default function TablePage() {
                     </tbody>
                 </table>
             </motion.div>
+
+            {(matches.length > 0 || topScorers.length > 0) && (
+                <motion.div
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                >
+                    <TeamSchedule matches={matches} />
+                    <TeamTopScorers rows={topScorers} />
+                </motion.div>
+            )}
 
             <div className="mb-6">
                 {/* Stáb és Játékosok Cím */}

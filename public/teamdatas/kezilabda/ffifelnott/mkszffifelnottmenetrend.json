@@ -1,0 +1,146 @@
+[
+  {
+    "date": "2025.10.05. 16:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "Várpalotai BSK II",
+    "isHome": true,
+    "played": true,
+    "result": "27:31",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.10.11. 18:00",
+    "venue": "Városi Sportcsarnok Simontornya",
+    "opponent": "Simontornyai KK",
+    "isHome": false,
+    "played": true,
+    "result": "40:32",
+    "outcome": "win"
+  },
+  {
+    "date": "2025.10.19. 15:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "KVSE",
+    "isHome": true,
+    "played": true,
+    "result": "33:36",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.10.26. 18:30",
+    "venue": "Tóth Iván sportcsarnok Martonvásár",
+    "opponent": "MKSE",
+    "isHome": false,
+    "played": true,
+    "result": "32:29",
+    "outcome": "win"
+  },
+  {
+    "date": "2025.11.09. 16:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "Esztergomi Vitézek",
+    "isHome": true,
+    "played": true,
+    "result": "26:27",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.11.16. 16:30",
+    "venue": "DDSE Sportcsarnok Diósd",
+    "opponent": "FOODTEST Diósd",
+    "isHome": false,
+    "played": true,
+    "result": "24:35",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.11.22. 17:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "Rácalmás SE",
+    "isHome": true,
+    "played": true,
+    "result": "28:33",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.12.06. 15:00",
+    "venue": "Gál Gyula Sportcsarnok Várpalota",
+    "opponent": "Alba Regia KSE",
+    "isHome": false,
+    "played": true,
+    "result": "34:36",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.02.14. 20:00",
+    "venue": "Gál Gyula Sportcsarnok Várpalota",
+    "opponent": "Várpalotai BSK II",
+    "isHome": false,
+    "played": true,
+    "result": "31:40",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.03.01. 16:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "Simontornyai KK",
+    "isHome": true,
+    "played": true,
+    "result": "38:36",
+    "outcome": "win"
+  },
+  {
+    "date": "2026.03.07. 17:30",
+    "venue": "Zsivótzky Gyula Sportcsarnok Kisbér",
+    "opponent": "KVSE",
+    "isHome": false,
+    "played": true,
+    "result": "33:30",
+    "outcome": "win"
+  },
+  {
+    "date": "2026.03.21. 16:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "MKSE",
+    "isHome": true,
+    "played": true,
+    "result": "29:31",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.03.29. 18:00",
+    "venue": "Suzuki Aréna Esztergom",
+    "opponent": "Esztergomi Vitézek",
+    "isHome": false,
+    "played": true,
+    "result": "26:32",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.04.11. 16:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "FOODTEST Diósd",
+    "isHome": true,
+    "played": true,
+    "result": "33:34",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.04.25. 18:00",
+    "venue": "Rácalmási Rendezvényközpont és Sportcsarnok Rácalmás",
+    "opponent": "Rácalmás SE",
+    "isHome": false,
+    "played": true,
+    "result": "30:44",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.05.17. 16:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "Alba Regia KSE",
+    "isHome": true,
+    "played": true,
+    "result": "28:32",
+    "outcome": "loss"
+  }
+]

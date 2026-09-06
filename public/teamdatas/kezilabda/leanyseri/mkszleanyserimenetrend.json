@@ -1,0 +1,128 @@
+[
+  {
+    "date": "2025.09.05. 16:30",
+    "venue": "Városi Sportcsarnok Komárom",
+    "opponent": "Komárom VSE",
+    "isHome": false,
+    "played": true,
+    "result": "19:40",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.09.14. 17:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "Rácalmás SE",
+    "isHome": true,
+    "played": true,
+    "result": "21:39",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.09.21. 11:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "Solymári SC",
+    "isHome": true,
+    "played": true,
+    "result": "20:31",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.10.04. 16:00",
+    "venue": "Földi Imre Sportcsarnok Tatabánya",
+    "opponent": "Tatabányai SC",
+    "isHome": false,
+    "played": true,
+    "result": "28:34",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.10.12. 18:00",
+    "venue": "Suzuki Aréna Esztergom",
+    "opponent": "Esztergomi Vitézek",
+    "isHome": false,
+    "played": true,
+    "result": "29:42",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.10.18. 17:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "Tarján SE",
+    "isHome": true,
+    "played": true,
+    "result": "29:32",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.11.04. 16:30",
+    "venue": "Güntner Aréna Tata",
+    "opponent": "Tatai AC",
+    "isHome": false,
+    "played": true,
+    "result": "21:39",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.11.16. 11:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "Komárom VSE",
+    "isHome": true,
+    "played": true,
+    "result": "34:28",
+    "outcome": "win"
+  },
+  {
+    "date": "2025.11.21. 17:00",
+    "venue": "Rácalmási Rendezvényközpont és Sportcsarnok Rácalmás",
+    "opponent": "Rácalmás SE",
+    "isHome": false,
+    "played": true,
+    "result": "20:33",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.12.07. 14:00",
+    "venue": "Dorogi Sportcsarnok Dorog",
+    "opponent": "Solymári SC",
+    "isHome": false,
+    "played": true,
+    "result": "16:39",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.12.13. 17:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "Tatabányai SC",
+    "isHome": true,
+    "played": true,
+    "result": "26:38",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.02.01. 14:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "Esztergomi Vitézek",
+    "isHome": true,
+    "played": true,
+    "result": "23:38",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.02.03. 17:30",
+    "venue": "Községi Sportcsarnok Tarján",
+    "opponent": "Tarján SE",
+    "isHome": false,
+    "played": true,
+    "result": "25:50",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.02.15. 14:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "Tatai AC",
+    "isHome": true,
+    "played": true,
+    "result": "20:36",
+    "outcome": "loss"
+  }
+]

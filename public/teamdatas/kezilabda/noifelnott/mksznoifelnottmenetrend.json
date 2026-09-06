@@ -1,0 +1,146 @@
+[
+  {
+    "date": "2025.10.12. 14:00",
+    "venue": "Suzuki Aréna Esztergom",
+    "opponent": "Esztergomi Vitézek",
+    "isHome": false,
+    "played": true,
+    "result": "24:29",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.10.19. 17:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "RSE",
+    "isHome": true,
+    "played": true,
+    "result": "27:24",
+    "outcome": "win"
+  },
+  {
+    "date": "2025.10.24. 12:00",
+    "venue": "Tóth Iván sportcsarnok Martonvásár",
+    "opponent": "MKSE",
+    "isHome": false,
+    "played": true,
+    "result": "29:41",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.11.09. 14:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "NKK-71 Naszvad",
+    "isHome": true,
+    "played": true,
+    "result": "28:45",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.11.23. 16:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "Esztergomi Vitézek",
+    "isHome": true,
+    "played": true,
+    "result": "26:26",
+    "outcome": "draw"
+  },
+  {
+    "date": "2025.11.29. 16:00",
+    "venue": "Rácalmási Rendezvényközpont és Sportcsarnok Rácalmás",
+    "opponent": "RSE",
+    "isHome": false,
+    "played": true,
+    "result": "27:31",
+    "outcome": "loss"
+  },
+  {
+    "date": "2025.12.07. 12:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "MKSE",
+    "isHome": true,
+    "played": true,
+    "result": "34:28",
+    "outcome": "win"
+  },
+  {
+    "date": "2025.12.14. 13:30",
+    "venue": "Rugby Club Hostel és Sportc. kültéri sátor Esztergom",
+    "opponent": "NKK-71 Naszvad",
+    "isHome": false,
+    "played": true,
+    "result": "29:38",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.03.01. 14:00",
+    "venue": "Suzuki Aréna Esztergom",
+    "opponent": "Esztergomi Vitézek",
+    "isHome": false,
+    "played": true,
+    "result": "31:36",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.03.07. 16:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "RSE",
+    "isHome": true,
+    "played": true,
+    "result": "26:35",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.03.22. 00:00",
+    "venue": "Tóth Iván sportcsarnok Martonvásár",
+    "opponent": "MKSE",
+    "isHome": false,
+    "played": true,
+    "result": "0:10",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.03.28. 16:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "NKK-71 Naszvad",
+    "isHome": true,
+    "played": true,
+    "result": "31:38",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.04.18. 16:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "Esztergomi Vitézek",
+    "isHome": true,
+    "played": true,
+    "result": "26:35",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.04.25. 16:00",
+    "venue": "Rácalmási Rendezvényközpont és Sportcsarnok Rácalmás",
+    "opponent": "RSE",
+    "isHome": false,
+    "played": true,
+    "result": "23:38",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.05.09. 16:00",
+    "venue": "Városi Sportcsarnok Ács",
+    "opponent": "MKSE",
+    "isHome": true,
+    "played": true,
+    "result": "31:37",
+    "outcome": "loss"
+  },
+  {
+    "date": "2026.05.16. 16:00",
+    "venue": "Rugby Club Hostel és Sportc. kültéri sátor Esztergom",
+    "opponent": "NKK-71 Naszvad",
+    "isHome": false,
+    "played": true,
+    "result": "38:41",
+    "outcome": "loss"
+  }
+]

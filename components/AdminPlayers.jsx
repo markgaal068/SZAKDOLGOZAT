@@ -6,7 +6,6 @@ import { fileToCompressedDataUrl } from "@/lib/image";
 const TEAMS = [
     { value: "ffifelnott", label: "Férfi felnőtt" },
     { value: "noifelnott", label: "Női felnőtt" },
-    { value: "leanyifi", label: "Leány ifjúsági" },
     { value: "leanyseri", label: "Leány serdülő" },
 ];
 

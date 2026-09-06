@@ -3,40 +3,56 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import PlayerPopup from '@/components/PlayerPopup';
+import { TeamSchedule, TeamTopScorers } from '@/components/TeamMatchesPanel';
+import { isKinizsiTeam } from '@/lib/utils';
+
+const TEAM_ID = 'ffifelnott';
 
 export default function TablePage() {
     const [tableData, setTableData] = useState([]);
     const [playersData, setPlayersData] = useState([]);
     const [topScorers, setTopScorers] = useState([]);
+    const [matches, setMatches] = useState([]);
     const [selectedPlayer, setSelectedPlayer] = useState(null);
 
     useEffect(() => {
         async function fetchTableData() {
-            const response = await fetch('/teamdatas/kezilabda/ffifelnott/mkszffifelnott.json');
+            const response = await fetch(`/teamdatas/kezilabda/${TEAM_ID}/mksz${TEAM_ID}.json`);
             const data = await response.json();
             setTableData(data.slice(1)); // Skip the header row
         }
 
         async function fetchPlayersData() {
-            const response = await fetch('/api/players?team=ffifelnott');
+            const response = await fetch(`/api/players?team=${TEAM_ID}`);
             const data = await response.json();
             setPlayersData(data);
         }
 
         async function fetchTopScorers() {
             try {
-                const response = await fetch('/teamdatas/kezilabda/ffifelnott/mkszffifelnottgollovok.json');
+                const response = await fetch(`/teamdatas/kezilabda/${TEAM_ID}/mksz${TEAM_ID}gollovok.json`);
                 if (!response.ok) return;
                 const data = await response.json();
                 setTopScorers(data.slice(1)); // Skip the header row
             } catch {
-                // Ha még nincs lefuttatva a góllövőlista-scraper, egyszerűen nem jelenik meg a szekció.
+                // Ha még nincs lefuttatva az import script, egyszerűen nem jelenik meg a szekció.
+            }
+        }
+
+        async function fetchMatches() {
+            try {
+                const response = await fetch(`/teamdatas/kezilabda/${TEAM_ID}/mksz${TEAM_ID}menetrend.json`);
+                if (!response.ok) return;
+                setMatches(await response.json());
+            } catch {
+                // Ha még nincs lefuttatva az import script, egyszerűen nem jelenik meg a szekció.
             }
         }
 
         fetchTableData();
         fetchPlayersData();
         fetchTopScorers();
+        fetchMatches();
     }, []);
 
     return (
@@ -77,7 +93,7 @@ export default function TablePage() {
                         {tableData.map((row, index) => (
                             <tr
                                 key={index}
-                                className={`border-t hover:bg-accent/20 ${row[1] === 'Ácsi Kinizsi SC' ? 'bg-accent/10' : ''}`}
+                                className={`border-t hover:bg-accent/20 ${isKinizsiTeam(row[1]) ? 'bg-accent/10' : ''}`}
                             >
                                 <td className="py-3 px-4 text-left">{row[0]}</td>
                                 <td className="py-3 px-4 text-left">{row[1]}</td>
@@ -95,34 +111,15 @@ export default function TablePage() {
                 </table>
             </motion.div>
 
-            {topScorers.length > 0 && (
+            {(matches.length > 0 || topScorers.length > 0) && (
                 <motion.div
-                    className="overflow-x-auto mb-12"
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 0.5 }}
                 >
-                    <h2 className="text-3xl font-semibold text-center mb-4 text-white">
-                        Házi <span className="text-accent">Góllövőlista</span>
-                    </h2>
-                    <table className="min-w-full table-auto border-collapse">
-                        <thead>
-                            <tr className="bg-green-600 text-white">
-                                <th className="py-3 px-4 text-left">Hely</th>
-                                <th className="py-3 px-4 text-left">Név</th>
-                                <th className="py-3 px-4 text-left">Gól</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {topScorers.map((row, index) => (
-                                <tr key={index} className="border-t hover:bg-accent/20">
-                                    <td className="py-3 px-4 text-left">{row[0]}</td>
-                                    <td className="py-3 px-4 text-left">{row[1]}</td>
-                                    <td className="py-3 px-4 text-left">{row[3]}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                    <TeamSchedule matches={matches} />
+                    <TeamTopScorers rows={topScorers} />
                 </motion.div>
             )}
 
